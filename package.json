@@ -1,0 +1,26 @@
+{
+  "name": "chameleon-chess-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "react-native start",
+    "postinstall": "cd ios && pod install && npm run logic",
+    "android:build": "react-native run-android",
+    "ios": "xcrun simctl boot 'iPad Air (3rd generation)' && open -a Simulator.app",
+    "ios:build": "react-native run-ios --simulator 'iPad Air (3rd generation)'",
+    "ts": "tsc",
+    "logic": "rm -rf node_modules/chameleon-chess-logic && cp -R ../chameleon-chess-logic node_modules"
+  },
+  "dependencies": {
+    "@react-native-community/async-storage": "^1.6.2",
+    "chameleon-chess-logic": "../chameleon-chess-logic",
+    "react": "^16.10.2",
+    "react-native": "^0.61.2"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.5",
+    "@types/react-native": "^0.60.17",
+    "react-native-cli": "^2.0.1",
+    "typescript": "^3.6.3"
+  }
+}

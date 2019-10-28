@@ -1,0 +1,20 @@
+{
+  "include": [
+    "src",
+    "index.ts"
+  ],
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "baseUrl": "./",
+    
+    "strict": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+
+    "jsx": "react-native",
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true
+  }
+}
