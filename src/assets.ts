@@ -23,4 +23,11 @@ export const Images = {
     Rook: require(assets + 'Rook.png'),
 }
 
-export const Texts = Text
+export const Texts = {
+    players: {
+        [EColor.RED]: Text.players.red,
+        [EColor.GREEN]: Text.players.green,
+        [EColor.YELLOW]: Text.players.yellow,
+        [EColor.BLUE]: Text.players.blue,
+    }
+}

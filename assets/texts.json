@@ -1,3 +1,8 @@
 {
-    
+    "players": {
+        "red": "Spieler Rot",
+        "green": "Spieler Gelb",
+        "yellow": "Spieler Gelb",
+        "blue": "Spieler Blau"
+    }
 }

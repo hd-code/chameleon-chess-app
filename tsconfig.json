@@ -1,12 +1,8 @@
 {
-  "include": [
-    "src",
-    "index.ts"
-  ],
+  "include": [ "src", "index.ts" ],
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",
-    "baseUrl": "./",
     
     "strict": true,
     "moduleResolution": "node",

@@ -4,16 +4,14 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
-    "postinstall": "cd ios && pod install && npm run logic",
+    "postinstall": "cd ios && pod install",
     "android:build": "react-native run-android",
-    "ios": "xcrun simctl boot 'iPad Air (3rd generation)' && open -a Simulator.app",
-    "ios:build": "react-native run-ios --simulator 'iPad Air (3rd generation)'",
-    "ts": "tsc",
-    "logic": "rm -rf node_modules/chameleon-chess-logic && cp -R ../chameleon-chess-logic node_modules"
+    "ios": "xcrun simctl boot 'iPad Air (3rd generation)' && open -a Simulator.app && npm start",
+    "ios:build": "react-native run-ios --simulator 'iPad Air (3rd generation)'"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
-    "chameleon-chess-logic": "../chameleon-chess-logic",
+    "chameleon-chess-logic": "git+https://source.ai.fh-erfurt.de/ha9384dr/chameleon-chess-logic.git",
     "react": "^16.10.2",
     "react-native": "^0.61.2"
   },

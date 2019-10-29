@@ -1,6 +1,6 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
-import PlayerCard, { PlayerCardProps } from "../components/PlayerCard";
+import Player, { PlayerProps } from "./Player";
 import { EColor } from "chameleon-chess-logic";
 
 const style: ViewStyle = {
@@ -8,16 +8,18 @@ const style: ViewStyle = {
     flexDirection:'row'
 }
 
+export type TPlayers = {[player in EColor]: PlayerProps}
+
 export interface PlayerBoardProps {
-    players: {[player in EColor]: PlayerCardProps}
+    players: TPlayers
 }
 
 const PlayerBoard = (props: PlayerBoardProps) => (
     <View style={style}>
-        <PlayerCard {...props.players[EColor.RED]} />
-        <PlayerCard {...props.players[EColor.GREEN]} />
-        <PlayerCard {...props.players[EColor.YELLOW]} />
-        <PlayerCard {...props.players[EColor.BLUE]} />
+        <Player {...props.players[EColor.RED]} />
+        <Player {...props.players[EColor.GREEN]} />
+        <Player {...props.players[EColor.YELLOW]} />
+        <Player {...props.players[EColor.BLUE]} />
     </View>
 )
 

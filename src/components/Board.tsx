@@ -33,4 +33,5 @@ const Board = (props: BoardProps) => (
     </View>
 )
 
+
 export default Board;
