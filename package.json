@@ -6,8 +6,9 @@
     "start": "react-native start",
     "postinstall": "cd ios && pod install",
     "android:build": "react-native run-android",
-    "ios": "xcrun simctl boot 'iPad Air (3rd generation)' && open -a Simulator.app && npm start",
-    "ios:build": "react-native run-ios --simulator 'iPad Air (3rd generation)'"
+    "ios": "xcrun simctl boot 'iPad Air (3rd generation)' && xcrun simctl boot 'iPhone 8' && open -a Simulator.app && npm start",
+    "iPad:build": "react-native run-ios --simulator 'iPad Air (3rd generation)'",
+    "iPhone:build": "react-native run-ios --simulator 'iPhone 8'"
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",

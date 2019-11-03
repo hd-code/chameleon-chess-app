@@ -4,10 +4,8 @@ import { Colors } from "../assets";
 
 const style: ViewStyle = {
     position: 'absolute',
-    top: 0,
-    bottom: 0,
-    left: 0,
-    right: 0,
+    top: 0, bottom: 0,
+    left: 0, right: 0,
 }
 
 export enum OverlayType { DARKEN, LIGHTEN, GREY_OUT }

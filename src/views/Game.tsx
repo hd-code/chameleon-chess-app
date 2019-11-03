@@ -1,62 +1,58 @@
 import React, { useState } from "react";
-import { View } from "react-native";
-import { initGame, EColor, IPosition } from "chameleon-chess-logic";
+import { View, TouchableWithoutFeedback, ViewStyle } from "react-native";
+import { IPosition } from "chameleon-chess-logic";
 import Board from "../components/Board";
 import PlayerBoard from "../components/PlayerBoard";
 import { renderBoard } from "../aux/render";
-import * as db from "../aux/storage";
 import { IGame, handleClick } from "../aux/game";
+import Spacer from "../components/Spacer";
+import { IViewBaseProps } from "../App";
 
-const GS = initGame({[EColor.RED]: true, [1]:true, [2]: true, [3]:false})
-db.Game.set(GS)
+let GameData: IGame
 
-const PB = {
-    [EColor.RED]: 1,
-    [EColor.GREEN]: 2,
-    [EColor.YELLOW]: 1,
-    [EColor.BLUE]: 0,
+let board = { height: 0, width:  0 }
+
+const touchableStyle: ViewStyle = {
+    position: 'absolute',
+    top: 0, bottom: 0,
+    left: 0, right: 0,
 }
 
-let GameData: IGame = {
-    gs: GS,
-    players: PB,
-    selectedPawn: null
+interface GameProps extends IViewBaseProps {
+    gameData: IGame
 }
 
-const test = renderBoard(GameData)
+// TODO: Victory -> Popup
+// TODO: AI plays on its own
+// TODO: Going Back to Home
+// TODO: Layout animation
 
-const Game = () => {
-    const [game, setGame] = useState(test)
+const Game = (props: GameProps) => {
+    GameData = GameData || props.gameData
+    const [game, setGame] = useState(renderBoard(GameData))
 
-    function onClick(click: IPosition) {
-        GameData = handleClick(click, GameData)
-        const nextGameFrame = renderBoard(GameData)
-        setGame(nextGameFrame)
-    }
-
-    let dimensions = {
-        height: 0,
-        width:  0
-    }
-    function getDimensions(event: any) {
-        dimensions.height = event.nativeEvent.layout.height
-        dimensions.width  = event.nativeEvent.layout.width
-    }
+    function onLayout(event: any) { board = event.nativeEvent.layout }
 
     function onPress(event: any) {
-        const clickX = event.nativeEvent.locationX
-        const clickY = event.nativeEvent.locationY
+        const {locationX, locationY} = event.nativeEvent
         const click: IPosition = {
-            row: Math.floor((clickX / dimensions.width) * 8),
-            col: Math.floor((clickY / dimensions.width) * 8)
+            row: Math.floor(locationY / board.height * 8),
+            col: Math.floor(locationX / board.width  * 8)
         }
-        console.log(clickX);
+        GameData = handleClick(click, GameData)
+        setGame(renderBoard(GameData))
     }
 
     return (
         <View>
             <PlayerBoard players={game.players} />
-            <Board {...game} />
+            <Spacer size={20} />
+            <View onLayout={onLayout}>
+                <Board {...game} />
+                <TouchableWithoutFeedback onPress={onPress}>
+                    <View style={touchableStyle} />
+                </TouchableWithoutFeedback>
+            </View>
         </View>
     )
 }

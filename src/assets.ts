@@ -9,6 +9,7 @@ export const Colors = {
         [EColor.YELLOW]: Color.main.yellow,
         [EColor.BLUE]: Color.main.blue,
     },
+    button: Color.button,
     shader: Color.shader,
 }
 
@@ -29,5 +30,7 @@ export const Texts = {
         [EColor.GREEN]: Text.players.green,
         [EColor.YELLOW]: Text.players.yellow,
         [EColor.BLUE]: Text.players.blue,
-    }
+    },
+    Home: Text.Home,
+    PlayerConfig: Text.PlayerConfig
 }

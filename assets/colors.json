@@ -5,6 +5,10 @@
         "yellow": "#DDBB71",
         "blue": "#04909D"
     },
+    "button": {
+        "background": "#51A230",
+        "text": "#fff"
+    },
     "shader": {
         "darken":  "#0008",
         "lighten": "#fff8",

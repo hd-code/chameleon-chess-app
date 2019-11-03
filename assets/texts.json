@@ -4,5 +4,12 @@
         "green": "Spieler Gelb",
         "yellow": "Spieler Gelb",
         "blue": "Spieler Blau"
+    },
+    "Home": {
+        "continue": "Fortsetzen",
+        "newGame": "Neues Spiel"
+    },
+    "PlayerConfig": {
+        "beginGame": "Spiel starten"
     }
 }
