@@ -1,10 +1,10 @@
 import { getBoard, ILimits, IPawn, EColor, getPossibleMoves, IPosition } from "chameleon-chess-logic";
 import { flattenArray } from "./helper";
-import { IGame } from "./game";
-import { TPlayers } from "../components/PlayerBoard";
-import { PlayerProps, PlayerStatus } from "../components/Player";
-import { TileProps, TileStatus } from "../components/Tile";
-import { PawnProps, PawnStatus } from "../components/Pawn";
+import { IGame } from "./types";
+import { PawnProps, PawnStatus } from "./components/Pawn";
+import { PlayerProps, PlayerStatus } from "./components/Player";
+import { TPlayers } from "./components/PlayerBoard";
+import { TileProps, TileStatus } from "./components/Tile";
 
 export interface IRenderedBoard {
     players: TPlayers

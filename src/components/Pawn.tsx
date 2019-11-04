@@ -1,27 +1,11 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
-import { EColor, ERole, IPosition } from "chameleon-chess-logic";
-import { Colors } from "../assets";
 import ColorRole from "./ColorRole";
 import Overlay, { OverlayType } from "./Overlay";
+import { Colors } from "../assets";
+import { EColor, ERole, IPosition } from "chameleon-chess-logic";
 
-const style: ViewStyle = {
-    borderWidth: 3,
-    borderColor: Colors.shader.darken,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    height:'11%',
-    width: '11%',
-    position: 'absolute'
-}
-
-const styleRoleWrapper: ViewStyle = {
-    height: '80%',
-    width:  '80%',
-    flexWrap: 'wrap',
-    flexDirection: 'row'
-}
+/* ------------------------------- Component -------------------------------- */
 
 export enum PawnStatus { NORMAL, SELECTED, THREATENED }
 
@@ -69,3 +53,25 @@ const Pawn = (props: PawnProps) => (
 )
 
 export default Pawn;
+
+/* --------------------------------- Styles --------------------------------- */
+
+const style: ViewStyle = {
+    borderWidth: 3,
+    borderColor: Colors.shader.darken,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height:'11%',
+    width: '11%',
+    position: 'absolute'
+}
+
+const styleRoleWrapper: ViewStyle = {
+    height: '80%',
+    width:  '80%',
+    flexWrap: 'wrap',
+    flexDirection: 'row'
+}
+
+/* --------------------------------- Assets --------------------------------- */

@@ -3,16 +3,16 @@ import { Text as RNText, TextStyle, Dimensions } from "react-native";
 
 /* ------------------------------- Component -------------------------------- */
 
-interface TextProps {
+interface HeadingProps {
     children: string
     style?: TextStyle
 }
 
-const Text = (props: TextProps) => (
+const Heading = (props: HeadingProps) => (
     <RNText style={[style, props.style]}>{props.children}</RNText>
 )
 
-export default Text;
+export default Heading;
 
 /* --------------------------------- Styles --------------------------------- */
 

@@ -1,14 +1,10 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
-import { EColor } from "chameleon-chess-logic";
-import { Colors } from "../assets";
 import Overlay from "./Overlay";
+import { Colors } from "../assets";
+import { EColor } from "chameleon-chess-logic";
 
-const style: ViewStyle = {
-    height:'12.5%',
-    width: '12.5%',
-    borderWidth: 1,
-}
+/* ------------------------------- Component -------------------------------- */
 
 export enum TileStatus { DEACTIVATED, NORMAL, MARKED }
 
@@ -29,3 +25,13 @@ const Tile = (props: TileProps) => (
 )
 
 export default Tile;
+
+/* --------------------------------- Styles --------------------------------- */
+
+const style: ViewStyle = {
+    height:'12.5%',
+    width: '12.5%',
+    borderWidth: 1,
+}
+
+/* --------------------------------- Assets --------------------------------- */

@@ -1,11 +1,7 @@
 import React from "react";
 import { Image as Img, ImageSourcePropType, ImageStyle, ImageResizeMode } from "react-native";
 
-const style: ImageStyle = {
-    flex: 1,
-    height: undefined,
-    width:  undefined
-}
+/* ------------------------------- Component -------------------------------- */
 
 interface ImageProps {
     source: ImageSourcePropType
@@ -20,4 +16,14 @@ const Image = (props: ImageProps) =>
         resizeMode={props.resizeMode || 'contain'}
     />
 
-export default Image
+export default Image;
+
+/* --------------------------------- Styles --------------------------------- */
+
+const style: ImageStyle = {
+    flex: 1,
+    height: undefined,
+    width:  undefined
+}
+
+/* --------------------------------- Assets --------------------------------- */

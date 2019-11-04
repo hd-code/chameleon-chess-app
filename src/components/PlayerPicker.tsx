@@ -1,19 +1,24 @@
 import React from "react";
-import { View, ViewStyle } from "react-native";
+import { TouchableOpacity } from "react-native";
+import Player from "../components/Player";
+import { EPlayerType } from "../aux/game";
 import { EColor } from "chameleon-chess-logic";
 
-const style: ViewStyle = {
-    borderWidth: 1,
-    height: 50,
-    width: '48%',
-}
+/* ------------------------------- Component -------------------------------- */
 
 interface PlayerPickerProps {
     player: EColor
+    type: EPlayerType
+    onPress: (player: EColor) => void
 }
 
 const PlayerPicker = (props: PlayerPickerProps) => (
-    <View style={style} />
+    <TouchableOpacity onPress={ () => { props.onPress(props.player) } } activeOpacity={.8}>
+        <Player player={props.player} type={props.type} />
+    </TouchableOpacity>
 )
 
 export default PlayerPicker;
+
+/* --------------------------------- Styles --------------------------------- */
+/* --------------------------------- Assets --------------------------------- */

@@ -1,23 +1,10 @@
 import React from "react";
 import { ViewStyle, TextStyle, TouchableOpacity } from "react-native";
 import Text from "./Text";
-import { Colors } from "../assets";
 import Overlay, { OverlayType } from "./Overlay";
+import { Colors } from "../assets";
 
-const style: ViewStyle = {
-    backgroundColor: Colors.button.background,
-    borderColor: Colors.button.text,
-    borderRadius: 10,
-    borderWidth: 1,
-    padding: 20,
-    width: '100%',
-}
-
-const textStyle: TextStyle = {
-    color: Colors.button.text,
-    fontWeight: '700',
-    textAlign: 'center'
-}
+/* ------------------------------- Component -------------------------------- */
 
 interface ButtonProps {
     text: string
@@ -37,3 +24,22 @@ const Button = (props: ButtonProps) => (
 )
 
 export default Button;
+
+/* --------------------------------- Styles --------------------------------- */
+
+const style: ViewStyle = {
+    backgroundColor: Colors.button.background,
+    borderColor: Colors.button.text,
+    borderRadius: 10,
+    borderWidth: 1,
+    padding: 20,
+    width: '100%',
+}
+
+const textStyle: TextStyle = {
+    color: Colors.button.text,
+    fontWeight: '700',
+    textAlign: 'center'
+}
+
+/* --------------------------------- Assets --------------------------------- */

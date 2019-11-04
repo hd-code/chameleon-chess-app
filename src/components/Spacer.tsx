@@ -1,6 +1,8 @@
 import React from "react";
 import { View } from "react-native";
 
+/* ------------------------------- Component -------------------------------- */
+
 interface SpacerProps {
     size: number
 }
@@ -10,3 +12,6 @@ const Spacer = (props: SpacerProps) => (
 )
 
 export default Spacer;
+
+/* --------------------------------- Styles --------------------------------- */
+/* --------------------------------- Assets --------------------------------- */

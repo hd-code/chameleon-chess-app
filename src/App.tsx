@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { View, ViewStyle } from "react-native";
 import Game from "./views/Game";
 import Home from "./views/Home";
-import { IGame } from "./aux/game";
 import PlayerConfig from "./views/PlayerConfig";
+import { IGame } from "./types";
 
 
 
@@ -11,17 +11,6 @@ export enum EViews { HOME, PLAYER_CONFIG, GAME }
 
 export interface IViewBaseProps {
     navigate: (view: EViews, props?: any) => void
-}
-
-const style: ViewStyle = {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-}
-
-const wrapper: ViewStyle = {
-    width: '95%'
 }
 
 let viewProps:IGame|null = null
@@ -49,3 +38,16 @@ const App = () => {
 }
 
 export default App;
+
+/* --------------------------------- Styles --------------------------------- */
+
+const style: ViewStyle = {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
+}
+
+const wrapper: ViewStyle = {
+    width: '95%'
+}

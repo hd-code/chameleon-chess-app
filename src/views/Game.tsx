@@ -1,31 +1,21 @@
 import React, { useState } from "react";
 import { View, TouchableWithoutFeedback, ViewStyle } from "react-native";
-import { IPosition } from "chameleon-chess-logic";
 import Board from "../components/Board";
 import PlayerBoard from "../components/PlayerBoard";
-import { renderBoard } from "../aux/render";
-import { IGame, handleClick } from "../aux/game";
 import Spacer from "../components/Spacer";
+import { renderBoard } from "../render";
+import { IGame } from "../types";
 import { IViewBaseProps } from "../App";
-
-let GameData: IGame
-
-let board = { height: 0, width:  0 }
-
-const touchableStyle: ViewStyle = {
-    position: 'absolute',
-    top: 0, bottom: 0,
-    left: 0, right: 0,
-}
-
-interface GameProps extends IViewBaseProps {
-    gameData: IGame
-}
+import { IPosition, advanceGame, getIndexOfPawnOnField } from "chameleon-chess-logic";
 
 // TODO: Victory -> Popup
 // TODO: AI plays on its own
 // TODO: Going Back to Home
 // TODO: Layout animation
+
+/* ---------------------------------- View ---------------------------------- */
+
+interface GameProps extends IViewBaseProps { gameData: IGame }
 
 const Game = (props: GameProps) => {
     GameData = GameData || props.gameData
@@ -35,10 +25,7 @@ const Game = (props: GameProps) => {
 
     function onPress(event: any) {
         const {locationX, locationY} = event.nativeEvent
-        const click: IPosition = {
-            row: Math.floor(locationY / board.height * 8),
-            col: Math.floor(locationX / board.width  * 8)
-        }
+        const click = calcClickPos(locationX, locationY)
         GameData = handleClick(click, GameData)
         setGame(renderBoard(GameData))
     }
@@ -58,3 +45,51 @@ const Game = (props: GameProps) => {
 }
 
 export default Game;
+
+/* --------------------------------- Styles --------------------------------- */
+
+const touchableStyle: ViewStyle = {
+    position: 'absolute',
+    top: 0, bottom: 0,
+    left: 0, right: 0,
+}
+
+/* --------------------------------- Logic ---------------------------------- */
+
+// global variables:
+
+// here there current state of the game is stored
+let GameData: IGame
+
+// holds the board size, needed to get the click position on the board
+let board = { height: 0, width:  0 }
+
+function calcClickPos(x: number, y: number): IPosition {
+    return {
+        row: Math.floor(y / board.height * 8),
+        col: Math.floor(x / board.width  * 8)
+    }
+}
+
+// handles click on the field, changes game state if neccessary
+function handleClick(click: IPosition, game:IGame): IGame {
+    if (game.selectedPawn !== null) {
+        const newGS = advanceGame(game.gs, game.selectedPawn, click)
+
+        if (newGS !== null) {
+            return {
+                players: game.players,
+                gs: newGS,
+                selectedPawn: null
+            }
+        }
+    }
+
+    const pawnOnClickedField = getIndexOfPawnOnField(game.gs, click)
+
+    return {
+        players: game.players,
+        gs: game.gs,
+        selectedPawn: pawnOnClickedField
+    }
+}

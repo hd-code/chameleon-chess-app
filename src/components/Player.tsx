@@ -1,44 +1,19 @@
 import React from "react";
 import { View, ViewStyle, ImageStyle } from "react-native";
-import { EColor } from "chameleon-chess-logic";
-import { Colors, Images, Texts } from "../assets";
-import { EPlayerType } from "../aux/game";
 import Image from "./Image";
 import Overlay, { OverlayType } from "./Overlay";
 import Text from "./Text";
+import { EPlayerType } from "../types";
+import { Colors, Images, Texts } from "../assets";
+import { EColor } from "chameleon-chess-logic";
 
-const style: ViewStyle = {
-    alignItems: 'center',
-    borderWidth: 1,
-    paddingTop: '2%',
-    paddingBottom: '2%',
-    width: '25%',
-}
-
-const styleImgWrapper: ViewStyle = {
-    width: '30%',
-    paddingBottom: '30%',
-}
-
-const styleImg: ImageStyle = {
-    position: 'absolute',
-    top: 0, bottom: 0,
-    left: 0, right: 0,
-}
+/* ------------------------------- Component -------------------------------- */
 
 export enum PlayerStatus { DEAD, ON_TURN, OFF_TURN }
 
-const icons = {
-    [EPlayerType.NONE]:  Images.NoPlayer,
-    [EPlayerType.HUMAN]: Images.Human,
-    [EPlayerType.AI]:    Images.AI,
-}
-
-const names = Texts.players
-
 export interface PlayerProps {
     player: EColor
-    status: PlayerStatus
+    status?: PlayerStatus
     type: EPlayerType
 }
 
@@ -55,3 +30,33 @@ const Player = (props: PlayerProps) => (
 )
 
 export default Player;
+
+/* --------------------------------- Styles --------------------------------- */
+
+const style: ViewStyle = {
+    alignItems: 'center',
+    borderWidth: 1,
+    paddingTop: '2%',
+    paddingBottom: '2%'
+}
+
+const styleImgWrapper: ViewStyle = {
+    width: '30%',
+    paddingBottom: '30%',
+}
+
+const styleImg: ImageStyle = {
+    position: 'absolute',
+    top: 0, bottom: 0,
+    left: 0, right: 0,
+}
+
+/* --------------------------------- Assets --------------------------------- */
+
+const icons = {
+    [EPlayerType.NONE]:  Images.NoPlayer,
+    [EPlayerType.HUMAN]: Images.Human,
+    [EPlayerType.AI]:    Images.AI,
+}
+
+const names = Texts.players

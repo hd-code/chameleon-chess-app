@@ -1,6 +1,5 @@
 import AsyncStorage from "@react-native-community/async-storage";
-import { IGameState } from "chameleon-chess-logic";
-import { ELanguage, isELanguage, EColorScheme, isEColorScheme } from "./types";
+import { IGame, ELanguage, isELanguage, EColorScheme, isColorScheme } from "./types";
 
 enum StoredObjects { 
     GAME         = 'game',
@@ -11,16 +10,21 @@ enum StoredObjects {
 interface StorageObject<T> {
     get: () => Promise<T>
     set: (object: T) => void
+    rmv: () => void
 }
 
-export const Game: StorageObject<IGameState> = {
+export const Game: StorageObject<IGame|undefined> = {
     get: async () => {
         const data = await AsyncStorage.getItem(StoredObjects.GAME)
-        return <IGameState>JSON.parse(data || '')
+        return data ? <IGame>JSON.parse(data) : undefined
     },
-    set: (gs: IGameState) => {
+    set: (gs) => {
+        if (!gs) return
         const data = JSON.stringify(gs)
         AsyncStorage.setItem(StoredObjects.GAME, data)
+    },
+    rmv: () => {
+        AsyncStorage.removeItem(StoredObjects.GAME)
     }
 }
 
@@ -29,8 +33,11 @@ export const Language: StorageObject<ELanguage> = {
         const data = await AsyncStorage.getItem(StoredObjects.LANGUAGE)
         return (isELanguage(data) ? data : ELanguage.ENGLISH)
     },
-    set: (lang: ELanguage) => {
+    set: (lang) => {
         AsyncStorage.setItem(StoredObjects.LANGUAGE, lang)
+    },
+    rmv: () => {
+        AsyncStorage.removeItem(StoredObjects.LANGUAGE)
     }
 }
 
@@ -38,9 +45,12 @@ export const Color: StorageObject<EColorScheme> = {
     get: async () => {
         const data = await AsyncStorage.getItem(StoredObjects.COLOR_SCHEME)
         const parsed = parseInt(data || '')
-        return isEColorScheme(parsed) ? parsed : EColorScheme.NORMAL 
+        return isColorScheme(parsed) ? parsed : EColorScheme.NORMAL 
     },
-    set: (colorScheme: EColorScheme) => {
+    set: (colorScheme) => {
         AsyncStorage.setItem(StoredObjects.COLOR_SCHEME, colorScheme + '')
+    },
+    rmv: () => {
+        AsyncStorage.removeItem(StoredObjects.COLOR_SCHEME)
     }
 }
