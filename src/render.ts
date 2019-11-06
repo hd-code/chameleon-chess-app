@@ -1,13 +1,17 @@
-import { getBoard, ILimits, IPawn, EColor, getPossibleMoves, IPosition } from "chameleon-chess-logic";
 import { flattenArray } from "./helper";
 import { IGame } from "./types";
+
+import { getBoard, ILimits, IPawn, EColor, getPossibleMoves, IPosition } from "chameleon-chess-logic";
+
 import { PawnProps, PawnStatus } from "./components/Pawn";
 import { PlayerProps, PlayerStatus } from "./components/Player";
-import { TPlayers } from "./components/PlayerBoard";
+import { TPlayersProps } from "./components/PlayerBoard";
 import { TileProps, TileStatus } from "./components/Tile";
 
+/* --------------------------------- Public --------------------------------- */
+
 export interface IRenderedBoard {
-    players: TPlayers
+    players: TPlayersProps
     tiles: TileProps[]
     pawns: PawnProps[]
 }
@@ -20,7 +24,9 @@ export function renderBoard(game: IGame): IRenderedBoard {
     }
 }
 
-function renderPlayers(game: IGame): TPlayers {
+/* --------------------------------- Intern --------------------------------- */
+
+function renderPlayers(game: IGame): TPlayersProps {
     return {
         [EColor.RED]:    renderPlayer(game, EColor.RED),
         [EColor.GREEN]:  renderPlayer(game, EColor.GREEN),

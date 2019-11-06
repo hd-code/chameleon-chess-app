@@ -1,20 +1,24 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
-import Player from "../components/Player";
-import { EPlayerType } from "../aux/game";
+import { TouchableOpacity, ViewStyle } from "react-native";
+
+import Player, { PlayerProps } from "../components/Player";
+
 import { EColor } from "chameleon-chess-logic";
 
 /* ------------------------------- Component -------------------------------- */
 
-interface PlayerPickerProps {
-    player: EColor
-    type: EPlayerType
+interface PlayerPickerProps extends PlayerProps {
     onPress: (player: EColor) => void
+    wrapperStyle: ViewStyle
 }
 
 const PlayerPicker = (props: PlayerPickerProps) => (
-    <TouchableOpacity onPress={ () => { props.onPress(props.player) } } activeOpacity={.8}>
-        <Player player={props.player} type={props.type} />
+    <TouchableOpacity
+        onPress={ () => props.onPress(props.player) }
+        style={ props.wrapperStyle }
+        activeOpacity={.8}
+    >
+        <Player {...props} />
     </TouchableOpacity>
 )
 

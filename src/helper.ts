@@ -7,6 +7,10 @@ export function flattenArray<T>(original: T[][]): T[] {
     return original.reduce((result, item) => result.concat(item), [])
 }
 
+export function getUnixTimestamp(): number {
+    return Math.round((new Date()).getTime() / 1000)
+}
+
 /* ----------------------------- Type Checking ------------------------------ */
 
 export function isNumber(n:any): n is number {

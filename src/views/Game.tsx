@@ -1,44 +1,83 @@
 import React, { useState } from "react";
-import { View, TouchableWithoutFeedback, ViewStyle } from "react-native";
+import { View, ViewStyle, LayoutAnimation, TouchableOpacity } from "react-native";
+
 import Board from "../components/Board";
 import PlayerBoard from "../components/PlayerBoard";
 import Spacer from "../components/Spacer";
+
+import { getUnixTimestamp } from "../helper";
+import { ViewProps } from "../navigation";
 import { renderBoard } from "../render";
-import { IGame } from "../types";
-import { IViewBaseProps } from "../App";
-import { IPosition, advanceGame, getIndexOfPawnOnField } from "chameleon-chess-logic";
+import { Game as DBGame } from "../storage";
+import { IGame, EPlayerType } from "../types";
+
+import { IPosition, advanceGame, getIndexOfPawnOnField, letComputerAdvanceGame } from "chameleon-chess-logic";
 
 // TODO: Victory -> Popup
-// TODO: AI plays on its own
-// TODO: Going Back to Home
-// TODO: Layout animation
+// FIXME: Layout animation -> strange behaviour for beating
 
 /* ---------------------------------- View ---------------------------------- */
 
-interface GameProps extends IViewBaseProps { gameData: IGame }
+interface GameProps extends ViewProps {}
 
 const Game = (props: GameProps) => {
-    GameData = GameData || props.gameData
-    const [game, setGame] = useState(renderBoard(GameData))
+    const [GameData, setGameData] = useState(DBGame.get() || t)
 
-    function onLayout(event: any) { board = event.nativeEvent.layout }
+    function makeMove(gameData: IGame) {
+        // if pawns have moved -> enable layout animation
+        if (havePawnsMoved(GameData, gameData)) {
+            LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
+        }
 
-    function onPress(event: any) {
+        // save gameData to props, to storage and render it
+        DBGame.set(gameData)
+        setGameData(gameData)
+    }
+
+    function handlePressOnBoard(event: any) {
+        // calc click position
         const {locationX, locationY} = event.nativeEvent
         const click = calcClickPos(locationX, locationY)
-        GameData = handleClick(click, GameData)
-        setGame(renderBoard(GameData))
+
+        // handle click, makeMove if one was made
+        const newGameData = handleClick(click, GameData)
+        newGameData && makeMove(newGameData)
     }
+
+    function doComputerMove() {
+        const startTime = getUnixTimestamp()
+        const newGS = letComputerAdvanceGame(GameData.gs)
+
+        const endTime = getUnixTimestamp()
+        const sleep = Math.max(MAX_TIME_FOR_COMPUTER_TURN - (endTime - startTime), 0)
+
+        const newGameData: IGame = {
+            players: GameData.players,
+            gs: newGS,
+            selectedPawn: null
+        }
+
+        setTimeout(() => makeMove(newGameData), sleep * 1000)
+    }
+
+    // if computer turn, let computer make move and render it
+    isComputerTurn(GameData) && doComputerMove()
+
+    // prepare data structure for rendering
+    const gameRender = renderBoard(GameData)
 
     return (
         <View>
-            <PlayerBoard players={game.players} />
+            <PlayerBoard players={gameRender.players} />
             <Spacer size={20} />
-            <View onLayout={onLayout}>
-                <Board {...game} />
-                <TouchableWithoutFeedback onPress={onPress}>
-                    <View style={touchableStyle} />
-                </TouchableWithoutFeedback>
+            <View>
+                <Board {...gameRender} />
+                <TouchableOpacity
+                    onPress={handlePressOnBoard}
+                    onLayout={ (e) => board = e.nativeEvent.layout }
+                    style={touchableStyle}
+                    activeOpacity={1}
+                />
             </View>
         </View>
     )
@@ -56,14 +95,11 @@ const touchableStyle: ViewStyle = {
 
 /* --------------------------------- Logic ---------------------------------- */
 
-// global variables:
-
-// here there current state of the game is stored
-let GameData: IGame
+// this is for tricking typescript
+let t: IGame
 
 // holds the board size, needed to get the click position on the board
 let board = { height: 0, width:  0 }
-
 function calcClickPos(x: number, y: number): IPosition {
     return {
         row: Math.floor(y / board.height * 8),
@@ -71,25 +107,47 @@ function calcClickPos(x: number, y: number): IPosition {
     }
 }
 
-// handles click on the field, changes game state if neccessary
-function handleClick(click: IPosition, game:IGame): IGame {
-    if (game.selectedPawn !== null) {
-        const newGS = advanceGame(game.gs, game.selectedPawn, click)
+const MAX_TIME_FOR_COMPUTER_TURN = 1
 
-        if (newGS !== null) {
-            return {
-                players: game.players,
-                gs: newGS,
-                selectedPawn: null
-            }
-        }
-    }
+function isComputerTurn(game: IGame): boolean {
+    return game.players[game.gs.whoseTurn] === EPlayerType.AI
+}
+
+// handles click on the field, changes game state if necessary
+function handleClick(click: IPosition, game:IGame): IGame|null {
+    if (isComputerTurn(game))
+        return null
+
+    const newGS = game.selectedPawn !== null
+        ? advanceGame(game.gs, game.selectedPawn, click)
+        : null
 
     const pawnOnClickedField = getIndexOfPawnOnField(game.gs, click)
 
     return {
         players: game.players,
-        gs: game.gs,
-        selectedPawn: pawnOnClickedField
+        gs: newGS || game.gs,
+        selectedPawn: newGS === null ? pawnOnClickedField : null
     }
+}
+
+function havePawnsMoved(oldGame: IGame, newGame: IGame): boolean {
+    if (oldGame.gs.whoseTurn === newGame.gs.whoseTurn)
+        return false
+
+    const oPawns = oldGame.gs.pawns
+    const nPawns = newGame.gs.pawns
+
+    if (oPawns.length !== nPawns.length)
+        return true
+
+    const pawnsOnSamePosition = oPawns.filter(
+        (_,i) => isSamePosition(oPawns[i].position, nPawns[i].position)
+    )
+
+    return pawnsOnSamePosition.length < oPawns.length
+}
+
+function isSamePosition(a: IPosition, b: IPosition): boolean {
+    return a.row === b.row && a.col === b.col
 }

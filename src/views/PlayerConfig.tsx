@@ -1,24 +1,27 @@
 import React, { useState } from "react";
 import { View, ViewStyle } from "react-native";
+
 import Button from "../components/Button";
 import PlayerPicker from "../components/PlayerPicker";
 import Spacer from "../components/Spacer";
-import { IViewBaseProps, EViews } from "../App";
+
 import { Texts } from "../assets";
 import { deepClone } from "../helper";
+import { ViewProps } from "../navigation";
 import { Game as DBGame } from "../storage";
 import { EPlayerType, getNextPlayerType, TPlayers, IGame } from "../types";
+
 import { EColor, initGame } from "chameleon-chess-logic";
 
 /* ---------------------------------- View ---------------------------------- */
 
-interface PlayerConfigProps extends IViewBaseProps {}
+interface PlayerConfigProps extends ViewProps {}
 
 const PlayerConfig = (props: PlayerConfigProps) => {
     const [players, setPlayers] = useState(initPlayers)
 
     function changePlayer(player: EColor) {
-        let nextType = getNextPlayerType(players[player])
+        const nextType = getNextPlayerType(players[player])
         let newPlayers = deepClone(players)
         newPlayers[player] = nextType
         setPlayers(newPlayers)
@@ -26,44 +29,40 @@ const PlayerConfig = (props: PlayerConfigProps) => {
 
     function beginGame() {
         const gs = initGame(makeGameInitParam(players))
-        const Game: IGame = {
+        const GameData: IGame = {
             gs: gs,
             players: players,
             selectedPawn: null
         }
-        DBGame.set(Game)
-        props.navigate(EViews.GAME, Game)
+        DBGame.set(GameData)
+        props.navigate.game()
     }
 
     return (
         <View>
-            <View style={style}>
+            <View style={wrapperStyle}>
                 <PlayerPicker
-                    player={EColor.RED}
-                    type={players[EColor.RED]}
-                    onPress={changePlayer}
+                    player={EColor.RED} type={players[EColor.RED]}
+                    wrapperStyle={playerPickerStyle} onPress={changePlayer}
                 />
                 <PlayerPicker
-                    player={EColor.YELLOW}
-                    type={players[EColor.YELLOW]}
-                    onPress={changePlayer}
+                    player={EColor.YELLOW} type={players[EColor.YELLOW]}
+                    wrapperStyle={playerPickerStyle} onPress={changePlayer}
                 />
                 <PlayerPicker
-                    player={EColor.GREEN}
-                    type={players[EColor.GREEN]}
-                    onPress={changePlayer}
+                    player={EColor.GREEN} type={players[EColor.GREEN]}
+                    wrapperStyle={playerPickerStyle} onPress={changePlayer}
                 />
                 <PlayerPicker
-                    player={EColor.BLUE}
-                    type={players[EColor.BLUE]}
-                    onPress={changePlayer}
+                    player={EColor.BLUE} type={players[EColor.BLUE]}
+                    wrapperStyle={playerPickerStyle} onPress={changePlayer}
                 />
             </View>
             <Spacer size={20} />
             <Button
                 text={ Texts.PlayerConfig.beginGame }
                 onPress={ beginGame }
-                disabled={!canBeginGame(players)}
+                disabled={ !canBeginGame(players) }
             />
         </View>
     )
@@ -73,10 +72,13 @@ export default PlayerConfig;
 
 /* --------------------------------- Styles --------------------------------- */
 
-const style: ViewStyle = {
-    justifyContent: 'space-between',
+const wrapperStyle: ViewStyle = {
     flexDirection: 'row',
     flexWrap: 'wrap',
+}
+
+const playerPickerStyle: ViewStyle = {
+    width: '25%'
 }
 
 /* --------------------------------- Logic ---------------------------------- */
@@ -99,9 +101,9 @@ function makeGameInitParam(players: TPlayers): {[player in EColor]: boolean} {
 
 function canBeginGame(players: {[player in EColor]: EPlayerType}): boolean {
     let numOfPlayers = 0
-    players[EColor.RED] !== EPlayerType.NONE && numOfPlayers++
-    players[EColor.GREEN] !== EPlayerType.NONE && numOfPlayers++
+    players[EColor.RED]    !== EPlayerType.NONE && numOfPlayers++
+    players[EColor.GREEN]  !== EPlayerType.NONE && numOfPlayers++
     players[EColor.YELLOW] !== EPlayerType.NONE && numOfPlayers++
-    players[EColor.BLUE] !== EPlayerType.NONE && numOfPlayers++
+    players[EColor.BLUE]   !== EPlayerType.NONE && numOfPlayers++
     return numOfPlayers > 1
 }

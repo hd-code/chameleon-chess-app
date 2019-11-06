@@ -1,5 +1,6 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
+
 import Pawn, { PawnProps } from "./Pawn";
 import Tile, { TileProps } from "./Tile";
 

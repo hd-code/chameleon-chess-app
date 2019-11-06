@@ -6,7 +6,10 @@
     "start": "react-native start",
     "postinstall": "cd ios && pod install",
     "android:build": "react-native run-android",
-    "ios": "xcrun simctl boot 'iPad Air (3rd generation)' && xcrun simctl boot 'iPhone 8' && open -a Simulator.app && npm start",
+    "ios": "npm run iPad && npm run iPhone && npm start",
+    "iPad": "xcrun simctl boot 'iPad Air (3rd generation)'",
+    "iPhone": "xcrun simctl boot 'iPhone 8'",
+    "ios:build": "npm run iPad:build & npm run iPhone:build",
     "iPad:build": "react-native run-ios --simulator 'iPad Air (3rd generation)'",
     "iPhone:build": "react-native run-ios --simulator 'iPhone 8'"
   },
@@ -18,7 +21,7 @@
   },
   "devDependencies": {
     "@types/react": "^16.9.5",
-    "@types/react-native": "^0.60.17",
+    "@types/react-native": "^0.60.22",
     "react-native-cli": "^2.0.1",
     "typescript": "^3.6.3"
   }

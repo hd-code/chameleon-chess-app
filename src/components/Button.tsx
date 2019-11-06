@@ -1,7 +1,9 @@
 import React from "react";
 import { ViewStyle, TextStyle, TouchableOpacity } from "react-native";
+
 import Text from "./Text";
 import Overlay, { OverlayType } from "./Overlay";
+
 import { Colors } from "../assets";
 
 /* ------------------------------- Component -------------------------------- */

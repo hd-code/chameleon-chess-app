@@ -1,7 +1,10 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
+
 import Overlay from "./Overlay";
+
 import { Colors } from "../assets";
+
 import { EColor } from "chameleon-chess-logic";
 
 /* ------------------------------- Component -------------------------------- */

@@ -1,8 +1,11 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
+
 import Image from "./Image";
 import Overlay, { OverlayType } from "./Overlay";
+
 import { Colors, Images } from "../assets";
+
 import { EColor, ERole } from "chameleon-chess-logic";
 
 /* ------------------------------- Component -------------------------------- */

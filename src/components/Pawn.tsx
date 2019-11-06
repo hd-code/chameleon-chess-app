@@ -1,8 +1,11 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
+
 import ColorRole from "./ColorRole";
 import Overlay, { OverlayType } from "./Overlay";
+
 import { Colors } from "../assets";
+
 import { EColor, ERole, IPosition } from "chameleon-chess-logic";
 
 /* ------------------------------- Component -------------------------------- */

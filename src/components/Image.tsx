@@ -3,7 +3,7 @@ import { Image as Img, ImageSourcePropType, ImageStyle, ImageResizeMode } from "
 
 /* ------------------------------- Component -------------------------------- */
 
-interface ImageProps {
+export interface ImageProps {
     source: ImageSourcePropType
     style?: ImageStyle
     resizeMode?: ImageResizeMode
