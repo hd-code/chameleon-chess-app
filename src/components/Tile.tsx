@@ -12,6 +12,7 @@ import { EColor } from "chameleon-chess-logic";
 export enum TileStatus { DEACTIVATED, NORMAL, MARKED }
 
 export interface TileProps {
+    key: string
     color: EColor
     status: TileStatus
 }

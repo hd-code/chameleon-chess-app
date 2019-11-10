@@ -64,40 +64,31 @@ export const Color: IStoredObjectMethods<EColorScheme> = {
 
 /* ------------------------ Initialization Functions ------------------------ */
 
-export function initCache() {
-    initGame()
-    initLanguage()
-    initColor()
+export async function initCache() {
+    await initGame()
+    await initLang()
+    await initColor()
 }
 
-function initGame() {
-    readFromStorage<IGame>(EStorageKey.GAME)
-    .then((data) => { CACHE[EStorageKey.GAME] = data })
-    .catch(e => console.log(e))
+async function initGame() {
+    const data = await readFromStorage<IGame>(EStorageKey.GAME)
+    CACHE[EStorageKey.GAME] = data
 }
-
-function initLanguage() {
-    readFromStorage<ELanguage>(EStorageKey.LANG)
-    .then((data) => {
-        if (data === null) {
-            writeToStorage(EStorageKey.LANG, CACHE[EStorageKey.LANG])
-        } else {
-            CACHE[EStorageKey.LANG] = data
-        }
-    })
-    .catch(e => console.log(e))
+async function initLang() {
+    const data = await readFromStorage<ELanguage>(EStorageKey.LANG)
+    if (data === null) {
+        writeToStorage(EStorageKey.LANG, CACHE[EStorageKey.LANG])
+    } else {
+        CACHE[EStorageKey.LANG] = data
+    }
 }
-
-function initColor() {
-    readFromStorage<EColorScheme>(EStorageKey.COLOR)
-    .then((data) => {
-        if (data === null) {
-            writeToStorage(EStorageKey.COLOR, CACHE[EStorageKey.COLOR])
-        } else {
-            CACHE[EStorageKey.COLOR] = data
-        }
-    })
-    .catch(e => console.log(e))
+async function initColor() {
+    const data = await readFromStorage<EColorScheme>(EStorageKey.COLOR)
+    if (data === null) {
+        writeToStorage(EStorageKey.COLOR, CACHE[EStorageKey.COLOR])
+    } else {
+        CACHE[EStorageKey.COLOR] = data
+    }
 }
 
 /* --------------------- Generic AsyncStorage Functions --------------------- */

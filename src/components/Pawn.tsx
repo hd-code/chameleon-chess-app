@@ -13,6 +13,7 @@ import { EColor, ERole, IPosition } from "chameleon-chess-logic";
 export enum PawnStatus { NORMAL, SELECTED, THREATENED }
 
 export interface PawnProps {
+    key: string
     player: EColor
     roles: {[fieldColor in EColor]: ERole}
     position: IPosition

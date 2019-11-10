@@ -28,7 +28,17 @@ const PlayerConfig = (props: PlayerConfigProps) => {
     }
 
     function beginGame() {
-        const gs = initGame(makeGameInitParam(players))
+        const gs = initGame(
+            players[EColor.RED]    !== EPlayerType.NONE,
+            players[EColor.GREEN]  !== EPlayerType.NONE,
+            players[EColor.YELLOW] !== EPlayerType.NONE,
+            players[EColor.BLUE]   !== EPlayerType.NONE,
+        )
+        if (!gs) {
+            console.error('Game State could not be created')
+            return
+        }
+
         const GameData: IGame = {
             gs: gs,
             players: players,
@@ -88,15 +98,6 @@ const initPlayers: TPlayers = {
     [EColor.GREEN]: EPlayerType.NONE,
     [EColor.YELLOW]: EPlayerType.AI,
     [EColor.BLUE]: EPlayerType.NONE,
-}
-
-function makeGameInitParam(players: TPlayers): {[player in EColor]: boolean} {
-    return {
-        [EColor.RED]:    players[EColor.RED]    !== EPlayerType.NONE,
-        [EColor.GREEN]:  players[EColor.GREEN]  !== EPlayerType.NONE,
-        [EColor.YELLOW]: players[EColor.YELLOW] !== EPlayerType.NONE,
-        [EColor.BLUE]:   players[EColor.BLUE]   !== EPlayerType.NONE,
-    }
 }
 
 function canBeginGame(players: {[player in EColor]: EPlayerType}): boolean {

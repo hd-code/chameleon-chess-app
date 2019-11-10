@@ -5,7 +5,7 @@ import Board from "../components/Board";
 import PlayerBoard from "../components/PlayerBoard";
 import Spacer from "../components/Spacer";
 
-import { getUnixTimestamp } from "../helper";
+import { getUnixTimestamp, deepClone } from "../helper";
 import { ViewProps } from "../navigation";
 import { renderBoard } from "../render";
 import { Game as DBGame } from "../storage";
@@ -23,15 +23,15 @@ interface GameProps extends ViewProps {}
 const Game = (props: GameProps) => {
     const [GameData, setGameData] = useState(DBGame.get() || t)
 
-    function makeMove(gameData: IGame) {
+    function makeMove(newGameData: IGame) {
         // if pawns have moved -> enable layout animation
-        if (havePawnsMoved(GameData, gameData)) {
+        if (havePawnsMoved(GameData, newGameData)) {
             LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut)
         }
 
         // save gameData to props, to storage and render it
-        DBGame.set(gameData)
-        setGameData(gameData)
+        DBGame.set(newGameData)
+        setGameData(newGameData)
     }
 
     function handlePressOnBoard(event: any) {
@@ -61,7 +61,7 @@ const Game = (props: GameProps) => {
     }
 
     // if computer turn, let computer make move and render it
-    isComputerTurn(GameData) && doComputerMove()
+    isComputerTurn(GameData) && setTimeout(doComputerMove, 200)
 
     // prepare data structure for rendering
     const gameRender = renderBoard(GameData)

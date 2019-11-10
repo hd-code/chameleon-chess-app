@@ -1,7 +1,7 @@
 import { flattenArray } from "./helper";
 import { IGame } from "./types";
 
-import { getBoard, ILimits, IPawn, EColor, getPossibleMoves, IPosition } from "chameleon-chess-logic";
+import { getBoard, EColor, getNextMovesOfPawn, IPosition, isFieldWithinLimits, isPlayerAlive } from "chameleon-chess-logic";
 
 import { PawnProps, PawnStatus } from "./components/Pawn";
 import { PlayerProps, PlayerStatus } from "./components/Player";
@@ -39,38 +39,32 @@ function renderPlayer(game: IGame, player: EColor): PlayerProps {
     return {
         player: player,
         type: game.players[player],
-        status: !isPlayerAlive(player, game.gs.pawns) ? PlayerStatus.DEAD
+        status: !isPlayerAlive(player, game.gs) ? PlayerStatus.DEAD
             : game.gs.whoseTurn === player ? PlayerStatus.ON_TURN : PlayerStatus.OFF_TURN
     }
-}
-
-function isPlayerAlive(player: EColor, pawns: IPawn[]): boolean {
-    return pawns.filter(pawn => pawn.player === player).length > 0
 }
 
 const BOARD = getBoard()
 function renderTiles(game: IGame): TileProps[] {
     const moves = game.selectedPawn !== null
-        ? getPossibleMoves(game.gs, game.selectedPawn)
+        ? getNextMovesOfPawn(game.gs, game.selectedPawn)
         : []
 
     const tiles = BOARD.map((row, i) => {
         return row.map((_, j) => {
             return <TileProps>{
+                key: i + '' + j,
                 color: BOARD[i][j],
-                status: isOutOfLimits(i, j, game.gs.limits) ? TileStatus.DEACTIVATED
-                    : isInMoves(i, j, moves) ? TileStatus.MARKED
+                status: !isFieldWithinLimits({row: i, col: j}, game.gs)
+                    ? TileStatus.DEACTIVATED
+                    : isInMoves(i, j, moves)
+                    ? TileStatus.MARKED
                     : TileStatus.NORMAL
             }
         })
     })
 
     return flattenArray(tiles)
-}
-
-function isOutOfLimits(i:number, j:number, limits: ILimits): boolean {
-    return i < limits.lower.row || limits.upper.row < i
-        || j < limits.lower.col || limits.upper.col < j
 }
 
 function isInMoves(i: number, j: number, moves: IPosition[]): boolean {
@@ -80,6 +74,7 @@ function isInMoves(i: number, j: number, moves: IPosition[]): boolean {
 function renderPawns(game: IGame): PawnProps[] {
     return game.gs.pawns.map((pawn, i) => {
         return {
+            key: pawn.player * 10 + pawn.roles[0] + '',
             player: pawn.player,
             roles: pawn.roles,
             position: pawn.position,

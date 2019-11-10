@@ -1,7 +1,3 @@
-// initialize cache, has to be done first!
-import { initCache } from "./storage";
-initCache()
-
 import React, { useState } from "react";
 import { View, ViewStyle, StatusBar } from "react-native";
 
@@ -12,8 +8,11 @@ import PlayerConfig from "./views/PlayerConfig";
 import TopBar from "./components/TopBar";
 
 import { EViews, IViews } from "./navigation";
+import { initCache } from "./storage";
 
 /* -------------------------------- App.tsx --------------------------------- */
+
+let cacheLoaded = false
 
 const App = () => {
     const [view, setView] = useState(EViews.HOME)
@@ -22,6 +21,13 @@ const App = () => {
         game: () => { setView(EViews.GAME) },
         playerConfig: () => { setView(EViews.PLAYER_CONFIG) },
     }
+
+    !cacheLoaded && initCache().then(() => {
+        cacheLoaded = true
+        // briefly switch to another view, then go back, to force a re-rendering
+        nav.playerConfig()
+        nav.home()
+    }).catch( e => console.error(e) )
 
     return (
         <View style={style}>
