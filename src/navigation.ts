@@ -1,11 +1,12 @@
 export enum EViews { HOME, PLAYER_CONFIG, GAME }
 
-export interface IViews {
-    home: () => void
-    game: () => void
+export interface INavs {
+    home:         () => void
+    game:         () => void
     playerConfig: () => void
+    rerender:     () => void
 }
 
 export interface ViewProps {
-    navigate: IViews
+    navigate: INavs
 }

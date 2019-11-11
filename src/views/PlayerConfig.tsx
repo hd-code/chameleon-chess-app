@@ -5,7 +5,7 @@ import Button from "../components/Button";
 import PlayerPicker from "../components/PlayerPicker";
 import Spacer from "../components/Spacer";
 
-import { Texts } from "../assets";
+import { getTexts } from "../assets";
 import { deepClone } from "../helper";
 import { ViewProps } from "../navigation";
 import { Game as DBGame } from "../storage";
@@ -70,7 +70,7 @@ const PlayerConfig = (props: PlayerConfigProps) => {
             </View>
             <Spacer size={20} />
             <Button
-                text={ Texts.PlayerConfig.beginGame }
+                text={ getTexts().PlayerConfig.beginGame }
                 onPress={ beginGame }
                 disabled={ !canBeginGame(players) }
             />

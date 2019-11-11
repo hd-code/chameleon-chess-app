@@ -5,7 +5,7 @@ import Image from "./Image";
 import Overlay, { OverlayType } from "./Overlay";
 import Text from "./Text";
 
-import { Colors, Images, Texts } from "../assets";
+import { Colors, Images, getTexts } from "../assets";
 import { EPlayerType } from "../types";
 
 import { EColor } from "chameleon-chess-logic";
@@ -23,7 +23,7 @@ export interface PlayerProps {
 
 const Player = (props: PlayerProps) => (
     <View style={[style, {backgroundColor: Colors.main[props.player]}, props.style]}>
-        <Text style={{textAlign: 'center'}}>{names[props.player]}</Text>
+        <Text style={{textAlign: 'center'}}>{getTexts().players[props.player]}</Text>
         <View style={styleImgWrapper}>
             <Image source={icons[props.type]} style={styleImg} />
         </View>
@@ -60,5 +60,3 @@ const icons = {
     [EPlayerType.HUMAN]: Images.Human,
     [EPlayerType.AI]:    Images.AI,
 }
-
-const names = Texts.players

@@ -1,11 +1,13 @@
 import React from "react";
-import { View, ViewStyle, Text } from "react-native";
+import { View, ViewStyle, Picker, TextStyle } from "react-native";
 
 import Image from "./Image";
 import TouchableIcon from "./TouchableIcon";
 
 import { Images } from "../assets";
 import { ViewProps } from "../navigation";
+import { Language } from "../storage";
+import { ELanguage } from "../types";
 
 /* ------------------------------- Component -------------------------------- */
 
@@ -25,7 +27,18 @@ const TopBar = (props: TopBarProps) => (
             <Image source={Images.Logo} />
         </View>
         <View style={columnStyle}>
-            <Text>Deutsch</Text>
+            <Picker
+                selectedValue={Language.get()}
+                onValueChange={lang => {
+                    Language.set(lang)
+                    props.navigate.rerender()
+                }}
+                style={pickerStyle}
+                itemStyle={pickerItemStyle}
+            >
+                <Picker.Item value={ELanguage.ENGLISH} label={'english'} />
+                <Picker.Item value={ELanguage.GERMAN} label={'deutsch'} />
+            </Picker>
         </View>
     </View>
 )
@@ -49,6 +62,17 @@ const columnStyle: ViewStyle = {
 const logoColumnStyle: ViewStyle = {
     height: '100%',
     width:   '60%',
+}
+
+const pickerStyle: ViewStyle = {
+    borderWidth: 1,
+    height: '100%',
+    overflow: 'hidden'
+}
+
+const pickerItemStyle: TextStyle = {
+    fontSize: 20,
+    marginTop: -70
 }
 
 /* --------------------------------- Assets --------------------------------- */

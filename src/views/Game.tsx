@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, ViewStyle, LayoutAnimation, TouchableOpacity } from "react-native";
 
 import Board from "../components/Board";
@@ -14,14 +14,13 @@ import { IGame, EPlayerType } from "../types";
 import { IPosition, advanceGame, getIndexOfPawnOnField, letComputerAdvanceGame } from "chameleon-chess-logic";
 
 // TODO: Victory -> Popup
-// FIXME: Layout animation -> strange behaviour for beating
 
 /* ---------------------------------- View ---------------------------------- */
 
 interface GameProps extends ViewProps {}
 
 const Game = (props: GameProps) => {
-    const [GameData, setGameData] = useState(DBGame.get() || t)
+    const GameData = DBGame.get() || t
 
     function makeMove(newGameData: IGame) {
         // if pawns have moved -> enable layout animation
@@ -31,7 +30,7 @@ const Game = (props: GameProps) => {
 
         // save gameData to props, to storage and render it
         DBGame.set(newGameData)
-        setGameData(newGameData)
+        props.navigate.rerender()
     }
 
     function handlePressOnBoard(event: any) {

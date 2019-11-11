@@ -7,27 +7,25 @@ import PlayerConfig from "./views/PlayerConfig";
 
 import TopBar from "./components/TopBar";
 
-import { EViews, IViews } from "./navigation";
+import { EViews, INavs } from "./navigation";
 import { initCache } from "./storage";
 
 /* -------------------------------- App.tsx --------------------------------- */
 
-let cacheLoaded = false
-
 const App = () => {
+    const [cacheLoaded, setCacheLoaded] = useState(false)
+    !cacheLoaded && initCache().then(() => {
+        setCacheLoaded(true)
+    }).catch( e => console.error(e) )
+
+    const [render, setRender] = useState(false)
     const [view, setView] = useState(EViews.HOME)
-    const nav: IViews = {
+    const nav: INavs = {
         home: () => { setView(EViews.HOME) },
         game: () => { setView(EViews.GAME) },
         playerConfig: () => { setView(EViews.PLAYER_CONFIG) },
+        rerender: () => { setRender(!render) }
     }
-
-    !cacheLoaded && initCache().then(() => {
-        cacheLoaded = true
-        // briefly switch to another view, then go back, to force a re-rendering
-        nav.playerConfig()
-        nav.home()
-    }).catch( e => console.error(e) )
 
     return (
         <View style={style}>
