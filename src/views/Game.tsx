@@ -11,7 +11,7 @@ import { renderBoard } from "../render";
 import { Game as DBGame } from "../storage";
 import { IGame, EPlayerType } from "../types";
 
-import { IPosition, advanceGame, getIndexOfPawnOnField, letComputerAdvanceGame } from "chameleon-chess-logic";
+import { IPosition, advanceGame, getIndexOfPawnOnField, letComputerAdvanceGame, EColor, isGameOver, isPlayerAlive } from "chameleon-chess-logic";
 
 // TODO: Victory -> Popup
 
@@ -45,6 +45,7 @@ const Game = (props: GameProps) => {
 
     function doComputerMove() {
         const startTime = getUnixTimestamp()
+        
         const newGS = letComputerAdvanceGame(GameData.gs)
 
         const endTime = getUnixTimestamp()
@@ -59,11 +60,16 @@ const Game = (props: GameProps) => {
         setTimeout(() => makeMove(newGameData), sleep * 1000)
     }
 
-    // if computer turn, let computer make move and render it
-    isComputerTurn(GameData) && setTimeout(doComputerMove, 200)
-
     // prepare data structure for rendering
     const gameRender = renderBoard(GameData)
+
+    // if computer turn, let computer make move and render it
+    // computer move is calculated asynchronously, to enable the user to user
+    // e.g. the home button which is  not possible otherwise
+    gameRender.winner === null && isComputerTurn(GameData) && setTimeout(doComputerMove, 10)
+
+    // If there is a winner, remove the game data in local storage
+    gameRender.winner !== null && DBGame.rmv()
 
     return (
         <View>
@@ -106,7 +112,7 @@ function calcClickPos(x: number, y: number): IPosition {
     }
 }
 
-const MAX_TIME_FOR_COMPUTER_TURN = 1
+const MAX_TIME_FOR_COMPUTER_TURN = 2
 
 function isComputerTurn(game: IGame): boolean {
     return game.players[game.gs.whoseTurn] === EPlayerType.AI

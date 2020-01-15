@@ -7,6 +7,7 @@ import { PawnProps, PawnStatus } from "./components/Pawn";
 import { PlayerProps, PlayerStatus } from "./components/Player";
 import { TPlayersProps } from "./components/PlayerBoard";
 import { TileProps, TileStatus } from "./components/Tile";
+import { isGameOver } from "chameleon-chess-logic/build/gameState";
 
 /* --------------------------------- Public --------------------------------- */
 
@@ -14,13 +15,15 @@ export interface IRenderedBoard {
     players: TPlayersProps
     tiles: TileProps[]
     pawns: PawnProps[]
+    winner: EColor|null
 }
 
 export function renderBoard(game: IGame): IRenderedBoard {
     return {
         players: renderPlayers(game),
         tiles: renderTiles(game),
-        pawns: renderPawns(game)
+        pawns: renderPawns(game),
+        winner: renderWinner(game)
     }
 }
 
@@ -58,8 +61,8 @@ function renderTiles(game: IGame): TileProps[] {
                 status: !isFieldWithinLimits({row: i, col: j}, game.gs)
                     ? TileStatus.DEACTIVATED
                     : isInMoves(i, j, moves)
-                    ? TileStatus.MARKED
-                    : TileStatus.NORMAL
+                        ? TileStatus.MARKED
+                        : TileStatus.NORMAL
             }
         })
     })
@@ -74,7 +77,7 @@ function isInMoves(i: number, j: number, moves: IPosition[]): boolean {
 function renderPawns(game: IGame): PawnProps[] {
     return game.gs.pawns.map((pawn, i) => {
         return {
-            key: pawn.player * 10 + pawn.roles[0] + '',
+            key: pawn.player + '' + pawn.roles[0],
             player: pawn.player,
             roles: pawn.roles,
             position: pawn.position,
@@ -82,4 +85,13 @@ function renderPawns(game: IGame): PawnProps[] {
             currentFieldColor: BOARD[pawn.position.row][pawn.position.col] 
         }
     })
+}
+
+function renderWinner(game: IGame): EColor|null {
+    return !isGameOver(game.gs.pawns) ? null
+        : isPlayerAlive(EColor.RED, game.gs) ? EColor.RED
+        : isPlayerAlive(EColor.GREEN, game.gs) ? EColor.GREEN
+        : isPlayerAlive(EColor.YELLOW, game.gs) ? EColor.YELLOW
+        : isPlayerAlive(EColor.BLUE, game.gs) ? EColor.BLUE
+        : null
 }

@@ -11,14 +11,14 @@ enum EStorageKey {
 
 /* -------------------------- Local Cache Variable -------------------------- */
 
+const DEFAULT_LANGUAGE = ELanguage.GERMAN
+const DEFAULT_COLOR_SCHEME = EColorScheme.NORMAL
+
 interface IStoredObjects {
     [EStorageKey.GAME]:  IGame|null
     [EStorageKey.LANG]:  ELanguage
     [EStorageKey.COLOR]: EColorScheme
 }
-
-const DEFAULT_LANGUAGE = ELanguage.GERMAN
-const DEFAULT_COLOR_SCHEME = EColorScheme.NORMAL
 
 let CACHE: IStoredObjects = {
     [EStorageKey.GAME]:  null,
@@ -31,10 +31,13 @@ let CACHE: IStoredObjects = {
 interface IStoredObjectMethods<T> {
     get: () => T
     set: (object: T) => void
-    rmv?: () => void
 }
 
-export const Game: IStoredObjectMethods<IGame|null> = {
+interface IStoredObjectMethodsExt<T> extends IStoredObjectMethods<T> {
+    rmv: () => void
+}
+
+export const Game: IStoredObjectMethodsExt<IGame|null> = {
     get: () => CACHE[EStorageKey.GAME],
     set: (gameData) => {
         CACHE[EStorageKey.GAME] = gameData
@@ -93,17 +96,16 @@ async function initColor() {
 
 /* --------------------- Generic AsyncStorage Functions --------------------- */
 
-function readFromStorage<T>(entry: EStorageKey): Promise<T|null> {
-    return AsyncStorage.getItem(entry).then((data) => {
-        return JSON.parse(data || 'null')
-    })
+async function readFromStorage<T>(entry: EStorageKey): Promise<T|null> {
+    const data = await AsyncStorage.getItem(entry)
+    return JSON.parse(data || 'null')
 }
 
-function writeToStorage<T>(entry: EStorageKey, data: T): Promise<void> {
+async function writeToStorage<T>(entry: EStorageKey, data: T) {
     const storableData = JSON.stringify(data)
-    return AsyncStorage.setItem(entry, storableData)
+    AsyncStorage.setItem(entry, storableData)
 }
 
-function removeFromStorage(entry: EStorageKey): Promise<void> {
-    return AsyncStorage.removeItem(entry)
+async function removeFromStorage(entry: EStorageKey) {
+    AsyncStorage.removeItem(entry)
 }

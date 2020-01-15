@@ -22,13 +22,18 @@ export interface PlayerProps {
 }
 
 const Player = (props: PlayerProps) => (
-    <View style={[style, {backgroundColor: Colors.main[props.player]}, props.style]}>
-        <Text style={{textAlign: 'center'}}>{getTexts().players[props.player]}</Text>
+    <View style={[
+        style,
+        {backgroundColor: Colors.main[props.player]},
+        props.status === PlayerStatus.ON_TURN ? {borderColor: Colors.basic.white} : {},
+        props.style
+    ]}>
+        <Text>{getTexts().players[props.player]}</Text>
         <View style={styleImgWrapper}>
             <Image source={icons[props.type]} style={styleImg} />
         </View>
         {props.status === PlayerStatus.DEAD && <Overlay type={OverlayType.DARKEN} />}
-        {props.status === PlayerStatus.OFF_TURN && <Overlay type={OverlayType.LIGHTEN} />}
+        {/* {props.status === PlayerStatus.OFF_TURN && <Overlay type={OverlayType.LIGHTEN} />} */}
     </View>
 )
 

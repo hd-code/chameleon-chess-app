@@ -7,13 +7,14 @@ import { Language } from "./storage";
 /* --------------------------------- Colors --------------------------------- */
 
 export const Colors = {
+    basic: Color.basic,
+    button: Color.button,
     main: {
         [EColor.RED]: Color.main.red,
         [EColor.GREEN]: Color.main.green,
         [EColor.YELLOW]: Color.main.yellow,
         [EColor.BLUE]: Color.main.blue,
     },
-    button: Color.button,
     shader: Color.shader,
 }
 

@@ -21,7 +21,8 @@ const dynFontSize = Math.min(screenDim.height, screenDim.width) / 40
 const minFontSize = 20
 
 const style: TextStyle = {
-    fontSize: Math.max(dynFontSize, minFontSize)
+    fontSize: Math.max(dynFontSize, minFontSize),
+    textAlign: 'center'
 }
 
 /* --------------------------------- Assets --------------------------------- */
