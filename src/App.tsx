@@ -1,93 +1,69 @@
 import React, { useState } from "react";
-import { View, ViewStyle, TextStyle, StatusBar, Picker } from "react-native";
+import { View, ViewStyle, StatusBar, Dimensions } from "react-native";
 
-import Game from "./views/Game";
-import Home from "./views/Home";
-import PlayerConfig from "./views/PlayerConfig";
+import AppState from './AppState';
+import { Colors } from './Assets';
 
-import TopBar from "./components/TopBar";
-import Popup from "./components/Popup";
-import Text from "./components/Text";
+import Game from './components/Game';
+import Home from './components/Home';
+import TopBar from './components/TopBar';
 
-import { Colors } from "./assets";
-import { EViews, INavs } from "./navigation";
-import { initCache, Language } from "./storage";
-import { ELanguage } from "./types";
-import VictoryPopup from "./components/VictoryPopup";
-import { EColor } from "chameleon-chess-logic";
+import { EView } from './models/View';
 
-/* -------------------------------- App.tsx --------------------------------- */
+// -----------------------------------------------------------------------------
+
+export interface IAppController {
+    goTo: {
+        Game: () => void;
+        Home: () => void;
+        PlayerConfig: () => void;
+    };
+    render: () => void;
+}
 
 const App = () => {
-    const [cacheLoaded, setCacheLoaded] = useState(false)
-    !cacheLoaded && initCache()
-    .then(() => {
-        setCacheLoaded(true)
-    }).catch( e => console.error(e) )
-
-    const [render, setRender] = useState(false)
-    const [view, setView] = useState(EViews.HOME)
-    const nav: INavs = {
-        home: () => { setView(EViews.HOME) },
-        game: () => { setView(EViews.GAME) },
-        playerConfig: () => { setView(EViews.PLAYER_CONFIG) },
-        rerender: () => { setRender(!render) }
-    }
+    const [renderTrigger, setRenderTrigger] = useState(false);
+    const render = () => setRenderTrigger(!renderTrigger);
+    
+    const controller: IAppController = {
+        goTo: {
+            Game: () => {
+                AppState.View.set(EView.GAME);
+                render();
+            },
+            Home: () => {
+                AppState.View.set(EView.HOME);
+                render();
+            },
+            PlayerConfig: () => {
+                AppState.View.set(EView.PLAYER_CONFIG);
+                render();
+            },
+        },
+        render
+    };
 
     return (
-        <View style={style}>
+        <View style={appStyle}>
             <StatusBar hidden={true} />
-            <TopBar navigate={nav} />
-            <View style={mainAreaStyle}>
-                <View style={wrapper}>
-                    {view === EViews.HOME && <Home navigate={nav} />}
-                    {view === EViews.PLAYER_CONFIG && <PlayerConfig navigate={nav} />}
-                    {view === EViews.GAME && <Game navigate={nav} />}
-                </View>
-            </View>
-            {/* <VictoryPopup player={EColor.RED} /> */}
-            {/* <Popup>
-                <Picker
-                    selectedValue={Language.get()}
-                    onValueChange={lang => {
-                        Language.set(lang)
-                        nav.rerender()
-                    }}
-                    style={pickerStyle}
-                >
-                    <Picker.Item value={ELanguage.ENGLISH} label={'english'} />
-                    <Picker.Item value={ELanguage.GERMAN} label={'deutsch'} />
-                </Picker>
-            </Popup> */}
+            <TopBar controller={controller} />
+
+            {AppState.View.get() === EView.GAME && <Game controller={controller} />}
+            {AppState.View.get() === EView.HOME && <Home controller={controller} />}
+
+            <View />{/* Placeholder for a potential Footer */}
         </View>
     )
 }
 
 export default App;
 
-/* --------------------------------- Styles --------------------------------- */
+// -----------------------------------------------------------------------------
 
-const style: ViewStyle = {
+const appStyle: ViewStyle = {
     backgroundColor: Colors.basic.background,
     height: '100%',
     width:  '100%',
-}
-
-const mainAreaStyle: ViewStyle = {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
-}
-
-const wrapper: ViewStyle = {
-    width: '95%',
-}
-
-const pickerStyle: ViewStyle = {
-    borderWidth: 1,
-    height: 70,
-    overflow: 'hidden',
-    width: 200,
-    justifyContent: 'center'
+    justifyContent: 'space-between',
 }

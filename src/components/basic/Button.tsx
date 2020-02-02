@@ -1,10 +1,10 @@
 import React from "react";
 import { ViewStyle, TextStyle, TouchableOpacity } from "react-native";
 
-import Text from "./Text";
+import Text from './Text';
 import Overlay, { OverlayType } from "./Overlay";
 
-import { Colors } from "../assets";
+import { Colors } from '../../Assets';
 
 /* ------------------------------- Component -------------------------------- */
 
@@ -16,8 +16,8 @@ interface ButtonProps {
 
 const Button = (props: ButtonProps) => (
     <TouchableOpacity
-        onPress={!props.disabled ? props.onPress : () => {}}
-        activeOpacity={!props.disabled ? .9 : 1}
+        onPress={ !props.disabled ? props.onPress : () => {} }
+        activeOpacity={ !props.disabled ? .9 : 1 }
         style={style}
     >
         <Text style={textStyle}>{props.text}</Text>
@@ -25,9 +25,11 @@ const Button = (props: ButtonProps) => (
     </TouchableOpacity>
 )
 
+// {props.disabled && <Overlay type={OverlayType.GREY_OUT} />}
+
 export default Button;
 
-/* --------------------------------- Styles --------------------------------- */
+// -----------------------------------------------------------------------------
 
 const style: ViewStyle = {
     backgroundColor: Colors.button.background,
@@ -43,5 +45,3 @@ const textStyle: TextStyle = {
     fontWeight: '700',
     textAlign: 'center'
 }
-
-/* --------------------------------- Assets --------------------------------- */

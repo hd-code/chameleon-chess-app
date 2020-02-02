@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.2",
-    "chameleon-chess-logic": "git+https://source.ai.fh-erfurt.de/ha9384dr/chameleon-chess-logic.git#v1",
+    "chameleon-chess-logic": "git+https://github.com/hd-code/chameleon-chess-logic.git#v1",
     "react": "^16.10.2",
     "react-native": "^0.61.2"
   },

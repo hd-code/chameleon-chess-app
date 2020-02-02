@@ -8,7 +8,8 @@
         },
         "Home": {
             "continue": "Continue",
-            "newGame": "New Game"
+            "newGame": "New Game",
+            "tutorial": "Tutorial"
         },
         "PlayerConfig": {
             "beginGame": "Begin Game"
@@ -23,7 +24,8 @@
         },
         "Home": {
             "continue": "Fortsetzen",
-            "newGame": "Neues Spiel"
+            "newGame": "Neues Spiel",
+            "tutorial": "Tutorial"
         },
         "PlayerConfig": {
             "beginGame": "Spiel starten"

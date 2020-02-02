@@ -1,33 +1,33 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
 
-import ColorRole from "./ColorRole";
-import Overlay, { OverlayType } from "./Overlay";
+import { EColor, ERole, IPosition } from 'chameleon-chess-logic';
 
-import { Colors } from "../assets";
+import { Colors } from '../../Assets';
 
-import { EColor, ERole, IPosition } from "chameleon-chess-logic";
+import Overlay, { OverlayType } from '../basic/Overlay';
+import ColorRole from './ColorRole';
 
-/* ------------------------------- Component -------------------------------- */
+// -----------------------------------------------------------------------------
 
 export enum PawnStatus { NORMAL, SELECTED, THREATENED }
 
 export interface PawnProps {
-    key: string
-    player: EColor
-    roles: {[fieldColor in EColor]: ERole}
-    position: IPosition
-    status: PawnStatus
-    currentFieldColor: EColor
+    key: string;
+    player: EColor;
+    roles: {[fieldColor in EColor]: ERole};
+    position: IPosition;
+    status: PawnStatus;
+    currentFieldColor: EColor;
 }
 
 const Pawn = (props: PawnProps) => (
     <View 
         style={{
             ...style,
+            backgroundColor: Colors.main[props.player],
             top:  props.position.row * 12.5 + .75 + '%',
             left: props.position.col * 12.5 + .75 + '%',
-            backgroundColor: Colors.main[props.player]
         }}
     >
         <View style={styleRoleWrapper}>
@@ -58,7 +58,7 @@ const Pawn = (props: PawnProps) => (
 
 export default Pawn;
 
-/* --------------------------------- Styles --------------------------------- */
+// -----------------------------------------------------------------------------
 
 const style: ViewStyle = {
     borderWidth: 3,
@@ -77,5 +77,3 @@ const styleRoleWrapper: ViewStyle = {
     flexWrap: 'wrap',
     flexDirection: 'row'
 }
-
-/* --------------------------------- Assets --------------------------------- */

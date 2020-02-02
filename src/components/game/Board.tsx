@@ -1,28 +1,28 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
 
-import Pawn, { PawnProps } from "./Pawn";
-import Tile, { TileProps } from "./Tile";
+import Pawn, { PawnProps } from './Pawn';
+import Field, { FieldProps } from './Field';
 
-/* ------------------------------- Component -------------------------------- */
+// -----------------------------------------------------------------------------
 
 export interface BoardProps {
-    tiles: TileProps[]
+    fields: FieldProps[]
     pawns: PawnProps[]
 }
 
 const Board = (props: BoardProps) => (
     <View style={style}>
         <View style={styleWrapper}>
-            {props.tiles.map(tile => (<Tile {...tile} />))}
-            {props.pawns.map(pawn => <Pawn {...pawn} />)}
+            { props.fields.map(field => <Field {...field} />) }
+            { props.pawns .map(pawn  => <Pawn {...pawn} />) }
         </View>
     </View>
 )
 
 export default Board;
 
-/* --------------------------------- Styles --------------------------------- */
+// -----------------------------------------------------------------------------
 
 const style: ViewStyle = {
     height: 0,
@@ -37,5 +37,3 @@ const styleWrapper: ViewStyle = {
     flexWrap: 'wrap',
     flexDirection:'row'
 }
-
-/* --------------------------------- Assets --------------------------------- */

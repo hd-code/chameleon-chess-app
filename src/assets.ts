@@ -2,7 +2,7 @@ import Color from "../assets/colors.json";
 import Texts  from "../assets/texts.json";
 
 import { EColor } from "chameleon-chess-logic";
-import { Language } from "./storage";
+import AppState from './AppState';
 
 /* --------------------------------- Colors --------------------------------- */
 
@@ -36,7 +36,7 @@ export const Images = {
 /* --------------------------------- Texts ---------------------------------- */
 
 export function getTexts() {
-    const T = Texts[Language.get()]
+    const T = Texts[AppState.Settings.Language.get()];
     return {
         players: {
             [EColor.RED]: T.players.red,

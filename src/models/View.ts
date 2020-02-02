@@ -1,0 +1,1 @@
+export enum EView { HOME, PLAYER_CONFIG, GAME }

@@ -1,14 +1,15 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
 
-import Image from "./Image";
-import Overlay, { OverlayType } from "./Overlay";
+import { EColor, ERole } from 'chameleon-chess-logic';
 
-import { Colors, Images } from "../assets";
+import { Colors, Images } from '../../Assets';
 
-import { EColor, ERole } from "chameleon-chess-logic";
+import Image from '../basic/Image';
+import Overlay, { OverlayType } from '../basic/Overlay';
 
-/* ------------------------------- Component -------------------------------- */
+
+// -----------------------------------------------------------------------------
 
 interface ColorRoleProps {
     fieldColor: EColor
@@ -17,7 +18,7 @@ interface ColorRoleProps {
 }
 
 const ColorRole = (props: ColorRoleProps) => (
-    <View style={{...style, backgroundColor: Colors.main[props.fieldColor]}}>
+    <View style={[ style, { backgroundColor: Colors.main[props.fieldColor] } ]}>
         <Image source={images[props.role]} />
         {props.active && <Overlay type={OverlayType.LIGHTEN} />}
     </View>
@@ -25,14 +26,12 @@ const ColorRole = (props: ColorRoleProps) => (
 
 export default ColorRole;
 
-/* --------------------------------- Styles --------------------------------- */
+// -----------------------------------------------------------------------------
 
 const style: ViewStyle = {
     height:'50%',
     width: '50%',
 }
-
-/* --------------------------------- Assets --------------------------------- */
 
 const images = {
     [ERole.KNIGHT]: Images.Knight,

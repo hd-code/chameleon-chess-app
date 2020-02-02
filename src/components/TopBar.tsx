@@ -1,56 +1,43 @@
 import React from "react";
-import { View, ViewStyle, Picker, TextStyle } from "react-native";
+import { View, ViewStyle } from "react-native";
 
-import Image from "./Image";
-import TouchableIcon from "./TouchableIcon";
+import { IAppController } from "../App";
+import { Images } from "../Assets";
+import { getSmallerDim } from "../helper";
+import Image from "./basic/Image";
 
-import { Images } from "../assets";
-import { ViewProps } from "../navigation";
-import { Language } from "../storage";
-import { ELanguage } from "../types";
+// -----------------------------------------------------------------------------
 
-/* ------------------------------- Component -------------------------------- */
-
-export enum TileStatus { DEACTIVATED, NORMAL, MARKED }
-
-export interface TopBarProps extends ViewProps {}
+export interface TopBarProps {
+    controller: IAppController;
+}
 
 const TopBar = (props: TopBarProps) => (
-    <View style={style}>
-        <View style={columnStyle}>
-            <TouchableIcon
-                onPress={() => {props.navigate.home()}}
-                source={Images.Home}
-            />
+    <View style={[justify, {height}]}>
+        <View style={{height: height, width: height}}>
+            <Image source={Images.Home} onPress={props.controller.goTo.Home} />
         </View>
-        <View style={logoColumnStyle}>
+
+        <View style={{height, width: height * 2.5}}>
             <Image source={Images.Logo} />
         </View>
-        <View style={columnStyle}>
-            
+
+        <View style={{height, width: height}}>
+            <Image source={Images.Home} />
         </View>
     </View>
-)
+);
 
 export default TopBar;
 
-/* --------------------------------- Styles --------------------------------- */
+// -----------------------------------------------------------------------------
 
-const style: ViewStyle = {
-    height: '7%',
-    width: '95%',
+const justify: ViewStyle = {
     flexDirection: 'row',
-    alignItems: 'center'
+    justifyContent: 'space-between'
 }
 
-const columnStyle: ViewStyle = {
-    height: '100%',
-    width:   '20%',
-}
+const DYN_HEIGHT = getSmallerDim() * 0.1;
+const MIN_HEIGHT = 50;
 
-const logoColumnStyle: ViewStyle = {
-    height: '100%',
-    width:   '60%',
-}
-
-/* --------------------------------- Assets --------------------------------- */
+const height = Math.max(DYN_HEIGHT, MIN_HEIGHT);
