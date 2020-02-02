@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { View, ViewStyle, StatusBar, Dimensions } from "react-native";
+import { View, ViewStyle, StatusBar } from "react-native";
 
 import AppState from './AppState';
-import { Colors } from './Assets';
 
 import Game from './components/Game';
 import Home from './components/Home';
 import TopBar from './components/TopBar';
 
+import { getColors } from './models/Colors';
 import { EView } from './models/View';
 
 // -----------------------------------------------------------------------------
@@ -61,7 +61,7 @@ export default App;
 // -----------------------------------------------------------------------------
 
 const appStyle: ViewStyle = {
-    backgroundColor: Colors.basic.background,
+    backgroundColor: getColors().basic.background,
     height: '100%',
     width:  '100%',
     flex: 1,

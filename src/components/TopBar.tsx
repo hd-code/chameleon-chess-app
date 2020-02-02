@@ -1,10 +1,12 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
 
-import { IAppController } from "../App";
-import { Images } from "../Assets";
-import { getSmallerDim } from "../helper";
-import Image from "./basic/Image";
+import { IAppController } from '../App';
+import { getSmallerDim } from '../helper';
+
+import Image from './basic/Image';
+
+import { getImages } from '../models/Images';
 
 // -----------------------------------------------------------------------------
 
@@ -15,15 +17,15 @@ export interface TopBarProps {
 const TopBar = (props: TopBarProps) => (
     <View style={[justify, {height}]}>
         <View style={{height: height, width: height}}>
-            <Image source={Images.Home} onPress={props.controller.goTo.Home} />
+            <Image source={getImages().Home} onPress={props.controller.goTo.Home} />
         </View>
 
         <View style={{height, width: height * 2.5}}>
-            <Image source={Images.Logo} />
+            <Image source={getImages().Logo} />
         </View>
 
         <View style={{height, width: height}}>
-            <Image source={Images.Home} />
+            <Image source={getImages().Home} />
         </View>
     </View>
 );

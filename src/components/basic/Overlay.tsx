@@ -1,7 +1,7 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
 
-import { Colors } from '../../Assets';
+import { getColors } from '../../models/Colors';
 
 // -----------------------------------------------------------------------------
 
@@ -26,7 +26,7 @@ const style: ViewStyle = {
 };
 
 const COLORS = {
-    [OverlayType.DARKEN]:  Colors.shader.darken,
-    [OverlayType.LIGHTEN]: Colors.shader.lighten,
-    [OverlayType.GREY_OUT]: Colors.shader.greyOut,
+    [OverlayType.DARKEN]:   getColors().shader.darken,
+    [OverlayType.LIGHTEN]:  getColors().shader.lighten,
+    [OverlayType.GREY_OUT]: getColors().shader.greyOut,
 };

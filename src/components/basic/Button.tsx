@@ -1,10 +1,10 @@
 import React from "react";
 import { ViewStyle, TextStyle, TouchableOpacity } from "react-native";
 
-import { Colors } from '../../Assets';
-
 import Overlay, { OverlayType } from "./Overlay";
 import Text from './Text';
+
+import { getColors } from '../../models/Colors';
 
 // -----------------------------------------------------------------------------
 
@@ -30,16 +30,16 @@ export default Button;
 // -----------------------------------------------------------------------------
 
 const style: ViewStyle = {
-    backgroundColor: Colors.button.background,
-    borderColor: Colors.button.text,
+    backgroundColor: getColors().button.background,
+    borderColor:     getColors().button.text,
     borderRadius: 10,
-    borderWidth: 1,
+    borderWidth:   1,
     padding: 20,
     width: '100%',
 };
 
 const textStyle: TextStyle = {
-    color: Colors.button.text,
+    color: getColors().button.text,
     fontWeight: '700',
     textAlign: 'center'
 };

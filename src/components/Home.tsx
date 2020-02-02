@@ -3,10 +3,11 @@ import { View, Text } from "react-native";
 
 import { IAppController } from '../App';
 import AppState from '../AppState';
-import { getTexts } from '../Assets';
 
-import Button from './basic/Button'
-import Spacer from './basic/Spacer'
+import Button from './basic/Button';
+import Spacer from './basic/Spacer';
+
+import { getTexts } from '../models/Texts';
 
 // -----------------------------------------------------------------------------
 

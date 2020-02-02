@@ -3,10 +3,10 @@ import { View, ViewStyle } from "react-native";
 
 import { EColor, ERole, IPosition } from 'chameleon-chess-logic';
 
-import { Colors } from '../../Assets';
-
 import Overlay, { OverlayType } from '../basic/Overlay';
 import ColorRole from './ColorRole';
+
+import { getColors } from '../../models/Colors';
 
 // -----------------------------------------------------------------------------
 
@@ -25,7 +25,7 @@ const Pawn = (props: PawnProps) => (
     <View 
         style={{
             ...style,
-            backgroundColor: Colors.main[props.player],
+            backgroundColor: getColors().main[props.player],
             top:  props.position.row * 12.5 + .75 + '%',
             left: props.position.col * 12.5 + .75 + '%',
         }}
@@ -62,7 +62,7 @@ export default Pawn;
 
 const style: ViewStyle = {
     borderWidth: 3,
-    borderColor: Colors.shader.darken,
+    borderColor: getColors().shader.darken,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',

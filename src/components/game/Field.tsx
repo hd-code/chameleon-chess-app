@@ -3,9 +3,9 @@ import { View, ViewStyle } from "react-native";
 
 import { EColor } from 'chameleon-chess-logic';
 
-import { Colors } from '../../Assets';
-
 import Overlay from '../basic/Overlay';
+
+import { getColors } from '../../models/Colors';
 
 // -----------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ export interface FieldProps {
 }
 
 const Field = (props: FieldProps) => (
-    <View style={[ style, { backgroundColor: Colors.main[props.color] } ]}>
+    <View style={[ style, { backgroundColor: getColors().main[props.color] } ]}>
         { props.status === FieldStatus.DEACTIVATED && <Overlay type={0} /> }
         { props.status === FieldStatus.MARKED      && <Overlay type={1} /> }
     </View>
