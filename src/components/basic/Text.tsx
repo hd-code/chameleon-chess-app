@@ -6,13 +6,13 @@ import { getSmallerDim } from '../../helper';
 // -----------------------------------------------------------------------------
 
 interface TextProps {
-    children: string
-    style?: TextStyle
+    children: string;
+    style?: TextStyle;
 }
 
 const Text = (props: TextProps) => (
     <RNText style={[style, props.style]}>{props.children}</RNText>
-)
+);
 
 export default Text;
 
@@ -23,5 +23,5 @@ const MIN_FONT_SIZE = 20;
 
 const style: TextStyle = {
     fontSize: Math.max(DYN_FONT_SIZE, MIN_FONT_SIZE),
-    textAlign: 'center'
+    textAlign: 'center',
 };

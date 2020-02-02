@@ -12,9 +12,9 @@ import Overlay, { OverlayType } from '../basic/Overlay';
 // -----------------------------------------------------------------------------
 
 interface ColorRoleProps {
-    fieldColor: EColor
-    role: ERole
-    active: boolean
+    fieldColor: EColor;
+    role: ERole;
+    active: boolean;
 }
 
 const ColorRole = (props: ColorRoleProps) => (
@@ -22,7 +22,7 @@ const ColorRole = (props: ColorRoleProps) => (
         <Image source={images[props.role]} />
         {props.active && <Overlay type={OverlayType.LIGHTEN} />}
     </View>
-)
+);
 
 export default ColorRole;
 
@@ -31,11 +31,11 @@ export default ColorRole;
 const style: ViewStyle = {
     height:'50%',
     width: '50%',
-}
+};
 
 const images = {
     [ERole.KNIGHT]: Images.Knight,
     [ERole.QUEEN]:  Images.Queen,
     [ERole.BISHOP]: Images.Bishop,
     [ERole.ROOK]:   Images.Rook,
-}
+};

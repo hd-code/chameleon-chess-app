@@ -53,7 +53,7 @@ const App = () => {
 
             <View />{/* Placeholder for a potential Footer */}
         </View>
-    )
+    );
 }
 
 export default App;
@@ -66,4 +66,4 @@ const appStyle: ViewStyle = {
     width:  '100%',
     flex: 1,
     justifyContent: 'space-between',
-}
+};

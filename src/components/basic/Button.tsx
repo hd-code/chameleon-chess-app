@@ -1,17 +1,17 @@
 import React from "react";
 import { ViewStyle, TextStyle, TouchableOpacity } from "react-native";
 
-import Text from './Text';
-import Overlay, { OverlayType } from "./Overlay";
-
 import { Colors } from '../../Assets';
 
-/* ------------------------------- Component -------------------------------- */
+import Overlay, { OverlayType } from "./Overlay";
+import Text from './Text';
+
+// -----------------------------------------------------------------------------
 
 interface ButtonProps {
-    text: string
-    onPress: () => void
-    disabled?: boolean
+    text: string;
+    onPress: () => void;
+    disabled?: boolean;
 }
 
 const Button = (props: ButtonProps) => (
@@ -23,9 +23,7 @@ const Button = (props: ButtonProps) => (
         <Text style={textStyle}>{props.text}</Text>
         {props.disabled && <Overlay type={OverlayType.GREY_OUT} />}
     </TouchableOpacity>
-)
-
-// {props.disabled && <Overlay type={OverlayType.GREY_OUT} />}
+);
 
 export default Button;
 
@@ -38,10 +36,10 @@ const style: ViewStyle = {
     borderWidth: 1,
     padding: 20,
     width: '100%',
-}
+};
 
 const textStyle: TextStyle = {
     color: Colors.button.text,
     fontWeight: '700',
     textAlign: 'center'
-}
+};

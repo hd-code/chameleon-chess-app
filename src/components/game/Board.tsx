@@ -1,14 +1,14 @@
 import React from "react";
 import { View, ViewStyle } from "react-native";
 
-import Pawn, { PawnProps } from './Pawn';
 import Field, { FieldProps } from './Field';
+import Pawn, { PawnProps } from './Pawn';
 
 // -----------------------------------------------------------------------------
 
 export interface BoardProps {
-    fields: FieldProps[]
-    pawns: PawnProps[]
+    fields: FieldProps[];
+    pawns: PawnProps[];
 }
 
 const Board = (props: BoardProps) => (
@@ -18,7 +18,7 @@ const Board = (props: BoardProps) => (
             { props.pawns .map(pawn  => <Pawn {...pawn} />) }
         </View>
     </View>
-)
+);
 
 export default Board;
 
@@ -28,7 +28,7 @@ const style: ViewStyle = {
     height: 0,
     width: '100%',
     paddingBottom: '100%',
-}
+};
 
 const styleWrapper: ViewStyle = {
     position: 'absolute',
@@ -36,4 +36,4 @@ const styleWrapper: ViewStyle = {
     left: 0, right: 0,
     flexWrap: 'wrap',
     flexDirection:'row'
-}
+};

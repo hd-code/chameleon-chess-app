@@ -54,7 +54,7 @@ const Pawn = (props: PawnProps) => (
         </View>
         {props.status === PawnStatus.SELECTED && <Overlay type={OverlayType.LIGHTEN} />}
     </View>
-)
+);
 
 export default Pawn;
 
@@ -69,11 +69,11 @@ const style: ViewStyle = {
     height:'11%',
     width: '11%',
     position: 'absolute'
-}
+};
 
 const styleRoleWrapper: ViewStyle = {
     height: '80%',
     width:  '80%',
     flexWrap: 'wrap',
     flexDirection: 'row'
-}
+};

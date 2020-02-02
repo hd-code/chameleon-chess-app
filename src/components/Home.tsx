@@ -8,7 +8,7 @@ import { getTexts } from '../Assets';
 import Button from './basic/Button'
 import Spacer from './basic/Spacer'
 
-/* ---------------------------------- View ---------------------------------- */
+// -----------------------------------------------------------------------------
 
 interface HomeProps {
     controller: IAppController;
@@ -37,6 +37,6 @@ const Home = (props: HomeProps) => (
             disabled={ true }
         />
     </View>
-)
+);
 
 export default Home;

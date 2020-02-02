@@ -12,19 +12,18 @@
     "iPhone": "xcrun simctl boot 'iPhone 8'",
     "iPad:build": "react-native run-ios --simulator 'iPad Air (3rd generation)'",
     "iPhone:build": "react-native run-ios --simulator 'iPhone 8'",
-    "pod": "cd ios && pod install",
-    "logic": "rm -rf node_modules/chameleon-chess-logic && cp -R ../chameleon-chess-logic node_modules"
+    "pod": "cd ios && pod install"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.6.2",
+    "@react-native-community/async-storage": "^1.7.1",
     "chameleon-chess-logic": "git+https://github.com/hd-code/chameleon-chess-logic.git#v1",
-    "react": "^16.10.2",
-    "react-native": "^0.61.2"
+    "react": "~16.10.2",
+    "react-native": "~0.61.5"
   },
   "devDependencies": {
-    "@types/react": "^16.9.5",
-    "@types/react-native": "^0.60.22",
+    "@types/react": "^16.9.19",
+    "@types/react-native": "^0.60.31",
     "react-native-cli": "^2.0.1",
-    "typescript": "^3.6.3"
+    "typescript": "^3.7.5"
   }
 }

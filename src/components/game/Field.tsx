@@ -22,7 +22,7 @@ const Field = (props: FieldProps) => (
         { props.status === FieldStatus.DEACTIVATED && <Overlay type={0} /> }
         { props.status === FieldStatus.MARKED      && <Overlay type={1} /> }
     </View>
-)
+);
 
 export default Field;
 
@@ -32,4 +32,4 @@ const style: ViewStyle = {
     height:'12.5%',
     width: '12.5%',
     borderWidth: 1,
-}
+};

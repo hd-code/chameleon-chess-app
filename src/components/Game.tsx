@@ -42,7 +42,7 @@ const Game = (props: GameProps) => {
                 activeOpacity={1}
             />
         </View>
-    )
+    );
 }
 
 export default Game;

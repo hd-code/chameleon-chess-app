@@ -35,7 +35,7 @@ export default TopBar;
 const justify: ViewStyle = {
     flexDirection: 'row',
     justifyContent: 'space-between'
-}
+};
 
 const DYN_HEIGHT = getSmallerDim() * 0.1;
 const MIN_HEIGHT = 50;
