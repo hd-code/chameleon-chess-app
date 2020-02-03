@@ -3,14 +3,16 @@ import * as ccl from 'chameleon-chess-logic';
 import { flattenArray } from '../../../lib/hd-helper';
 
 import { FieldProps, FieldStatus } from './Field';
-import { IGame } from "../../models/Game";
 import { PawnProps, PawnStatus} from './Pawn';
-import { EPlayerType } from "../../models/PlayerType";
+import { PlayerProps, EPlayerStatus } from './Player';
+import { PlayersProps } from './Players';
+
+import { IGame } from "../../models/Game";
 
 // -----------------------------------------------------------------------------
 
 interface IRenderedBoard {
-    // players: TPlayersProps;
+    players: PlayersProps;
     fields: FieldProps[];
     pawns: PawnProps[];
     winner: ccl.EColor|null;
@@ -19,10 +21,10 @@ interface IRenderedBoard {
 /** Transforms an `IGame` model into the props needed to render the view. */
 export default function getPropsForRendering(game: IGame): IRenderedBoard {
     return {
-        // players: renderPlayers(game),
-        fields: renderTiles(game),
-        pawns: renderPawns(game),
-        winner: renderWinner(game)
+        players: renderPlayers(game),
+        fields:  renderTiles  (game),
+        pawns:   renderPawns  (game),
+        winner:  renderWinner (game),
     };
 }
 
@@ -31,18 +33,18 @@ export default function getPropsForRendering(game: IGame): IRenderedBoard {
 const BOARD: FieldProps[][] = ccl.getBoard().map((row, i) => row.map((field, j) => ({
     key: i + '' + j,
     color: field,
-    status: FieldStatus.NORMAL
+    status: FieldStatus.NORMAL,
 })));
 
-/*
-function renderPlayers(game: IGame): TPlayersProps {
+
+function renderPlayers(game: IGame): PlayersProps {
     const playersAlive = ccl.arePlayersAlive(game.gs);
 
     return {
-        [ccl.EColor.RED]:    renderPlayer(game, ccl.EColor.RED,    playersAlive[ccl.EColor.RED]),
-        [ccl.EColor.GREEN]:  renderPlayer(game, ccl.EColor.GREEN,  playersAlive[ccl.EColor.GREEN]),
+        [ccl.EColor.RED]:    renderPlayer(game, ccl.EColor.RED,    playersAlive[ccl.EColor.RED   ]),
+        [ccl.EColor.GREEN]:  renderPlayer(game, ccl.EColor.GREEN,  playersAlive[ccl.EColor.GREEN ]),
         [ccl.EColor.YELLOW]: renderPlayer(game, ccl.EColor.YELLOW, playersAlive[ccl.EColor.YELLOW]),
-        [ccl.EColor.BLUE]:   renderPlayer(game, ccl.EColor.BLUE,   playersAlive[ccl.EColor.BLUE]),
+        [ccl.EColor.BLUE]:   renderPlayer(game, ccl.EColor.BLUE,   playersAlive[ccl.EColor.BLUE  ]),
     };
 }
 
@@ -50,10 +52,10 @@ function renderPlayer(game: IGame, player: ccl.EColor, alive: boolean): PlayerPr
     return {
         player: player,
         type: game.players[player],
-        status: !alive ? PlayerStatus.DEAD
-            : game.gs.whoseTurn === player ? PlayerStatus.ON_TURN : PlayerStatus.OFF_TURN
+        status: !alive ? EPlayerStatus.DEAD : game.gs.whoseTurn === player 
+            ? EPlayerStatus.ON_TURN : EPlayerStatus.OFF_TURN
     };
-} // */
+}
 
 function renderTiles(game: IGame): FieldProps[] {
     const moves = game.selectedPawn !== null

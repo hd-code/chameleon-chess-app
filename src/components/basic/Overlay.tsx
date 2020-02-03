@@ -1,5 +1,7 @@
 import React from "react";
-import { View, ViewStyle } from "react-native";
+import { View } from "react-native";
+
+import { Styles } from '../../helper';
 
 import { getColors } from '../../models/Colors';
 
@@ -12,18 +14,12 @@ interface OverlayProps {
 }
 
 const Overlay = (props: OverlayProps) => (
-    <View style={[style, {backgroundColor: COLORS[props.type]}]} />
+    <View style={[Styles.coverParent, {backgroundColor: COLORS[props.type]}]} />
 );
 
 export default Overlay;
 
 // -----------------------------------------------------------------------------
-
-const style: ViewStyle = {
-    position: 'absolute',
-    top: 0, bottom: 0,
-    left: 0, right: 0,
-};
 
 const COLORS = {
     [OverlayType.DARKEN]:   getColors().shader.darken,

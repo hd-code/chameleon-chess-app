@@ -7,7 +7,13 @@ import { EView } from './models/View';
 
 // -----------------------------------------------------------------------------
 
+/** Interface for a global variable. This variable stores important data and
+ * settings needed in the app. Through this interface, the values in the
+ * variable can be accessed. The variable is stored to a persistent local
+ * storage and retrieved on startup of the app. This happens automatically. */
 export const AppState = {
+
+    /** The data of the game that is currently played. */
     Game: <IStateObjectExt<IGame|null>>{
         get: () => CACHE.Game,
         set: (game) => {
@@ -19,6 +25,8 @@ export const AppState = {
             Storage.remove(EStorageKey.GAME);
         }
     },
+
+    /** Holds app settings. */
     Settings: {
         ColorScheme: <IStateObject<EColorScheme>>{
             get: () => CACHE.Settings.ColorScheme,
@@ -35,6 +43,8 @@ export const AppState = {
             },
         },
     },
+
+    /** Holds the currently visible view. */
     View: <IStateObject<EView>>{
         get: () => CACHE.View,
         set: (view) => { CACHE.View = view; },

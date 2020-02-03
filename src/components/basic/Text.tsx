@@ -1,7 +1,7 @@
 import React from "react";
 import { Text as RNText, TextStyle } from "react-native";
 
-import { getSmallerDim } from '../../helper';
+import { getBaseFontSize } from '../../helper';
 
 // -----------------------------------------------------------------------------
 
@@ -18,10 +18,11 @@ export default Text;
 
 // -----------------------------------------------------------------------------
 
-const DYN_FONT_SIZE = getSmallerDim() / 40;
-const MIN_FONT_SIZE = 20;
+const FONT_SIZE = getBaseFontSize();
 
 const style: TextStyle = {
-    fontSize: Math.max(DYN_FONT_SIZE, MIN_FONT_SIZE),
+    fontSize: FONT_SIZE,
     textAlign: 'center',
 };
+
+// TODO: Heading, Text Block.

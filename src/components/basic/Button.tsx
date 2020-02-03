@@ -1,6 +1,8 @@
 import React from "react";
 import { ViewStyle, TextStyle, TouchableOpacity } from "react-native";
 
+import { getBaseFontSize } from '../../helper';
+
 import Overlay, { OverlayType } from "./Overlay";
 import Text from './Text';
 
@@ -12,6 +14,7 @@ interface ButtonProps {
     text: string;
     onPress: () => void;
     disabled?: boolean;
+    // fullWidth?: boolean;
 }
 
 const Button = (props: ButtonProps) => (
@@ -29,13 +32,14 @@ export default Button;
 
 // -----------------------------------------------------------------------------
 
+const padding = getBaseFontSize() * .8;
+
 const style: ViewStyle = {
     backgroundColor: getColors().button.background,
     borderColor:     getColors().button.text,
-    borderRadius: 10,
-    borderWidth:   1,
-    padding: 20,
-    width: '100%',
+    borderWidth:  1,
+    borderRadius: padding,
+    padding,
 };
 
 const textStyle: TextStyle = {

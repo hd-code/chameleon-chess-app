@@ -4,11 +4,13 @@ import AppState from '../AppState';
 
 // -----------------------------------------------------------------------------
 
+/** Enum specifying the supported languages. */
 export enum ELanguage {
     ENGLISH = 'en',
     GERMAN  = 'de',
 }
 
+/** Returns all the different text phrases in the app according to the set language. */
 export function getTexts() {
     return TEXTS[AppState.Settings.Language.get()];
 }

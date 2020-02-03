@@ -3,6 +3,8 @@ import { View, ViewStyle } from "react-native";
 
 import { EColor, ERole, IPosition } from 'chameleon-chess-logic';
 
+import { Styles } from '../../helper';
+
 import Overlay, { OverlayType } from '../basic/Overlay';
 import ColorRole from './ColorRole';
 
@@ -74,6 +76,5 @@ const style: ViewStyle = {
 const styleRoleWrapper: ViewStyle = {
     height: '80%',
     width:  '80%',
-    flexWrap: 'wrap',
-    flexDirection: 'row'
+    ...Styles.flex,
 };

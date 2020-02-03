@@ -5,6 +5,7 @@ import AppState from './AppState';
 
 import Game from './components/Game';
 import Home from './components/Home';
+import PlayerConfig from './components/PlayerConfig';
 import TopBar from './components/TopBar';
 
 import { getColors } from './models/Colors';
@@ -12,13 +13,15 @@ import { EView } from './models/View';
 
 // -----------------------------------------------------------------------------
 
+// TODO: JSDoc überall hin
+
 export interface IAppController {
     goTo: {
         Game: () => void;
         Home: () => void;
         PlayerConfig: () => void;
     };
-    render: () => void;
+    reRender: () => void;
 }
 
 const App = () => {
@@ -40,7 +43,7 @@ const App = () => {
                 render();
             },
         },
-        render
+        reRender: render
     };
 
     return (
@@ -50,6 +53,7 @@ const App = () => {
 
             {AppState.View.get() === EView.GAME && <Game controller={controller} />}
             {AppState.View.get() === EView.HOME && <Home controller={controller} />}
+            {AppState.View.get() === EView.PLAYER_CONFIG && <PlayerConfig controller={controller} />}
 
             <View />{/* Placeholder for a potential Footer */}
         </View>
