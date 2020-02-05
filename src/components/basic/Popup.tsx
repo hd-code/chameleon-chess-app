@@ -11,7 +11,7 @@ interface PopupProps {
     children: JSX.Element|JSX.Element[];
     style?: ViewStyle;
     visible?: boolean;
-    disableClose?: boolean;
+    onPressClose?: () => void;
 }
 
 const Popup = (props: PopupProps) => {
@@ -19,9 +19,10 @@ const Popup = (props: PopupProps) => {
         <Modal transparent={true} animationType={'fade'} visible={props.visible}>
             <View style={OVERLAY_STYLE}>
                 <View>
-                    {/* <TouchableWithoutFeedback onPress={() => setVisible(false)}>
+                    {props.onPressClose && (
+                    <TouchableWithoutFeedback onPress={props.onPressClose}>
                         <Text style={X_STYLE}>&times;</Text>
-                    </TouchableWithoutFeedback> */}
+                    </TouchableWithoutFeedback>)}
                     <View style={[CONTENT_BOX_STYLE, props.style]}>
                         {props.children}
                     </View>

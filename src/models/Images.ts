@@ -1,9 +1,12 @@
+import AppState from '../AppState';
+
+import { ELanguage } from './Texts';
 
 // -----------------------------------------------------------------------------
 
 /** Returns all images with their corresponding data available in this app. */
 export function getImages() {
-    return IMAGES;
+    return {...IMAGES, ...LANG_IMAGES[AppState.Settings.Language.get()]};
 }
 
 // -----------------------------------------------------------------------------
@@ -15,8 +18,17 @@ const IMAGES = {
     Home:     require(assets + 'Home.png'),
     Human:    require(assets + 'Human.png'),
     Knight:   require(assets + 'Knight.png'),
-    Logo:     require(assets + 'Logo.png'),
     NoPlayer: require(assets + 'NoPlayer.png'),
     Queen:    require(assets + 'Queen.png'),
     Rook:     require(assets + 'Rook.png'),
+    Settings: require(assets + 'Settings.png'),
 };
+
+const LANG_IMAGES = {
+    [ELanguage.ENGLISH]: {
+        Logo:     require(assets + 'Logo-en.png'),
+    },
+    [ELanguage.GERMAN]: {
+        Logo:     require(assets + 'Logo-de.png'),
+    },
+}

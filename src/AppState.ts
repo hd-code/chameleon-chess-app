@@ -39,7 +39,6 @@ export const AppState = {
             get: () => CACHE.Settings.Language,
             set: (language) => {
                 CACHE.Settings.Language = language;
-                console.log(CACHE.Settings.Language);
                 Storage.write(EStorageKey.LANGUAGE, language);
             },
         },

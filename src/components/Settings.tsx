@@ -3,12 +3,12 @@ import { View, ViewStyle, StatusBar, Picker } from "react-native";
 
 import { IAppController } from '../App';
 import AppState from '../AppState';
-import { getBaseFontSize } from '../helper';
+import { getBaseFontSize, getScreenDim } from '../helper';
 
 import Spacer from './basic/Spacer';
 import Text, { ETextType } from './basic/Text';
 
-import { ELanguage } from '../models/Texts';
+import { ELanguage, getTexts } from '../models/Texts';
 
 // -----------------------------------------------------------------------------
 
@@ -17,10 +17,10 @@ export interface SettingsProps {
 }
 
 const Settings = (props: SettingsProps) =>
-<View style={{}}>
-    <Text type={ETextType.HEADING}>Einstellungen</Text>
+<View style={{width: getScreenDim().width * .7}}>
+    <Text type={ETextType.HEADING}>{ getTexts().Settings.heading }</Text>
     <Spacer />
-    <Text>Sprache einstellen:</Text>
+    <Text>{ getTexts().Settings.language }</Text>
     <Picker
         selectedValue={AppState.Settings.Language.get()}
         style={PICKER_STYLE}

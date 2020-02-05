@@ -49,6 +49,10 @@ en: {
         explanation: "Tab on a player to change the role.",
         beginGame: "Begin Game",
     },
+    Settings: {
+        heading: "Settings",
+        language: "Set language:",
+    },
 },
 
 de: {
@@ -80,6 +84,10 @@ de: {
         heading: "Neues Spiel konfigurieren",
         explanation: "Auf einen Spieler tippen, um die Rolle zu ändern.",
         beginGame: "Spiel starten",
+    },
+    Settings: {
+        heading: "Einstellungen",
+        language: "Sprache einstellen:",
     },
 },
 

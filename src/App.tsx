@@ -24,11 +24,14 @@ export interface IAppController {
         PlayerConfig: () => void;
     };
     reRender: () => void;
+    toggleSettings: () => void;
 }
 
 const App = () => {
     const [renderTrigger, setRenderTrigger] = useState(false);
     const render = () => setRenderTrigger(!renderTrigger);
+
+    const [showSettings, setShowSettings] = useState(false);
     
     const controller: IAppController = {
         goTo: {
@@ -45,7 +48,8 @@ const App = () => {
                 render();
             },
         },
-        reRender: render
+        reRender: render,
+        toggleSettings: () => setShowSettings(!showSettings)
     };
 
     return (
@@ -59,9 +63,9 @@ const App = () => {
 
             <View />{/* Placeholder for a potential Footer */}
 
-            {/* <Popup>
+            <Popup visible={showSettings} onPressClose={controller.toggleSettings}>
                 <Settings controller={controller} />
-            </Popup> */}
+            </Popup>
         </View>
     );
 }

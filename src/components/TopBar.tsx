@@ -17,7 +17,7 @@ export interface TopBarProps {
 }
 
 const TopBar = (props: TopBarProps) => (
-    <View style={[Styles.flexJustify, {height: HEIGHT}]}>
+    <View style={[Styles.flexJustify, {height: HEIGHT}, {borderBottomWidth: 1}]}>
         <View style={{height: HEIGHT, width: HEIGHT}}>
             <Image source={getImages().Home} onPress={props.controller.goTo.Home} />
         </View>
@@ -27,7 +27,7 @@ const TopBar = (props: TopBarProps) => (
         </View>
 
         <View style={{height: HEIGHT, width: HEIGHT}}>
-            {/* <Image source={getImages().Home} /> */}
+            <Image source={getImages().Settings} onPress={props.controller.toggleSettings} />
         </View>
     </View>
 );
