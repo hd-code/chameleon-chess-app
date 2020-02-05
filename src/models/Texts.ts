@@ -24,16 +24,31 @@ en: {
         [EColor.RED]:    "Player Red",
         [EColor.GREEN]:  "Player Green",
         [EColor.YELLOW]: "Player Yellow",
-        [EColor.BLUE]:   "Player Blue"
+        [EColor.BLUE]:   "Player Blue",
+    },
+    Game: {
+        winner: {
+            [EColor.RED]:    "Player Red won!",
+            [EColor.GREEN]:  "Player Green won!",
+            [EColor.YELLOW]: "Player Yellow won!",
+            [EColor.BLUE]:   "Player Blue won!",
+        },
+        victoryPopup: {
+            homeButton: "Home",
+            replayButton: "Replay",
+            newGame: "New Game",
+        }
     },
     Home: {
         continue: "Continue",
         newGame: "New Game",
-        tutorial: "Tutorial"
+        tutorial: "Tutorial",
     },
     PlayerConfig: {
-        beginGame: "Begin Game"
-    }
+        heading: "Configure New Game",
+        explanation: "Tab on a player to change the role.",
+        beginGame: "Begin Game",
+    },
 },
 
 de: {
@@ -43,14 +58,29 @@ de: {
         [EColor.YELLOW]: "Spieler Gelb",
         [EColor.BLUE]:   "Spieler Blau"
     },
+    Game: {
+        winner: {
+            [EColor.RED]:    "Spieler Rot hat gewonnen!",
+            [EColor.GREEN]:  "Spieler Grün hat gewonnen!",
+            [EColor.YELLOW]: "Spieler Gelb hat gewonnen!",
+            [EColor.BLUE]:   "Spieler Blau hat gewonnen!",
+        },
+        victoryPopup: {
+            homeButton: "Home",
+            replayButton: "Nochmal",
+            newGame: "Neues Spiel",
+        }
+    },
     Home: {
         continue: "Fortsetzen",
         newGame: "Neues Spiel",
-        tutorial: "Tutorial"
+        tutorial: "Tutorial",
     },
     PlayerConfig: {
-        beginGame: "Spiel starten"
-    }
+        heading: "Neues Spiel konfigurieren",
+        explanation: "Auf einen Spieler tippen, um die Rolle zu ändern.",
+        beginGame: "Spiel starten",
+    },
 },
 
 };

@@ -3,7 +3,7 @@ import { View, ViewStyle } from "react-native";
 
 import { EColor } from 'chameleon-chess-logic';
 
-import Overlay from '../basic/Overlay';
+import Overlay, { OverlayType }from '../basic/Overlay';
 
 import { getColors } from '../../models/Colors';
 
@@ -18,9 +18,9 @@ export interface FieldProps {
 }
 
 const Field = (props: FieldProps) => (
-    <View style={[ style, { backgroundColor: getColors().main[props.color] } ]}>
-        { props.status === FieldStatus.DEACTIVATED && <Overlay type={0} /> }
-        { props.status === FieldStatus.MARKED      && <Overlay type={1} /> }
+    <View style={[ STYLE, { backgroundColor: getColors().main[props.color] } ]}>
+        { props.status === FieldStatus.DEACTIVATED && <Overlay type={OverlayType.DARKER} /> }
+        { props.status === FieldStatus.MARKED      && <Overlay type={OverlayType.LIGHTER} /> }
     </View>
 );
 
@@ -28,7 +28,7 @@ export default Field;
 
 // -----------------------------------------------------------------------------
 
-const style: ViewStyle = {
+const STYLE: ViewStyle = {
     height:'12.5%',
     width: '12.5%',
     borderWidth: 1,

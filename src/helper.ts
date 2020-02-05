@@ -25,9 +25,9 @@ export function getSmallerDim() {
  * text written in that size is comfortably readable on the current device.
  * Use this as a reference when dealing with text elements. */
 export function getBaseFontSize() {
-    return Math.max(getSmallerDim() / 40, MIN_FONT_SIZE);
+    return Math.max(getSmallerDim() / 38, MIN_FONT_SIZE);
 }
 
 // -----------------------------------------------------------------------------
 
-const MIN_FONT_SIZE = 16;
+const MIN_FONT_SIZE = 18;

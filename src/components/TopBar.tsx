@@ -17,17 +17,17 @@ export interface TopBarProps {
 }
 
 const TopBar = (props: TopBarProps) => (
-    <View style={[Styles.flexJustify, {height}]}>
-        <View style={{height: height, width: height}}>
+    <View style={[Styles.flexJustify, {height: HEIGHT}]}>
+        <View style={{height: HEIGHT, width: HEIGHT}}>
             <Image source={getImages().Home} onPress={props.controller.goTo.Home} />
         </View>
 
-        <View style={{height, width: height * 2.5}}>
+        <View style={{height: HEIGHT, width: HEIGHT * 2.5}}>
             <Image source={getImages().Logo} />
         </View>
 
-        <View style={{height, width: height}}>
-            <Image source={getImages().Home} />
+        <View style={{height: HEIGHT, width: HEIGHT}}>
+            {/* <Image source={getImages().Home} /> */}
         </View>
     </View>
 );
@@ -36,4 +36,4 @@ export default TopBar;
 
 // -----------------------------------------------------------------------------
 
-const height = getBaseFontSize() * 4;
+const HEIGHT = getBaseFontSize() * 4;

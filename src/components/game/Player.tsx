@@ -29,17 +29,18 @@ export interface PlayerProps {
 
 const Player = (props: PlayerProps) => (
     <View 
-        style={[wrapperStyle,
+        style={[WRAPPER_STYLE,
             {backgroundColor: getColors().main[props.player]},
             props.style
         ]}
     >
         <Text>{getTexts().players[props.player]}</Text>
-        <Spacer size={EDGE_WIDTH} />
-        <View style={imgWrapperStyle}>
-            <Image source={icons[props.type]} style={Styles.coverParent as ImageStyle} />
+        <Spacer scale={.3} />
+        <View style={IMG_WRAPPER_STYLE}>
+            <Image source={ICONS[props.type]} style={Styles.coverParent as ImageStyle} />
         </View>
-        {props.status === EPlayerStatus.DEAD && <Overlay type={OverlayType.DARKEN} />}
+        {props.status === EPlayerStatus.DEAD && <Overlay type={OverlayType.DARKER} />}
+        {props.status === EPlayerStatus.ON_TURN && <Overlay type={OverlayType.WHITE_FRAME} />}
         {props.onPress && <TouchableOpacity style={Styles.coverParent} onPress={props.onPress} />}
     </View>
 )
@@ -50,7 +51,7 @@ export default Player;
 
 const EDGE_WIDTH = getBaseFontSize() * .5;
 
-const wrapperStyle: ViewStyle = {
+const WRAPPER_STYLE: ViewStyle = {
     alignItems: 'center',
     borderWidth: 1,
     padding: EDGE_WIDTH,
@@ -58,12 +59,12 @@ const wrapperStyle: ViewStyle = {
 
 const IMAGE_SIZE = getBaseFontSize() * 3;
 
-const imgWrapperStyle: ViewStyle = {
+const IMG_WRAPPER_STYLE: ViewStyle = {
     width: IMAGE_SIZE,
     paddingBottom: IMAGE_SIZE,
 }
 
-const icons = {
+const ICONS = {
     [EPlayerType.NONE]:  getImages().NoPlayer,
     [EPlayerType.HUMAN]: getImages().Human,
     [EPlayerType.AI]:    getImages().AI,

@@ -13,10 +13,10 @@ export type PlayersProps = {[player in EColor]: PlayerProps}
 
 const PlayerBoard = (props: PlayersProps) => (
     <View style={Styles.flex}>
-        <Player style={playerStyle} {...props[EColor.RED]} />
-        <Player style={playerStyle} {...props[EColor.BLUE]} />
-        <Player style={playerStyle} {...props[EColor.YELLOW]} />
-        <Player style={playerStyle} {...props[EColor.GREEN]} />
+        <Player style={PLAYER_STYLE} {...props[EColor.RED]} />
+        <Player style={PLAYER_STYLE} {...props[EColor.BLUE]} />
+        <Player style={PLAYER_STYLE} {...props[EColor.YELLOW]} />
+        <Player style={PLAYER_STYLE} {...props[EColor.GREEN]} />
     </View>
 )
 
@@ -24,6 +24,6 @@ export default PlayerBoard;
 
 // -----------------------------------------------------------------------------
 
-const playerStyle: ViewStyle = {
+const PLAYER_STYLE: ViewStyle = {
     width: '25%'
 }

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { View, ViewStyle, StatusBar } from "react-native";
+import { View, ViewStyle, StatusBar, Picker } from "react-native";
 
 import AppState from './AppState';
 
 import Game from './components/Game';
 import Home from './components/Home';
 import PlayerConfig from './components/PlayerConfig';
+import Settings from './components/Settings';
 import TopBar from './components/TopBar';
+import Popup from './components/basic/Popup';
 
 import { getColors } from './models/Colors';
 import { EView } from './models/View';
@@ -47,7 +49,7 @@ const App = () => {
     };
 
     return (
-        <View style={appStyle}>
+        <View style={APP_STYLE}>
             <StatusBar hidden={true} />
             <TopBar controller={controller} />
 
@@ -56,6 +58,10 @@ const App = () => {
             {AppState.View.get() === EView.PLAYER_CONFIG && <PlayerConfig controller={controller} />}
 
             <View />{/* Placeholder for a potential Footer */}
+
+            {/* <Popup>
+                <Settings controller={controller} />
+            </Popup> */}
         </View>
     );
 }
@@ -64,7 +70,7 @@ export default App;
 
 // -----------------------------------------------------------------------------
 
-const appStyle: ViewStyle = {
+const APP_STYLE: ViewStyle = {
     backgroundColor: getColors().basic.background,
     height: '100%',
     width:  '100%',

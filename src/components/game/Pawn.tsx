@@ -26,13 +26,13 @@ export interface PawnProps {
 const Pawn = (props: PawnProps) => (
     <View 
         style={{
-            ...style,
+            ...STYLE,
             backgroundColor: getColors().main[props.player],
             top:  props.position.row * 12.5 + .75 + '%',
             left: props.position.col * 12.5 + .75 + '%',
         }}
     >
-        <View style={styleRoleWrapper}>
+        <View style={ROLE_WRAPPER_STYLE}>
             <ColorRole
                 fieldColor={EColor.RED}
                 role={props.roles[EColor.RED]}
@@ -54,7 +54,7 @@ const Pawn = (props: PawnProps) => (
                 active={EColor.BLUE === props.currentFieldColor}
             />
         </View>
-        {props.status === PawnStatus.SELECTED && <Overlay type={OverlayType.LIGHTEN} />}
+        {props.status === PawnStatus.SELECTED && <Overlay type={OverlayType.LIGHT} />}
     </View>
 );
 
@@ -62,9 +62,9 @@ export default Pawn;
 
 // -----------------------------------------------------------------------------
 
-const style: ViewStyle = {
+const STYLE: ViewStyle = {
     borderWidth: 3,
-    borderColor: getColors().shader.darken,
+    borderColor: getColors().shader.darker,
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
@@ -73,7 +73,7 @@ const style: ViewStyle = {
     position: 'absolute'
 };
 
-const styleRoleWrapper: ViewStyle = {
+const ROLE_WRAPPER_STYLE: ViewStyle = {
     height: '80%',
     width:  '80%',
     ...Styles.flex,

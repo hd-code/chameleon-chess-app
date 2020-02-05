@@ -21,9 +21,9 @@ const Button = (props: ButtonProps) => (
     <TouchableOpacity
         onPress={ !props.disabled ? props.onPress : () => {} }
         activeOpacity={ !props.disabled ? .9 : 1 }
-        style={style}
+        style={BOX_STYLE}
     >
-        <Text style={textStyle}>{props.text}</Text>
+        <Text style={TEXT_STYLE}>{props.text}</Text>
         {props.disabled && <Overlay type={OverlayType.GREY_OUT} />}
     </TouchableOpacity>
 );
@@ -32,18 +32,18 @@ export default Button;
 
 // -----------------------------------------------------------------------------
 
-const padding = getBaseFontSize() * .8;
+const PADDING = getBaseFontSize() * .8;
 
-const style: ViewStyle = {
+const BOX_STYLE: ViewStyle = {
     backgroundColor: getColors().button.background,
     borderColor:     getColors().button.text,
     borderWidth:  1,
-    borderRadius: padding,
-    padding,
+    borderRadius: PADDING,
+    padding: PADDING,
 };
 
-const textStyle: TextStyle = {
+const TEXT_STYLE: TextStyle = {
     color: getColors().button.text,
     fontWeight: '700',
-    textAlign: 'center'
+    textAlign: 'center',
 };

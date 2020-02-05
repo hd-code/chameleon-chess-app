@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 
 import { EColor } from 'chameleon-chess-logic';
 
@@ -10,6 +10,7 @@ import AppState from '../AppState';
 
 import Button from './basic/Button';
 import Spacer from './basic/Spacer';
+import Text, { ETextType } from './basic/Text';
 import Players, { PlayersProps } from './game/Players';
 
 import { getDefaultPlayers, getNextPlayerType, isEnoughPlayersForGame } from '../models/PlayerType';
@@ -17,8 +18,6 @@ import { createGame } from '../models/Game';
 import { getTexts } from '../models/Texts';
 
 // -----------------------------------------------------------------------------
-
-// TODO: Texte Einfügen
 
 interface PlayerConfigProps {
     controller: IAppController;
@@ -67,6 +66,8 @@ const PlayerConfig = (props: PlayerConfigProps) => {
 
     return (
         <View>
+            <Text type={ETextType.HEADING}>{getTexts().PlayerConfig.heading}</Text>
+            <Spacer />
             <Players {...playersProps} />
             <Spacer />
             <Button 
@@ -74,8 +75,12 @@ const PlayerConfig = (props: PlayerConfigProps) => {
                 onPress={ beginGame }
                 disabled={ !isEnoughPlayersForGame(players) }
             />
+            <Spacer />
+            <Text>{getTexts().PlayerConfig.explanation}</Text>
         </View>
     );
 }
 
 export default PlayerConfig;
+
+// -----------------------------------------------------------------------------

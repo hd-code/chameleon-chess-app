@@ -13,6 +13,7 @@ export function getColors() {
 const NORMAL = {
     basic: {
         background: "#efe",
+        text: "#121",
         black: "#000",
         white: "#fff",
     },
@@ -27,8 +28,10 @@ const NORMAL = {
         [EColor.BLUE]:   "#04909D",
     },
     shader: {
-        darken:  "#0008",
-        lighten: "#fff8",
+        darker:  "#0008",
+        dark:    "#0004",
         greyOut: "#8888",
+        light:   "#fff4",
+        lighter: "#fff8",
     }
 };

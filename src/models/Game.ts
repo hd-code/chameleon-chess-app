@@ -12,7 +12,8 @@ export interface IGame {
     selectedPawn: number|null;
 }
 
-/** Creates a new game. */
+/** Creates a new game and returns the game object. Returns null if a game could
+ * not be created because there are not enough players. */
 export function createGame(players: TPlayers): IGame|null {
     const gs = ccl.initGame(
         players[ccl.EColor.RED]    !== EPlayerType.NONE,
@@ -48,7 +49,7 @@ export function advanceGame(game: IGame, click: ccl.IPosition): IGame|null {
     };
 }
 
-/** This will let the computer do a move.
+/** This will let the computer do a move and return the updated game object.
  * 
  * _Warning:_ This function might take some time to compute. It is recommended
  * to execute it asynchronously (e.g. by using `setTimeout()`). */
@@ -67,5 +68,17 @@ export function isComputerTurn(game: IGame): boolean {
 
 /** Returns true if a move was made. False if something was just (de)selected. */
 export function havePawnsMoved(oldGame: IGame, newGame: IGame): boolean {
-    return oldGame.gs.whoseTurn !== newGame.gs.whoseTurn;
+    return oldGame.gs.whoseTurn !== newGame.gs.whoseTurn || ccl.isGameOver(newGame.gs);
+}
+
+export function getWinner(game: IGame): ccl.EColor|null {
+    if (!ccl.isGameOver(game.gs))
+        return null;
+
+    const playersAlive = ccl.arePlayersAlive(game.gs);
+    return playersAlive[ccl.EColor.RED]    ? ccl.EColor.RED
+        :  playersAlive[ccl.EColor.GREEN]  ? ccl.EColor.GREEN
+        :  playersAlive[ccl.EColor.YELLOW] ? ccl.EColor.YELLOW
+        :  playersAlive[ccl.EColor.BLUE]   ? ccl.EColor.BLUE
+        :  null;
 }

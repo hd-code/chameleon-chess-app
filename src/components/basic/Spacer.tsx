@@ -1,18 +1,20 @@
 import React from "react";
 import { View } from "react-native";
 
+import { getBaseFontSize } from '../../helper';
+
 // -----------------------------------------------------------------------------
 
 interface SpacerProps {
-    size?: number;
+    scale?: number;
 }
 
 const Spacer = (props: SpacerProps) => (
-    <View style={{height: props.size || DEFAULT_HEIGHT}} />
+    <View style={{height: DEFAULT_HEIGHT * (props.scale || 1)}} />
 );
 
 export default Spacer;
 
 // -----------------------------------------------------------------------------
 
-const DEFAULT_HEIGHT = 20;
+const DEFAULT_HEIGHT = getBaseFontSize();

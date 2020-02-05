@@ -14,7 +14,7 @@ const Image = (props: ImageProps) => (
     <TouchableWithoutFeedback onPress={props.onPress}>
         <Img
             source={props.source}
-            style={[style, props.style]}
+            style={[STYLE, props.style]}
             resizeMode={props.resizeMode || 'contain'}
         />
     </TouchableWithoutFeedback>
@@ -24,7 +24,7 @@ export default Image;
 
 // -----------------------------------------------------------------------------
 
-const style: ImageStyle = {
+const STYLE: ImageStyle = {
     flex: 1,
     height: undefined,
     width:  undefined,

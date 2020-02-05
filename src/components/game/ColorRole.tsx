@@ -4,7 +4,6 @@ import { View, ViewStyle } from "react-native";
 import { EColor, ERole } from 'chameleon-chess-logic';
 
 import Image from '../basic/Image';
-import Overlay, { OverlayType } from '../basic/Overlay';
 
 import { getColors } from '../../models/Colors';
 import { getImages } from '../../models/Images';
@@ -18,9 +17,13 @@ interface ColorRoleProps {
 }
 
 const ColorRole = (props: ColorRoleProps) => (
-    <View style={[ style, { backgroundColor: getColors().main[props.fieldColor] } ]}>
-        <Image source={images[props.role]} />
-        {props.active && <Overlay type={OverlayType.LIGHTEN} />}
+    <View 
+        style={[
+            STYLE, { backgroundColor: getColors().main[props.fieldColor] },
+            props.active && {borderWidth: 1}
+        ]}
+    >
+        <Image source={IMAGES[props.role]} />
     </View>
 );
 
@@ -28,12 +31,13 @@ export default ColorRole;
 
 // -----------------------------------------------------------------------------
 
-const style: ViewStyle = {
+const STYLE: ViewStyle = {
+    borderColor: getColors().basic.white,
     height:'50%',
     width: '50%',
 };
 
-const images = {
+const IMAGES = {
     [ERole.KNIGHT]: getImages().Knight,
     [ERole.QUEEN]:  getImages().Queen,
     [ERole.BISHOP]: getImages().Bishop,
