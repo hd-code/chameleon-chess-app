@@ -7,7 +7,7 @@ import { PawnProps, PawnStatus} from './Pawn';
 import { PlayerProps, EPlayerStatus } from './Player';
 import { PlayersProps } from './Players';
 
-import { IGame } from "../../models/Game";
+import { IGame } from '../../models/Game';
 
 // -----------------------------------------------------------------------------
 

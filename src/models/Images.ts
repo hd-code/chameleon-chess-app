@@ -13,22 +13,22 @@ export function getImages() {
 
 const assets = '../../assets/';
 const IMAGES = {
-    AI:       require(assets + 'AI.png'),
-    Bishop:   require(assets + 'Bishop.png'),
-    Home:     require(assets + 'Home.png'),
-    Human:    require(assets + 'Human.png'),
-    Knight:   require(assets + 'Knight.png'),
-    NoPlayer: require(assets + 'NoPlayer.png'),
-    Queen:    require(assets + 'Queen.png'),
-    Rook:     require(assets + 'Rook.png'),
-    Settings: require(assets + 'Settings.png'),
+    AI:       require(assets + 'computer.png'),
+    Bishop:   require(assets + 'bishop.png'),
+    Home:     require(assets + 'home.png'),
+    Human:    require(assets + 'human.png'),
+    Knight:   require(assets + 'knight.png'),
+    NoPlayer: require(assets + 'none.png'),
+    Queen:    require(assets + 'queen.png'),
+    Rook:     require(assets + 'rook.png'),
+    Settings: require(assets + 'settings.png'),
 };
 
 const LANG_IMAGES = {
     [ELanguage.ENGLISH]: {
-        Logo:     require(assets + 'Logo-en.png'),
+        Logo:     require(assets + 'logo-en.png'),
     },
     [ELanguage.GERMAN]: {
-        Logo:     require(assets + 'Logo-de.png'),
+        Logo:     require(assets + 'logo-de.png'),
     },
 }

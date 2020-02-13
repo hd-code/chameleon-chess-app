@@ -1,4 +1,4 @@
-import { EColor } from "chameleon-chess-logic";
+import { EColor } from 'chameleon-chess-logic';
 
 // -----------------------------------------------------------------------------
 

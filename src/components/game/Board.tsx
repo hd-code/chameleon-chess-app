@@ -1,5 +1,5 @@
-import React from "react";
-import { View, ViewStyle } from "react-native";
+import React from 'react';
+import { View, ViewStyle } from 'react-native';
 
 import { Styles } from '../../helper';
 

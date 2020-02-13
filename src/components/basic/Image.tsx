@@ -1,5 +1,5 @@
-import React from "react";
-import { Image as Img, ImageSourcePropType, ImageStyle, ImageResizeMode, TouchableWithoutFeedback } from "react-native";
+import React from 'react';
+import { Image as Img, ImageSourcePropType, ImageStyle, ImageResizeMode, TouchableWithoutFeedback } from 'react-native';
 
 // -----------------------------------------------------------------------------
 

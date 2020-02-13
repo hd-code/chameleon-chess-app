@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, ViewStyle, TextStyle, Modal, TouchableWithoutFeedback, TouchableOpacity, Text } from "react-native";
+import React, { useState } from 'react';
+import { View, ViewStyle, TextStyle, Modal, TouchableWithoutFeedback, TouchableOpacity, Text } from 'react-native';
 
 import { getScreenDim, getBaseFontSize } from '../../helper';
 

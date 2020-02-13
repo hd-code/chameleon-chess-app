@@ -1,5 +1,5 @@
-import React from "react";
-import { View, ViewStyle, ImageStyle } from "react-native";
+import React from 'react';
+import { View, ViewStyle, ImageStyle } from 'react-native';
 
 import { EColor } from 'chameleon-chess-logic';
 

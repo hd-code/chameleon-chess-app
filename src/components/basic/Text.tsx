@@ -1,5 +1,5 @@
-import React from "react";
-import { Text as RNText, TextStyle } from "react-native";
+import React from 'react';
+import { Text as RNText, TextStyle } from 'react-native';
 
 import { getBaseFontSize } from '../../helper';
 
@@ -34,17 +34,17 @@ const BASE_STYLE: TextStyle = {
 const STYLES: {[type in ETextType]: TextStyle} = {
     [ETextType.NORMAL]: {
         fontSize: FONT_SIZE,
-        fontWeight: "600",
+        fontWeight: '600',
         textAlign: 'center',
     },
     [ETextType.HEADING]: {
         fontSize: FONT_SIZE * 2,
-        fontWeight: "900",
+        fontWeight: '900',
         textAlign: 'center',
     },
     [ETextType.PARAGRAPH]: {
         fontSize: FONT_SIZE,
-        fontWeight: "600",
+        fontWeight: '600',
         textAlign: 'justify',
     },
 };

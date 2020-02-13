@@ -12,26 +12,26 @@ export function getColors() {
 
 const NORMAL = {
     basic: {
-        background: "#efe",
-        text: "#121",
-        black: "#000",
-        white: "#fff",
+        background: '#efe',
+        text: '#121',
+        black: '#000',
+        white: '#fff',
     },
     button: {
-        background: "#51A230",
-        text: "#fff",
+        background: '#51A230',
+        text: '#fff',
     },
     main: {
-        [EColor.RED]:    "#B9542D",
-        [EColor.GREEN]:  "#51A230",
-        [EColor.YELLOW]: "#DDBB71",
-        [EColor.BLUE]:   "#04909D",
+        [EColor.RED]:    '#B9542D',
+        [EColor.GREEN]:  '#51A230',
+        [EColor.YELLOW]: '#DDBB71',
+        [EColor.BLUE]:   '#04909D',
     },
     shader: {
-        darker:  "#0008",
-        dark:    "#0004",
-        greyOut: "#8888",
-        light:   "#fff4",
-        lighter: "#fff8",
+        darker:  '#0008',
+        dark:    '#0004',
+        greyOut: '#8888',
+        light:   '#fff4',
+        lighter: '#fff8',
     }
 };

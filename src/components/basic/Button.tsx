@@ -1,9 +1,9 @@
-import React from "react";
-import { ViewStyle, TextStyle, TouchableOpacity } from "react-native";
+import React from 'react';
+import { ViewStyle, TextStyle, TouchableOpacity } from 'react-native';
 
 import { getBaseFontSize } from '../../helper';
 
-import Overlay, { OverlayType } from "./Overlay";
+import Overlay, { OverlayType } from './Overlay';
 import Text from './Text';
 
 import { getColors } from '../../models/Colors';

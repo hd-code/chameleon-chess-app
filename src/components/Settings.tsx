@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, ViewStyle, StatusBar, Picker } from "react-native";
+import React, { useState } from 'react';
+import { View, ViewStyle, StatusBar, Picker } from 'react-native';
 
 import { IAppController } from '../App';
 import AppState from '../AppState';
@@ -27,8 +27,8 @@ const Settings = (props: SettingsProps) =>
         onValueChange={lang => { AppState.Settings.Language.set(lang); props.controller.reRender() }}
         itemStyle={{fontSize: getBaseFontSize() * .9}}
     >
-        <Picker.Item label="deutsch" value={ELanguage.GERMAN} />
-        <Picker.Item label="english" value={ELanguage.ENGLISH} />
+        <Picker.Item label='deutsch' value={ELanguage.GERMAN} />
+        <Picker.Item label='english' value={ELanguage.ENGLISH} />
     </Picker>
 </View>;
 

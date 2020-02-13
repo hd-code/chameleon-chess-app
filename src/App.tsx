@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, ViewStyle, StatusBar, Picker } from "react-native";
+import React, { useState } from 'react';
+import { View, ViewStyle, StatusBar, Picker } from 'react-native';
 
 import AppState from './AppState';
 

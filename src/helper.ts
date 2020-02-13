@@ -1,4 +1,4 @@
-import { Dimensions, ViewStyle } from "react-native";
+import { Dimensions, ViewStyle } from 'react-native';
 
 // -----------------------------------------------------------------------------
 

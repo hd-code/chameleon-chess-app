@@ -1,11 +1,11 @@
-import React from "react";
-import { View, ViewStyle, TouchableOpacity, LayoutAnimation } from "react-native";
+import React from 'react';
+import { View, ViewStyle, TouchableOpacity, LayoutAnimation } from 'react-native';
 
 import { IPosition, isGameOver, EColor } from 'chameleon-chess-logic';
 
-import { IAppController } from "../App";
-import AppState from "../AppState";
-import { Styles } from "../helper";
+import { IAppController } from '../App';
+import AppState from '../AppState';
+import { Styles } from '../helper';
 
 import Board from './game/Board';
 import Button from './basic/Button';
@@ -15,8 +15,8 @@ import Spacer from './basic/Spacer';
 import Text from './basic/Text';
 import getPropsForRendering from './game/render';
 
-import * as GameModel from "../models/Game";
-import { getTexts } from "../models/Texts";
+import * as GameModel from '../models/Game';
+import { getTexts } from '../models/Texts';
 
 // -----------------------------------------------------------------------------
 
