@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
+    "postinstall": "npm run pod",
     "android": "react-native run-android",
-    "ios": "react-native run-ios"
+    "ios": "react-native run-ios",
+    "pod": "cd ios && pod install"
   },
   "dependencies": {
     "chameleon-chess-logic": "git+https://github.com/hd-code/chameleon-chess-logic.git#v1",
