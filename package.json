@@ -1,28 +1,29 @@
 {
-  "name": "chameleon-chess-app",
-  "version": "1.0.0",
+  "name": "ChameleonChess",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "start": "react-native start",
-    "android:build": "react-native run-android",
-    "ios": "npm run iPad; npm run iPhone; open -a 'Simulator'; npm start",
-    "ios:build": "npm run iPad:build; npm run iPhone:build",
-    "iPad": "xcrun simctl boot 'iPad Air (3rd generation)'",
-    "iPhone": "xcrun simctl boot 'iPhone 8'",
-    "iPad:build": "react-native run-ios --simulator 'iPad Air (3rd generation)'",
-    "iPhone:build": "react-native run-ios --simulator 'iPhone 8'",
-    "pod": "cd ios && pod install"
+    "test": "jest",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.7.1",
-    "chameleon-chess-logic": "git+https://github.com/hd-code/chameleon-chess-logic.git#v1",
-    "react": "~16.10.2",
-    "react-native": "~0.61.5"
+    "react": "16.9.0",
+    "react-native": "0.61.5"
   },
   "devDependencies": {
-    "@types/react": "^16.9.19",
-    "@types/react-native": "^0.60.31",
-    "react-native-cli": "^2.0.1",
-    "typescript": "^3.7.5"
+    "@babel/core": "^7.6.2",
+    "@babel/runtime": "^7.6.2",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.5.1",
+    "jest": "^24.9.0",
+    "metro-react-native-babel-preset": "^0.56.0",
+    "react-test-renderer": "16.9.0"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }
