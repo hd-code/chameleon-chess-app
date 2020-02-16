@@ -1,22 +1,20 @@
 import React from 'react';
-import { View, ViewStyle, TouchableOpacity, LayoutAnimation } from 'react-native';
+import { View } from 'react-native';
 
-import { IPosition, isGameOver, EColor } from 'chameleon-chess-logic';
+import * as ccl from 'chameleon-chess-logic';
 
-import { IAppController } from '../App';
-import AppState from '../AppState';
-import { Styles } from '../helper';
+import { flattenArray } from '../../lib/hd-helper';
 
-import Board from './game/Board';
-import Button from './basic/Button';
-import Players from './game/Players';
-import Popup from './basic/Popup';
+// import Popup from './basic/Popup';
 import Spacer from './basic/Spacer';
-import Text from './basic/Text';
-import getPropsForRendering from './game/render';
+import Board from './game/Board';
+import { FieldProps, FieldStatus } from './game/Field';
+import { PawnProps, PawnStatus} from './game/Pawn';
+import Player, { PlayerProps, EPlayerStatus } from './game/Player';
+import Players, { PlayersProps } from './game/Players';
 
-import * as GameModel from '../models/Game';
-import { getTexts } from '../models/Texts';
+import { getSmallerDim, isScreenHorizontal } from '../models/Device';
+import { IGame } from '../models/Game';
 
 // -----------------------------------------------------------------------------
 
@@ -24,59 +22,22 @@ import { getTexts } from '../models/Texts';
 // TODO: Zoom auf handys
 
 interface GameProps {
-    controller: IAppController;
+    gameData: IGame;
 }
 
 const Game = (props: GameProps) => {
-    const GameData = AppState.Game.get() || t;
-    const renderGS = getPropsForRendering(GameData);
-
-    function makeMove() {
-        // if pawns have moved, activate LayoutAnimation
-        if (GameModel.havePawnsMoved(GameData, AppState.Game.get() || t))
-            LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-
-        props.controller.reRender();
-    }
-
-    function replayGame() {
-        const newGameData = GameModel.createGame(GameData.players);
-        if (!newGameData)
-            return console.error('IGame Object could not be created!');
-            
-        AppState.Game.set(newGameData);
-        props.controller.goTo.Game();
-    }
-
-    // if game is over, remove game data in local storage
-    if (isGameOver(GameData.gs)) {
-        AppState.Game.rmv();
-    }
-
-    // if it is computer's turn, do computer move asynchronously
-    else if (GameModel.isComputerTurn(GameData)) {
-        setTimeout(() => doComputerMove(GameData, makeMove), 1);
-    }
+    const renderedGS = getPropsForRendering(props.gameData);
+    const isHorizontal = isScreenHorizontal();
 
     return (
-        <View>
-            <Players {...renderGS.players} />
+        <View style={isHorizontal && {flexDirection: 'row', alignItems: 'center'}}>
+            <Players {...renderedGS.players} isHorizontal={isHorizontal} />
+
             <Spacer />
-            <View>
-                <Board fields={renderGS.fields} pawns={renderGS.pawns} />
-                <TouchableOpacity
-                    onPress={ event => handlePressOnBoard(event) && makeMove() }
-                    onLayout={ measureBoardSize }
-                    style={ Styles.coverParent }
-                    activeOpacity={1}
-                />
+
+            <View style={{width: getSmallerDim() * .98}}>
+                <Board fields={renderedGS.fields} pawns={renderedGS.pawns} />
             </View>
-            <Popup visible={isGameOver(GameData.gs)}>
-                <Text>{getWinnerText(GameData)}</Text>
-                <Button text={getTexts().Game.victoryPopup.homeButton} onPress={props.controller.goTo.Home} />
-                <Button text={getTexts().Game.victoryPopup.replayButton} onPress={replayGame} />
-                <Button text={getTexts().Game.victoryPopup.newGame} onPress={props.controller.goTo.PlayerConfig} />
-            </Popup>
         </View>
     );
 }
@@ -85,68 +46,105 @@ export default Game;
 
 // -----------------------------------------------------------------------------
 
-const MIN_SLEEP_FOR_AI_MOVE = 1500;
-
-/** This is used to trick typescript. The function `AppState.Game.get()` might
- * return `null`. Therefore typescript throws an error whenever you call it and
- * assign its return value to a variable. However, the user cannot get to this
- * view, when there is no saved game. So, the function actually never returns
- * `null` on this view. To shut up the typescript errors just use the function
- * like this: `AppState.Game.get() || t`. No further `null` checking is required. */
-let t: GameModel.IGame;
-
-type TDimensions = { width: number, height: number };
-
-/** This variable stores the dimensions of the board as soon as they are available. */
-let board: TDimensions = { height: 0, width:  0 };
-
-/** Measures the board size using the onLayout event. Dimensions get stored to
- * the variable `board`. */
-function measureBoardSize(event: any) {
-    board = event.nativeEvent.layout;
+interface IRenderedGame {
+    players: PlayersProps;
+    fields: FieldProps[];
+    pawns: PawnProps[];
+    winner: ccl.EColor|null;
 }
 
-function calcClickPos(x: number, y: number): IPosition {
+/** Transforms an `IGame` model into the props needed to render the view. */
+function getPropsForRendering(game: IGame): IRenderedGame {
     return {
-        row: Math.floor(y / board.height * 8),
-        col: Math.floor(x / board.width  * 8)
+        players: renderPlayers(game),
+        fields:  renderTiles  (game),
+        pawns:   renderPawns  (game),
+        winner:  renderWinner (game),
     };
 }
 
-/** Returns true if the game state has changed, false if not */
-function handlePressOnBoard(event: any): boolean {
-    const {locationX, locationY} = event.nativeEvent;
-    const clickPos = calcClickPos(locationX, locationY);
+// -----------------------------------------------------------------------------
 
-    const currentGameData = AppState.Game.get() || t;
-    if (GameModel.isComputerTurn(currentGameData))
-        return false;
+const BOARD: FieldProps[][] = ccl.getBoard().map((row, i) => row.map((field, j) => ({
+    key: i + '' + j,
+    color: field,
+    status: FieldStatus.NORMAL,
+})));
 
-    const newGameData = GameModel.advanceGame(currentGameData, clickPos);
-    AppState.Game.set(newGameData);
 
-    return true;
+function renderPlayers(game: IGame): PlayersProps {
+    const playersAlive = ccl.arePlayersAlive(game);
+
+    return {
+        [ccl.EColor.RED]:    renderPlayer(game, ccl.EColor.RED,    playersAlive[ccl.EColor.RED   ]),
+        [ccl.EColor.GREEN]:  renderPlayer(game, ccl.EColor.GREEN,  playersAlive[ccl.EColor.GREEN ]),
+        [ccl.EColor.YELLOW]: renderPlayer(game, ccl.EColor.YELLOW, playersAlive[ccl.EColor.YELLOW]),
+        [ccl.EColor.BLUE]:   renderPlayer(game, ccl.EColor.BLUE,   playersAlive[ccl.EColor.BLUE  ]),
+    };
 }
 
-/** `refresh` function is called, once the computer is done, calculating the move */
-function doComputerMove(currentGameData: GameModel.IGame, refresh: () => void) {
-    const start = Date.now();
-
-    const newGameData = GameModel.letComputerAdvanceGame(currentGameData);
-
-    const duration = Date.now() - start;
-    const sleep = Math.max(MIN_SLEEP_FOR_AI_MOVE - duration, 1);
-
-    setTimeout(() => {
-        AppState.Game.set(newGameData);
-        refresh();
-    }, sleep);
+function renderPlayer(game: IGame, player: ccl.EColor, alive: boolean): PlayerProps {
+    return {
+        player: player,
+        type: game.players[player],
+        status: !alive ? EPlayerStatus.DEAD : game.whoseTurn === player 
+            ? EPlayerStatus.ON_TURN : EPlayerStatus.OFF_TURN
+    };
 }
 
-function getWinnerText(game: GameModel.IGame): string {
-    const winner = GameModel.getWinner(game);
-    if (winner === null)
-        return '';
+function renderTiles(game: IGame): FieldProps[] {
+    const moves = game.selectedPawn !== null
+        ? ccl.getMoves(game, game.selectedPawn)
+        : [];
 
-    return getTexts().Game.winner[winner];
+    const result = BOARD.map((row, i) => {
+        return row.map((tile, j) => {
+            return {
+                key: tile.key,
+                color: tile.color,
+                status: !isWithinLimits(i, j, game.limits)
+                    ? FieldStatus.DEACTIVATED
+                    : isInMoves(i, j, moves)
+                        ? FieldStatus.MARKED
+                        : FieldStatus.NORMAL
+            };
+        });
+    });
+
+    return flattenArray(result);
+}
+
+function isInMoves(i: number, j: number, moves: ccl.IPosition[]): boolean {
+    return moves.filter(move => move.row === i && move.col === j).length > 0;
+}
+
+function isWithinLimits(i: number, j: number, limits: ccl.ILimits): boolean {
+    return limits.lower.row <= i && i <= limits.upper.row
+        && limits.lower.col <= j && j <= limits.upper.col;
+}
+
+function renderPawns(game: IGame): PawnProps[] {
+    return game.pawns.map((pawn, i) => (
+        {
+            key: pawn.player + '' + pawn.roles[0],
+            player: pawn.player,
+            roles: pawn.roles,
+            position: pawn.position,
+            status: i === game.selectedPawn ? PawnStatus.SELECTED : PawnStatus.NORMAL,
+            currentFieldColor: BOARD[pawn.position.row][pawn.position.col].color 
+        }
+    ));
+}
+
+function renderWinner(game: IGame): ccl.EColor|null {
+    if (!ccl.isGameOver(game))
+        return null;
+
+    const players = ccl.arePlayersAlive(game);
+
+    return players[ccl.EColor.RED]    ? ccl.EColor.RED
+        :  players[ccl.EColor.GREEN]  ? ccl.EColor.GREEN
+        :  players[ccl.EColor.YELLOW] ? ccl.EColor.YELLOW
+        :  players[ccl.EColor.BLUE]   ? ccl.EColor.BLUE
+        :  null;
 }

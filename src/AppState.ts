@@ -1,8 +1,8 @@
 import Storage from './Storage';
 
-import { EColorScheme } from './models/Colors';
+// import { EColorScheme } from './models/Colors';
 import { IGame } from './models/Game';
-import { ELanguage } from './models/Texts';
+import { ELanguage } from './models/Language';
 import { EView } from './models/View';
 
 // -----------------------------------------------------------------------------
@@ -11,47 +11,68 @@ import { EView } from './models/View';
  * settings needed in the app. Through this interface, the values in the
  * variable can be accessed. The variable is stored to a persistent local
  * storage and retrieved on startup of the app. This happens automatically. */
-export const AppState = {
+const AppState = {
+    
+    /** Subscribe to any changes in the app state. Pass a callback function as a
+     * paramter. Once the state changes, the registered callback function is
+     * called. The subscription is only fired once. */
+    subscribeOnce: (callback: () => void) => {
+        subscribersOnce.push(callback);
+    },
 
     /** The data of the game that is currently played. */
     Game: <IStateObjectExt<IGame|null>>{
-        get: () => CACHE.Game,
+        get: () => cache.Game,
         set: (game) => {
-            CACHE.Game = game;
+            cache.Game = game;
             Storage.write(EStorageKey.GAME, game);
+            notifySubscribers();
         },
         rmv: () => {
-            CACHE.Game = null;
+            cache.Game = null;
             Storage.remove(EStorageKey.GAME);
-        }
+        },
     },
 
     /** Holds app settings. */
     Settings: {
-        ColorScheme: <IStateObject<EColorScheme>>{
-            get: () => CACHE.Settings.ColorScheme,
-            set: (colorScheme) => {
-                CACHE.Settings.ColorScheme = colorScheme;
-                Storage.write(EStorageKey.COLOR, colorScheme);
-            },
-        },
+        // ColorScheme: <IStateObject<EColorScheme>>{
+        //     get: () => CACHE.Settings.ColorScheme,
+        //     set: (colorScheme) => {
+        //         CACHE.Settings.ColorScheme = colorScheme;
+        //         Storage.write(EStorageKey.COLOR, colorScheme);
+        //     },
+        // },
         Language:    <IStateObject<ELanguage>>{
-            get: () => CACHE.Settings.Language,
+            get: () => cache.Settings.Language,
             set: (language) => {
-                CACHE.Settings.Language = language;
+                cache.Settings.Language = language;
                 Storage.write(EStorageKey.LANGUAGE, language);
+                notifySubscribers();
             },
         },
     },
 
     /** Holds the currently visible view. */
     View: <IStateObject<EView>>{
-        get: () => CACHE.View,
-        set: (view) => { CACHE.View = view; },
+        get: () => cache.View,
+        set: (view) => {
+            cache.View = view;
+            notifySubscribers();
+        },
     },
 };
 
 export default AppState;
+
+// -----------------------------------------------------------------------------
+
+let subscribersOnce: (() => void)[] = [];
+
+function notifySubscribers() {
+    subscribersOnce.forEach(callback => callback());
+    subscribersOnce = [];
+}
 
 // -----------------------------------------------------------------------------
 
@@ -69,7 +90,7 @@ interface IStateObjectExt<T> extends IStateObject<T> {
 type AppStateCache = {
     Game: IGame|null;
     Settings: {
-        ColorScheme: EColorScheme;
+        // ColorScheme: EColorScheme;
         Language:    ELanguage;
     };
     View: EView;
@@ -84,28 +105,26 @@ type AppStateCache = {
 //     }
 // }
 
-var CACHE: AppStateCache = {
+var cache: AppStateCache = {
     Game: {
         players: { 0:1, 1:0, 2:1, 3:0 },
-        gs: {
-            "limits": {"lower":{"row":0,"col":0},"upper":{"row":7,"col":7}},
-            "pawns":[
-                {"player":0,"roles":{"0":0,"1":1,"2":2,"3":3},"position":{"row":7,"col":0}},
-                // {"player":0,"roles":{"0":3,"1":0,"2":1,"3":2},"position":{"row":7,"col":1}},
-                // {"player":0,"roles":{"0":2,"1":3,"2":0,"3":1},"position":{"row":7,"col":2}},
-                // {"player":0,"roles":{"0":1,"1":2,"2":3,"3":0},"position":{"row":7,"col":3}},
-                {"player":2,"roles":{"0":2,"1":3,"2":0,"3":1},"position":{"row":0,"col":7}},
-                // {"player":2,"roles":{"0":1,"1":2,"2":3,"3":0},"position":{"row":0,"col":6}},
-                // {"player":2,"roles":{"0":0,"1":1,"2":2,"3":3},"position":{"row":0,"col":5}},
-                // {"player":2,"roles":{"0":3,"1":0,"2":1,"3":2},"position":{"row":0,"col":4}}
-            ],
-            "whoseTurn":0
-        },
+        "limits": {"lower":{"row":0,"col":0},"upper":{"row":7,"col":7}},
+        "pawns":[
+            {"player":0,"roles":{"0":0,"1":1,"2":2,"3":3},"position":{"row":7,"col":0}},
+            // {"player":0,"roles":{"0":3,"1":0,"2":1,"3":2},"position":{"row":7,"col":1}},
+            // {"player":0,"roles":{"0":2,"1":3,"2":0,"3":1},"position":{"row":7,"col":2}},
+            // {"player":0,"roles":{"0":1,"1":2,"2":3,"3":0},"position":{"row":7,"col":3}},
+            {"player":2,"roles":{"0":2,"1":3,"2":0,"3":1},"position":{"row":0,"col":7}},
+            // {"player":2,"roles":{"0":1,"1":2,"2":3,"3":0},"position":{"row":0,"col":6}},
+            // {"player":2,"roles":{"0":0,"1":1,"2":2,"3":3},"position":{"row":0,"col":5}},
+            // {"player":2,"roles":{"0":3,"1":0,"2":1,"3":2},"position":{"row":0,"col":4}}
+        ],
+        "whoseTurn":0,
         selectedPawn: null
     },
-    View: EView.HOME,
+    View: EView.PLAYER_CONFIG,
     Settings: {
-        ColorScheme: EColorScheme.NORMAL,
+        // ColorScheme: EColorScheme.NORMAL,
         Language: ELanguage.GERMAN
     }
 }
@@ -116,7 +135,7 @@ async function initAppState(): Promise<AppStateCache> {
     return {
         Game: await Storage.read(EStorageKey.GAME),
         Settings: {
-            ColorScheme: await Storage.read(EStorageKey.COLOR)    || EColorScheme.NORMAL,
+            // ColorScheme: await Storage.read(EStorageKey.COLOR)    || EColorScheme.NORMAL,
             Language:    await Storage.read(EStorageKey.LANGUAGE) || ELanguage.GERMAN
         },
         View: EView.HOME,

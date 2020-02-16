@@ -3,12 +3,12 @@ import { View, ViewStyle } from 'react-native';
 
 import { EColor, ERole, IPosition } from 'chameleon-chess-logic';
 
-import { Styles } from '../../helper';
+import { Styles } from '../../models/Device';
 
 import Overlay, { OverlayType } from '../basic/Overlay';
 import ColorRole from './ColorRole';
 
-import { getColors } from '../../models/Colors';
+// import { getColors } from '../../models/Colors';
 
 // -----------------------------------------------------------------------------
 
@@ -27,7 +27,7 @@ const Pawn = (props: PawnProps) => (
     <View 
         style={{
             ...STYLE,
-            backgroundColor: getColors().main[props.player],
+            backgroundColor: COLORS[props.player],
             top:  props.position.row * 12.5 + .75 + '%',
             left: props.position.col * 12.5 + .75 + '%',
         }}
@@ -54,7 +54,7 @@ const Pawn = (props: PawnProps) => (
                 active={EColor.BLUE === props.currentFieldColor}
             />
         </View>
-        {props.status === PawnStatus.SELECTED && <Overlay type={OverlayType.LIGHT} />}
+        {props.status === PawnStatus.SELECTED && <Overlay type={OverlayType.LIGHTEN} />}
     </View>
 );
 
@@ -62,9 +62,16 @@ export default Pawn;
 
 // -----------------------------------------------------------------------------
 
+const COLORS: {[color in EColor]: string} = {
+    [EColor.RED]:    '#B9542D',
+    [EColor.GREEN]:  '#51A230',
+    [EColor.YELLOW]: '#DDBB71',
+    [EColor.BLUE]:   '#04909D',
+}
+
 const STYLE: ViewStyle = {
-    borderWidth: 3,
-    borderColor: getColors().shader.darker,
+    borderWidth: 1,
+    borderColor: '#000',
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',

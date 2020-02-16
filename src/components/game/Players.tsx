@@ -3,7 +3,7 @@ import { View, ViewStyle, ImageStyle } from 'react-native';
 
 import { EColor } from 'chameleon-chess-logic';
 
-import { Styles } from '../../helper';
+import { Styles } from '../../models/Device';
 
 import Player, { PlayerProps } from './Player';
 
@@ -11,12 +11,27 @@ import Player, { PlayerProps } from './Player';
 
 export type PlayersProps = {[player in EColor]: PlayerProps}
 
-const PlayerBoard = (props: PlayersProps) => (
-    <View style={Styles.flex}>
-        <Player style={PLAYER_STYLE} {...props[EColor.RED]} />
-        <Player style={PLAYER_STYLE} {...props[EColor.BLUE]} />
-        <Player style={PLAYER_STYLE} {...props[EColor.YELLOW]} />
-        <Player style={PLAYER_STYLE} {...props[EColor.GREEN]} />
+interface Test extends PlayersProps {
+    isHorizontal: boolean;
+}
+
+const PlayerBoard = (props: Test) => (
+    <View style={!props.isHorizontal && {flexDirection: 'row'}}>
+        <View style={!props.isHorizontal && PLAYER_STYLE}>
+            <Player {...props[EColor.RED]} />
+        </View>
+
+        <View style={!props.isHorizontal && PLAYER_STYLE}>
+            <Player {...props[EColor.BLUE]} />
+        </View>
+
+        <View style={!props.isHorizontal && PLAYER_STYLE}>
+            <Player {...props[EColor.YELLOW]} />
+        </View>
+
+        <View style={!props.isHorizontal && PLAYER_STYLE}>
+            <Player {...props[EColor.GREEN]} />
+        </View>
     </View>
 )
 

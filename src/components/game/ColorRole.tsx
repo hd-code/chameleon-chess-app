@@ -5,8 +5,8 @@ import { EColor, ERole } from 'chameleon-chess-logic';
 
 import Image from '../basic/Image';
 
-import { getColors } from '../../models/Colors';
-import { getImages } from '../../models/Images';
+// import { getColors } from '../../models/Colors';
+// import { getImages } from '../../models/Images';
 
 // -----------------------------------------------------------------------------
 
@@ -19,7 +19,7 @@ interface ColorRoleProps {
 const ColorRole = (props: ColorRoleProps) => (
     <View 
         style={[
-            STYLE, { backgroundColor: getColors().main[props.fieldColor] },
+            STYLE, { backgroundColor: COLORS[props.fieldColor] },
             props.active && {borderWidth: 1}
         ]}
     >
@@ -32,14 +32,21 @@ export default ColorRole;
 // -----------------------------------------------------------------------------
 
 const STYLE: ViewStyle = {
-    borderColor: getColors().basic.white,
+    borderColor: '#fff',
     height:'50%',
     width: '50%',
 };
 
+const COLORS: {[color in EColor]: string} = {
+    [EColor.RED]:    '#B9542D',
+    [EColor.GREEN]:  '#51A230',
+    [EColor.YELLOW]: '#DDBB71',
+    [EColor.BLUE]:   '#04909D',
+}
+
 const IMAGES = {
-    [ERole.KNIGHT]: getImages().Knight,
-    [ERole.QUEEN]:  getImages().Queen,
-    [ERole.BISHOP]: getImages().Bishop,
-    [ERole.ROOK]:   getImages().Rook,
+    [ERole.KNIGHT]: require('../../../assets/images/knight.png'),
+    [ERole.QUEEN]:  require('../../../assets/images/queen.png'),
+    [ERole.BISHOP]: require('../../../assets/images/bishop.png'),
+    [ERole.ROOK]:   require('../../../assets/images/rook.png'),
 };

@@ -1,43 +1,76 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 
-import { IAppController } from '../App';
-import AppState from '../AppState';
+import { EColor } from 'chameleon-chess-logic';
 
+import { getBaseFontSize } from '../models/Device';
+
+import Logo from './basic/Logo';
 import Button from './basic/Button';
 import Spacer from './basic/Spacer';
 
-import { getTexts } from '../models/Texts';
+import { ELanguage } from '../models/Language';
 
 // -----------------------------------------------------------------------------
 
-interface HomeProps {
-    controller: IAppController;
+export interface HomeProps {
+    language: ELanguage;
 }
 
 const Home = (props: HomeProps) => (
-    <View>
+    <View style={{width: getBaseFontSize() * 18}}>
+        <Logo language={props.language} />
+
+        <Spacer scale={2} />
+
         <Button
-            text={getTexts().Home.continue}
-            onPress={ props.controller.goTo.Game }
-            disabled={ !AppState.Game.get() }
+            color={EColor.RED}
+            text={BUTTON_TEXTS[props.language].continue}
+            onPress={ () => {} }
         />
 
         <Spacer />
 
         <Button
-            text={getTexts().Home.newGame}
-            onPress={ props.controller.goTo.PlayerConfig }
+            color={EColor.YELLOW}
+            text={BUTTON_TEXTS[props.language].newGame}
+            onPress={ () => {} }
         />
 
         <Spacer />
 
         <Button
-            text={getTexts().Home.tutorial}
-            onPress={ props.controller.goTo.PlayerConfig }
-            disabled={ true }
+            color={EColor.GREEN}
+            text={BUTTON_TEXTS[props.language].tutorial}
+            onPress={ () => {} }
+            disabled={true}
+        />
+
+        <Spacer />
+
+        <Button
+            color={EColor.BLUE}
+            text={BUTTON_TEXTS[props.language].settings}
+            onPress={ () => {} }
         />
     </View>
 );
 
 export default Home;
+
+// -----------------------------------------------------------------------------
+
+const BUTTON_TEXTS = {
+    [ELanguage.ENGLISH]: {
+        continue: 'Continue',
+        newGame:  'New Game',
+        tutorial: 'Tutorial',
+        settings: 'Settings',
+    },
+    [ELanguage.GERMAN]: {
+        continue: 'Fortsetzen',
+        newGame:  'Neues Spiel',
+        tutorial: 'Tutorial',
+        settings: 'Einstellung',
+    },
+}

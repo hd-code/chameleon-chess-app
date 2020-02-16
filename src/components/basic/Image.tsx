@@ -1,21 +1,18 @@
 import React from 'react';
-import { Image as Img, ImageSourcePropType, ImageStyle, ImageResizeMode, TouchableWithoutFeedback } from 'react-native';
+import { Image as RNImage, ImageProps as RNImageProps, ImageStyle, TouchableWithoutFeedback } from 'react-native';
 
 // -----------------------------------------------------------------------------
 
-export interface ImageProps {
-    source: ImageSourcePropType;
-    style?: ImageStyle;
-    resizeMode?: ImageResizeMode;
+export interface ImageProps extends RNImageProps {
     onPress?: () => void;
 }
 
 const Image = (props: ImageProps) => (
     <TouchableWithoutFeedback onPress={props.onPress}>
-        <Img
-            source={props.source}
-            style={[STYLE, props.style]}
-            resizeMode={props.resizeMode || 'contain'}
+        <RNImage
+            style={STYLE}
+            resizeMode={'contain'}
+            {...props}
         />
     </TouchableWithoutFeedback>
 );

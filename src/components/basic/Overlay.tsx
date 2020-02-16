@@ -1,34 +1,35 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { Styles, getBaseFontSize } from '../../helper';
-
-import { getColors } from '../../models/Colors';
+import { Styles } from '../../models/Device';
 
 // -----------------------------------------------------------------------------
 
-export enum OverlayType { DARKER, DARK, GREY_OUT, LIGHT, LIGHTER, WHITE_FRAME}
+export enum OverlayType { DARKER, DARKEN, GREY_OUT, LIGHTEN, LIGHTER }
 
 interface OverlayProps {
     type: OverlayType;
+    borderRadius?: number
 }
 
 const Overlay = (props: OverlayProps) => (
-    <View style={[Styles.coverParent, STYLES[props.type]]} />
+    <View style={[Styles.coverParent, STYLES[props.type], {borderRadius: props.borderRadius}]} />
 );
 
 export default Overlay;
 
 // -----------------------------------------------------------------------------
 
+const COLORS = {
+    black: '#000',
+    grey:  '#888',
+    white: '#fff',
+}
+
 const STYLES = {
-    [OverlayType.DARKER]:   { backgroundColor: getColors().shader.darker },
-    [OverlayType.DARK]:     { backgroundColor: getColors().shader.dark },
-    [OverlayType.GREY_OUT]: { backgroundColor: getColors().shader.greyOut },
-    [OverlayType.LIGHT]:    { backgroundColor: getColors().shader.light },
-    [OverlayType.LIGHTER]:  { backgroundColor: getColors().shader.lighter },
-    [OverlayType.WHITE_FRAME]: { 
-        borderColor: getColors().shader.lighter,
-        borderWidth: getBaseFontSize() * .4,
-    },
+    [OverlayType.DARKER]:   { backgroundColor: COLORS.black, opacity: .75 },
+    [OverlayType.DARKEN]:   { backgroundColor: COLORS.black, opacity: .5  },
+    [OverlayType.GREY_OUT]: { backgroundColor: COLORS.grey,  opacity: .75 },
+    [OverlayType.LIGHTEN]:  { backgroundColor: COLORS.white, opacity: .5  },
+    [OverlayType.LIGHTER]:  { backgroundColor: COLORS.white, opacity: .75 },
 };

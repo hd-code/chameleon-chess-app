@@ -5,7 +5,7 @@ import { EColor } from 'chameleon-chess-logic';
 
 import Overlay, { OverlayType }from '../basic/Overlay';
 
-import { getColors } from '../../models/Colors';
+// import { getColors } from '../../models/Colors';
 
 // -----------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ export interface FieldProps {
 }
 
 const Field = (props: FieldProps) => (
-    <View style={[ STYLE, { backgroundColor: getColors().main[props.color] } ]}>
+    <View style={[ STYLE, { backgroundColor: COLORS[props.color] } ]}>
         { props.status === FieldStatus.DEACTIVATED && <Overlay type={OverlayType.DARKER} /> }
         { props.status === FieldStatus.MARKED      && <Overlay type={OverlayType.LIGHTER} /> }
     </View>
@@ -27,6 +27,13 @@ const Field = (props: FieldProps) => (
 export default Field;
 
 // -----------------------------------------------------------------------------
+
+const COLORS: {[color in EColor]: string} = {
+    [EColor.RED]:    '#B9542D',
+    [EColor.GREEN]:  '#51A230',
+    [EColor.YELLOW]: '#DDBB71',
+    [EColor.BLUE]:   '#04909D',
+}
 
 const STYLE: ViewStyle = {
     height:'12.5%',

@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "start": "react-native start",
-    "postinstall": "npm run pod",
     "android:build": "react-native run-android",
     "ios": "npm run iPad; npm run iPhone; open -a 'Simulator'; npm start",
     "ios:build": "npm run iPad:build; npm run iPhone:build",

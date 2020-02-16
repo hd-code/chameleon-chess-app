@@ -3,80 +3,70 @@ import { View } from 'react-native';
 
 import { EColor } from 'chameleon-chess-logic';
 
-import { deepClone } from '../../lib/hd-helper';
-
-import { IAppController } from '../App';
-import AppState from '../AppState';
+import { getBaseFontSize } from '../models/Device';
 
 import Button from './basic/Button';
+import Logo from './basic/Logo';
 import Spacer from './basic/Spacer';
 import Text, { ETextType } from './basic/Text';
 import Players, { PlayersProps } from './game/Players';
 
-import { getDefaultPlayers, getNextPlayerType, isEnoughPlayersForGame } from '../models/PlayerType';
-import { createGame } from '../models/Game';
+import { TPlayers, getDefaultPlayers, getNextPlayerType, isEnoughPlayersForGame } from '../models/Players';
+import { ELanguage } from '../models/Language';
 import { getTexts } from '../models/Texts';
 
 // -----------------------------------------------------------------------------
 
 interface PlayerConfigProps {
-    controller: IAppController;
+    language: ELanguage
 }
 
 const PlayerConfig = (props: PlayerConfigProps) => {
     const [players, setPlayers] = useState(getDefaultPlayers());
 
     function changePlayers(player: EColor) {
-        let newPlayers = deepClone(players);
+        let newPlayers = {...players};
         newPlayers[player] = getNextPlayerType(players[player]);
         setPlayers(newPlayers);
     }
 
-    function beginGame() {
-        const GameData = createGame(players);
-        if (!GameData)
-            return console.error('IGame Object could not be created!');
-            
-        AppState.Game.set(GameData);
-        props.controller.goTo.Game();
-    }
+    const playersProps = getPlayersProps(players, changePlayers);
 
-    const playersProps: PlayersProps = {
-        [EColor.RED]: {
-            player:       EColor.RED,
-            type: players[EColor.RED],
-            onPress: () => changePlayers(EColor.RED)
-        },
-        [EColor.GREEN]: {
-            player:       EColor.GREEN,
-            type: players[EColor.GREEN],
-            onPress: () => changePlayers(EColor.GREEN)
-        },
-        [EColor.YELLOW]: {
-            player:       EColor.YELLOW,
-            type: players[EColor.YELLOW],
-            onPress: () => changePlayers(EColor.YELLOW)
-        },
-        [EColor.BLUE]: {
-            player:       EColor.BLUE,
-            type: players[EColor.BLUE],
-            onPress: () => changePlayers(EColor.BLUE)
-        },
+    function beginGame() {
+        // const GameData = createGame(players);
+        // if (!GameData)
+        //     return console.error('IGame Object could not be created!');
+            
+        // AppState.Game.set(GameData);
+        // props.controller.goTo.Game();
     }
 
     return (
-        <View>
+        <View style={{alignItems: 'center'}}>
+            {/* <Logo language={props.language} /> */}
+
+            {/* <Spacer scale={2} /> */}
+
             <Text type={ETextType.HEADING}>{getTexts().PlayerConfig.heading}</Text>
+
             <Spacer />
+
             <Players {...playersProps} />
+
             <Spacer />
-            <Button 
-                text={ getTexts().PlayerConfig.beginGame }
-                onPress={ beginGame }
-                disabled={ !isEnoughPlayersForGame(players) }
-            />
-            <Spacer />
+
             <Text>{getTexts().PlayerConfig.explanation}</Text>
+
+            <Spacer />
+
+            <View style={{width: getBaseFontSize() * 16}}>
+                <Button 
+                    color={EColor.GREEN}
+                    text={ getTexts().PlayerConfig.beginGame }
+                    onPress={ beginGame }
+                    disabled={ !isEnoughPlayersForGame(players) }
+                />
+            </View>
         </View>
     );
 }
@@ -84,3 +74,28 @@ const PlayerConfig = (props: PlayerConfigProps) => {
 export default PlayerConfig;
 
 // -----------------------------------------------------------------------------
+
+function getPlayersProps(players: TPlayers, changePlayer: (player: EColor) => void): PlayersProps {
+    return {
+        [EColor.RED]: {
+            player:       EColor.RED,
+            type: players[EColor.RED],
+            onPress: () => changePlayer(EColor.RED)
+        },
+        [EColor.GREEN]: {
+            player:       EColor.GREEN,
+            type: players[EColor.GREEN],
+            onPress: () => changePlayer(EColor.GREEN)
+        },
+        [EColor.YELLOW]: {
+            player:       EColor.YELLOW,
+            type: players[EColor.YELLOW],
+            onPress: () => changePlayer(EColor.YELLOW)
+        },
+        [EColor.BLUE]: {
+            player:       EColor.BLUE,
+            type: players[EColor.BLUE],
+            onPress: () => changePlayer(EColor.BLUE)
+        },
+    }
+}

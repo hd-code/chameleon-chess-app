@@ -1,30 +1,29 @@
 import * as ccl from 'chameleon-chess-logic';
 
-import { TPlayers, EPlayerType } from './PlayerType';
+import { TPlayers, EPlayerType } from './Players';
 
 // -----------------------------------------------------------------------------
 
 /** Data structure to describe the current situation on the game board, players
  * involved etc. */
-export interface IGame {
+export interface IGame extends ccl.IGame {
     players: TPlayers;
-    gs: ccl.IGameState;
     selectedPawn: number|null;
 }
 
 /** Creates a new game and returns the game object. Returns null if a game could
  * not be created because there are not enough players. */
 export function createGame(players: TPlayers): IGame|null {
-    const gs = ccl.initGame(
+    const game = ccl.initGame(
         players[ccl.EColor.RED]    !== EPlayerType.NONE,
         players[ccl.EColor.GREEN]  !== EPlayerType.NONE,
         players[ccl.EColor.YELLOW] !== EPlayerType.NONE,
         players[ccl.EColor.BLUE]   !== EPlayerType.NONE,
     );
 
-    return gs === null ? null : {
+    return game === null ? null : {
+        ...game,
         players: players,
-        gs,
         selectedPawn: null,
     }
 }
@@ -36,16 +35,18 @@ export function advanceGame(game: IGame, click: ccl.IPosition): IGame|null {
     if (isComputerTurn(game))
         return null;
 
-    const newGS = game.selectedPawn !== null
-        ? ccl.makeMove(game.gs, game.selectedPawn, click)
+    const newGame = game.selectedPawn !== null
+        ? ccl.makeMove(game, game.selectedPawn, click)
         : null;
 
-    const pawnOnClickedField = ccl.getIndexOfPawnAtPosition(game.gs, click);
+    const pawnOnClickedField = ccl.getIndexOfPawnAtPosition(game, click);
 
     return {
+        limits:newGame && newGame.limits || game.limits,
+        pawns: newGame && newGame.pawns || game.pawns,
         players: game.players,
-        gs: newGS || game.gs,
-        selectedPawn: newGS === null ? pawnOnClickedField : null
+        selectedPawn: newGame === null ? pawnOnClickedField : null,
+        whoseTurn: newGame && newGame.whoseTurn || game.whoseTurn
     };
 }
 
@@ -55,27 +56,27 @@ export function advanceGame(game: IGame, click: ccl.IPosition): IGame|null {
  * to execute it asynchronously (e.g. by using `setTimeout()`). */
 export function letComputerAdvanceGame(game: IGame): IGame {
     return {
+        ...ccl.letComputerMakeMove(game),
         players: game.players,
-        gs: ccl.letComputerMakeMove(game.gs),
         selectedPawn: null
     };
 }
 
 /** Returns true if the player on turn is a computer player. */
 export function isComputerTurn(game: IGame): boolean {
-    return game.players[game.gs.whoseTurn] === EPlayerType.AI;
+    return game.players[game.whoseTurn] === EPlayerType.AI;
 }
 
 /** Returns true if a move was made. False if something was just (de)selected. */
 export function havePawnsMoved(oldGame: IGame, newGame: IGame): boolean {
-    return oldGame.gs.whoseTurn !== newGame.gs.whoseTurn || ccl.isGameOver(newGame.gs);
+    return oldGame.whoseTurn !== newGame.whoseTurn || ccl.isGameOver(newGame);
 }
 
 export function getWinner(game: IGame): ccl.EColor|null {
-    if (!ccl.isGameOver(game.gs))
+    if (!ccl.isGameOver(game))
         return null;
 
-    const playersAlive = ccl.arePlayersAlive(game.gs);
+    const playersAlive = ccl.arePlayersAlive(game);
     return playersAlive[ccl.EColor.RED]    ? ccl.EColor.RED
         :  playersAlive[ccl.EColor.GREEN]  ? ccl.EColor.GREEN
         :  playersAlive[ccl.EColor.YELLOW] ? ccl.EColor.YELLOW
