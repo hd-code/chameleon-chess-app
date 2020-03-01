@@ -1,0 +1,21 @@
+{
+  "name": "chameleon-chess-app",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "pod": "cd ios && pod install"
+  },
+  "dependencies": {
+    "chameleon-chess-logic": "git+https://github.com/hd-code/chameleon-chess-logic.git#v1",
+    "react": "~16.9.0",
+    "react-native": "~0.61.5"
+  },
+  "devDependencies": {
+    "@types/react": "~16.9.19",
+    "@types/react-native": "~0.61.15",
+    "typescript": "^3.7.5"
+  }
+}
