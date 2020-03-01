@@ -2,7 +2,7 @@
 
 Play a colorful, fresh and dynamic version of chess with this mobile app.
 
-A description of the game and its rules can be found [here](https://github.com/hd-code/chameleon-chess-logic/docs/game/).
+A description of the game and its rules can be found [here](https://github.com/hd-code/chameleon-chess-logic/tree/master/docs/game).
 
 This app is cross-platform and runs on both iOS and Android devices. It can be run on smartphones and tablets.
 
