@@ -8,11 +8,11 @@ ich nutze mal diese Datei um ein paar Kommentare zu hinterlassen, die nur für d
 
 Die App ist meiner Meinung nach sehr gut gelungen und enthält viele schöne Kleinigkeiten.
 
-Es gibt verschiedene Spracheinstellungen, ein schlüssiges Desgin, eine komplett funktionierende Spiellogik, sogar schon mit einem ersten Computergegner, der für meine Begriffe schon recht stark ist. Einstellungen und das aktuelle Spiel werden persistent gespeichert. Die Code-Struktur ist übersichtlich und einfach erweiterbar. Dank der Integration von Typescript ist Typensicherheit gewährleistet – auch im dynamischen JavaScript.
+Es gibt verschiedene Spracheinstellungen, ein schlüssiges Desgin, eine komplett funktionierende Spiellogik, sogar schon mit einem ersten Computergegner, der für meine Begriffe schon recht stark ist. Einstellungen und das aktuelle Spiel werden persistent gespeichert. Die Code-Struktur ist übersichtlich und einfach erweiterbar. Dank der Integration von Typescript ist Typensicherheit gewährleistet – auch im dynamischen JavaScript. Überall werden function components verwendet, was eine nette kleine Herausforderung gewesen ist.
 
 Gut gelungen sind meiner Meinung nach auch diverse 'Modifizierungen' der React Native Basis components. Damit meine ich z.B. die `Text` oder `Image` components. Durch das Überladen dieser Basis-Komponenten mit eigenen Custom-Settings, ist der ganze Workflow recht schnell und angenehm gewesen.
 
-Auch die Aufteilung in zum Einen das Logik-Modul und zum Anderen die eigentliche App ist sehr hilfreich gewesen, da man die verschiedenen Aspekte getrennt von einander bearbeiten und lösen konnte.
+Auch die Aufteilung in zum Einen die Logik-Bibliothek und zum Anderen die eigentliche App ist sehr hilfreich gewesen, da man die verschiedenen Aspekte getrennt von einander bearbeiten und lösen konnte.
 
 Was ebenfalls ein sehr schönes Feature ist, zumindest bei iOS: man kann nun tatsächlich das Spielbrett heran- und herauszoomen. Letztenendes war das einfacher als gedacht. React Native bietet eine `ScrollView` component an. In dieser kann ein `maximumZoomScale` definiert werden. Durch den ist es möglich, den Inhalt der ScrollView einfach mit zwei Fingern heran zu zoomen (mit zwei Fingern das Spielbrett 'auseinander' ziehen, also die klassische Zoom-Geste). In den Simulatoren, kann diese Geste umgesetzt werden, indem man `alt` gedrückt hält und dann die Maus benutzt. Für Android scheint es dafür wirklich keine einfache Lösung zu geben, aber immerhin auf iOS ist das einfach und elegant geglückt.
 
@@ -20,11 +20,13 @@ Was ebenfalls ein sehr schönes Feature ist, zumindest bei iOS: man kann nun tat
 
 React Native ist im Ansatz recht gut dokumentiert. Sobald es aber um Detail-Fragen geht, findet man nicht wirklich gute Erläuterungen in der offiziellen Dokumentation. Am Ende helfen Inspiration durch StackOverflow und Beiträge auf Medium sowie schlichtes Herumprobieren, was mitunter recht lange dauern kann.
 
-Einige Kernkonzepte sind in Reactjs erklärt und die Leute von React Native haben keine Notwendigkeit gesehen, dies nochmal zu erläutern (soweit okay). Allerdings wäre ein Verweis auf die Reactjs Doku hier und da sehr hilfreich gewesen. Im Großen und Ganzen kommt man aber ganz gut zurecht.
+Einige Kernkonzepte sind in React erklärt und die Leute von React Native haben keine Notwendigkeit gesehen, dies nochmal zu erläutern (soweit okay). Allerdings wäre ein Verweis auf die React Doku hier und da sehr hilfreich gewesen. Im Großen und Ganzen kommt man aber ganz gut zurecht.
 
 Es gibt immer mal wieder Unterschiede zwischen Android und iOS. Diese sind meistens ganz gut dokumentiert (zumindest dass es sie gibt). Eine Lösung dafür zu finden ist manchmal ganz einfach, manchmal (in Bezug auf die ScrollView) sehr schwer bis vielleicht gar nicht möglich. Ist ein bisschen deprimierend, weil meistens auf iOS alles richtig gut funktioniert und aussieht und dann fährt man mal die Android-Geräte hoch...
 
 Es ist zeitweise vorgekommen, dass aus unerfindlichen Gründen die iOS und/oder Android App nicht mehr richtig funktioniert hat. In so einem Fall kann man nicht wirklich etwas tun, weil es ja kein Problem auf der Server-Seite ist, sondern irgendwo ganz tief in dem nativen Code der Apps. Wenn das passiert ist, hat nur geholfen ein neues Projekt zu erstellen und den Code rüber zu kopieren. Daher sind in diesem Git-Repo diverse Branches mit unterschiedlichen Zuständen des frisch initialisierten React Native Projektes, um schnell neustarten zu können, falls das mal wieder passiert.
+
+Auf Android gibt es einen Bug bei der LayoutAnimation (ist verantwortlich, dass die verschiedenen Rendering smooth in einander übergehen und nicht einfach hart zur neuen Ansicht springen). Diese scheint generell noch so einige Probleme zu haben. Ich versuche, dass genaue Problem zu isolieren und als Issue zu posten. Eine einfache Übergangslösung ist eingebaut.
 
 ## Ausblick
 
@@ -37,8 +39,6 @@ Lediglich in der Spiellogik gibt es umfangreiche Unit-Tests. Sie haben recht, da
 Bei Gelegenheit werde ich weiter versuchen eine Android-Lösung für das Heranzoomen des Spielbretts zu finden. Wenn es ganz aussichtslos ist, dann werde ich mir das etwas ganz anderes einfallen lassen müssen. Das wird sich zeigen.
 
 Die Idee für einen 'Farbblinden-Modus' habe ich erstmal komplett verworfen. Da sind zu viele Fragen offen und Lösungen in schwarz-weiß-grau haben Auswirkung auf die Lesbarkeit von Texten und vieles mehr. Sollte das wirklich mal ein Thema werden, kann man sich damit immer noch beschäftigen.
-
-Bezüglich Musik und Sounds hätte ich gerne etwas eigenes komponiert bzw. selbst aufgenommen. Dafür fehlte mir bisher die Zeit, daher sind nur ein 'Dummy-Lied' und ein paar 'Standard-Geräusche' in der App. Diese können später aber ganz fix ausgetauscht werden.
 
 Das 'Holzbrett' im Hintergrund gefällt mir noch nicht so ganz. Perspektivisch hätte ich gerne ein Holzbrett, was eher ein 'Cartoon' Style hat. Bisher bin ich noch nicht fündig geworden. Vielleicht kann meine Schwester mir da etwas designen oder ich gehe wirklich mal zu einem Profi dafür. Die bisherige Lösung ist auch okay, aber ein bisschen Perfektionist ist man ja schon. ;-)
 
