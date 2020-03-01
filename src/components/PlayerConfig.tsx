@@ -1,86 +1,102 @@
 import React, { useState } from 'react';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { EColor } from 'chameleon-chess-logic';
 
-import { deepClone } from '../../lib/hd-helper';
+import { getTexts } from '../assets';
+import { getBaseFontSize } from '../helper';
 
-import { IAppController } from '../App';
-import AppState from '../AppState';
+import Button from './Button';
+import Player from './Player';
+import Spacer from './Spacer';
+import Text from './Text';
+import Topbar from './Topbar';
 
-import Button from './basic/Button';
-import Spacer from './basic/Spacer';
-import Text, { ETextType } from './basic/Text';
-import Players, { PlayersProps } from './game/Players';
+import { beginGame } from '../controller/game';
 
-import { getDefaultPlayers, getNextPlayerType, isEnoughPlayersForGame } from '../models/PlayerType';
-import { createGame } from '../models/Game';
-import { getTexts } from '../models/Texts';
+import * as Players from '../models/players';
 
 // -----------------------------------------------------------------------------
 
-interface PlayerConfigProps {
-    controller: IAppController;
-}
+/** The root component for the player configuration view.
+ * 
+ * It lets the user configure how many players and of which type, should
+ * participate in a game. Then a game can be started in that configuration.
+ */
+const PlayerConfig = () => {
+    const [players, setPlayers] = useState(Players.getDefaultPlayers());
 
-const PlayerConfig = (props: PlayerConfigProps) => {
-    const [players, setPlayers] = useState(getDefaultPlayers());
-
-    function changePlayers(player: EColor) {
-        let newPlayers = deepClone(players);
-        newPlayers[player] = getNextPlayerType(players[player]);
+    function updatePlayers(player: EColor) {
+        const newPlayers = Players.updatePlayers(players, player);
         setPlayers(newPlayers);
     }
 
-    function beginGame() {
-        const GameData = createGame(players);
-        if (!GameData)
-            return console.error('IGame Object could not be created!');
-            
-        AppState.Game.set(GameData);
-        props.controller.goTo.Game();
-    }
+    return <>
+        <Topbar />
+        
+        <View style={STYLES.wrapper}>
+            <Text invert={true} scale={1.8}>
+                {getTexts().playerConfig.heading}
+            </Text>
 
-    const playersProps: PlayersProps = {
-        [EColor.RED]: {
-            player:       EColor.RED,
-            type: players[EColor.RED],
-            onPress: () => changePlayers(EColor.RED)
-        },
-        [EColor.GREEN]: {
-            player:       EColor.GREEN,
-            type: players[EColor.GREEN],
-            onPress: () => changePlayers(EColor.GREEN)
-        },
-        [EColor.YELLOW]: {
-            player:       EColor.YELLOW,
-            type: players[EColor.YELLOW],
-            onPress: () => changePlayers(EColor.YELLOW)
-        },
-        [EColor.BLUE]: {
-            player:       EColor.BLUE,
-            type: players[EColor.BLUE],
-            onPress: () => changePlayers(EColor.BLUE)
-        },
-    }
+            <Spacer />
 
-    return (
-        <View>
-            <Text type={ETextType.HEADING}>{getTexts().PlayerConfig.heading}</Text>
+            {getPlayers(players, updatePlayers)}
+
             <Spacer />
-            <Players {...playersProps} />
+
+            <Text invert={true}>
+                {getTexts().playerConfig.subText}
+            </Text>
+
             <Spacer />
-            <Button 
-                text={ getTexts().PlayerConfig.beginGame }
-                onPress={ beginGame }
-                disabled={ !isEnoughPlayersForGame(players) }
-            />
-            <Spacer />
-            <Text>{getTexts().PlayerConfig.explanation}</Text>
+
+            <Button onPress={() => { beginGame(players); }}
+                disabled={!Players.isEnoughPlayers(players)}
+            >
+                {getTexts().playerConfig.button}
+            </Button>
         </View>
-    );
-}
+
+        <View />
+    </>;
+};
 
 export default PlayerConfig;
 
 // -----------------------------------------------------------------------------
+
+const STYLES = StyleSheet.create({
+    homeButton: {
+        position: 'absolute',
+        top: 0, left: 0,
+        height: getBaseFontSize() * 3,
+        width:  getBaseFontSize() * 3,
+    },
+    wrapper: {
+        alignItems: 'center',
+        maxWidth: '100%',
+        width: getBaseFontSize() * 30,
+    },
+    playersWrapper: {
+        flexDirection: 'row',
+    },
+    playerWrapper: {
+        width: '25%',
+    },
+});
+
+function getPlayers(players: Players.TPlayers, click: (player: EColor) => void) {
+    return <View style={STYLES.playersWrapper}>
+        {getPlayer(EColor.RED,    players[EColor.RED],    () => {click(EColor.RED)})}
+        {getPlayer(EColor.BLUE,   players[EColor.BLUE],   () => {click(EColor.BLUE)})}
+        {getPlayer(EColor.YELLOW, players[EColor.YELLOW], () => {click(EColor.YELLOW)})}
+        {getPlayer(EColor.GREEN,  players[EColor.GREEN],  () => {click(EColor.GREEN)})}
+    </View>;
+}
+
+function getPlayer(color: EColor, type: Players.EPlayerType, onClick: () => void) {
+    return <View style={STYLES.playerWrapper}>
+        <Player color={color} type={type} verbose={true} onPress={onClick} />
+    </View>;
+}

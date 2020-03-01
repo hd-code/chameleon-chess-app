@@ -12,14 +12,24 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		147C5BA04DF64239A762AFDE /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B49DEB5AF0744DCA9C2ED08 /* OpenSans-BoldItalic.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* ChameleonChessTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ChameleonChessTests.m */; };
-		37E0262295C4F3009FEEAB82 /* libPods-ChameleonChess-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C8847E0BCBDD6DD2F7461ADC /* libPods-ChameleonChess-tvOS.a */; };
-		68DC86C3EA864EB897225745 /* libPods-ChameleonChess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA1F88F687DDF9EB47B6C6 /* libPods-ChameleonChess.a */; };
-		B5CBC9D58A797A806E667674 /* libPods-ChameleonChess-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C559C370DCF8229FC7E130D4 /* libPods-ChameleonChess-tvOSTests.a */; };
-		B9DD892B4DEA51E19FA79BD7 /* libPods-ChameleonChessTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5669DCD4E68CC93364F47140 /* libPods-ChameleonChessTests.a */; };
+		37F966C86CF14A8686EAEC1A /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30EE90938764402FB8F7C4E3 /* OpenSans-Regular.ttf */; };
+		57E2CE1250C245158A17E36E /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69665D7EFE854BDD824D9A36 /* OpenSans-Light.ttf */; };
+		684A7EA64E7EC3941AAA554D /* libPods-ChameleonChessTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA467B7C5D2B31E0A7E0A6B9 /* libPods-ChameleonChessTests.a */; };
+		7865BE1F6AE04FCFA52D6F55 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFEDAD18047F4B24B6B165FA /* OpenSans-SemiBoldItalic.ttf */; };
+		78FCA665F57F40C9B48B01EB /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08858D82D9124354AC5BCF3C /* OpenSans-SemiBold.ttf */; };
+		867AE212C9EA96B4D0A4E4D0 /* libPods-ChameleonChess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A37B94DFFFEAED60454AE4 /* libPods-ChameleonChess.a */; };
+		A397BEFEA5674554A286FD85 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6877B09B1B0D4926B76E6EBA /* OpenSans-LightItalic.ttf */; };
+		A53F195BBE16EF42888986B8 /* libPods-ChameleonChess-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26789394C8E0F5B93C9DE1AE /* libPods-ChameleonChess-tvOS.a */; };
+		A8A737FABB7D4295AA884511 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CEEA9344404CEB8760AD59 /* OpenSans-ExtraBold.ttf */; };
+		AB162F546B26B75D08304A95 /* libPods-ChameleonChess-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C4272CDA2B3F57C54FF058F /* libPods-ChameleonChess-tvOSTests.a */; };
+		D59F0EC9434D422497957C3D /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E84A2E175F8F46849E165586 /* OpenSans-Italic.ttf */; };
+		DD89C781A5A74319B2283FBB /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 379869B46C7B467E805BDB7A /* OpenSans-ExtraBoldItalic.ttf */; };
+		F7F40CAF3F7F4A02A0A38B52 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E3C275645794C458DF110BC /* OpenSans-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +54,8 @@
 		00E356EE1AD99517003FC87E /* ChameleonChessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChameleonChessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ChameleonChessTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChameleonChessTests.m; sourceTree = "<group>"; };
+		08858D82D9124354AC5BCF3C /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBold.ttf"; path = "../assets/fonts/OpenSans/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		0B49DEB5AF0744DCA9C2ED08 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-BoldItalic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ChameleonChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChameleonChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ChameleonChess/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ChameleonChess/AppDelegate.m; sourceTree = "<group>"; };
@@ -51,22 +63,30 @@
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ChameleonChess/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ChameleonChess/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ChameleonChess/main.m; sourceTree = "<group>"; };
-		233988FE95A42BD5B762CA05 /* Pods-ChameleonChess-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ChameleonChess-tvOSTests/Pods-ChameleonChess-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		184902229E19736173B724E0 /* Pods-ChameleonChess.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess.release.xcconfig"; path = "Target Support Files/Pods-ChameleonChess/Pods-ChameleonChess.release.xcconfig"; sourceTree = "<group>"; };
+		1C4272CDA2B3F57C54FF058F /* libPods-ChameleonChess-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChameleonChess-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		231B983780784C98F7420DA0 /* Pods-ChameleonChess-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-ChameleonChess-tvOSTests/Pods-ChameleonChess-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		26789394C8E0F5B93C9DE1AE /* libPods-ChameleonChess-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChameleonChess-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* ChameleonChess-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ChameleonChess-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* ChameleonChess-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ChameleonChess-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5669DCD4E68CC93364F47140 /* libPods-ChameleonChessTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChameleonChessTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6AEB87F6F186AFA25B0B93F8 /* Pods-ChameleonChess.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess.release.xcconfig"; path = "Target Support Files/Pods-ChameleonChess/Pods-ChameleonChess.release.xcconfig"; sourceTree = "<group>"; };
-		77BA5DE026347A60D8230332 /* Pods-ChameleonChess-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ChameleonChess-tvOSTests/Pods-ChameleonChess-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		7B9C8667D50EBE4965F3A232 /* Pods-ChameleonChess-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ChameleonChess-tvOS/Pods-ChameleonChess-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		81EA1F88F687DDF9EB47B6C6 /* libPods-ChameleonChess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChameleonChess.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A49BE59B5364A2DACDCC4D65 /* Pods-ChameleonChessTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChessTests.release.xcconfig"; path = "Target Support Files/Pods-ChameleonChessTests/Pods-ChameleonChessTests.release.xcconfig"; sourceTree = "<group>"; };
-		AB74F892221C7B8CEDA52E23 /* Pods-ChameleonChess-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ChameleonChess-tvOS/Pods-ChameleonChess-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		C559C370DCF8229FC7E130D4 /* libPods-ChameleonChess-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChameleonChess-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C8847E0BCBDD6DD2F7461ADC /* libPods-ChameleonChess-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChameleonChess-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7B53E8DB1FD89ACBA11BE53 /* Pods-ChameleonChess.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess.debug.xcconfig"; path = "Target Support Files/Pods-ChameleonChess/Pods-ChameleonChess.debug.xcconfig"; sourceTree = "<group>"; };
+		30EE90938764402FB8F7C4E3 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Regular.ttf"; path = "../assets/fonts/OpenSans/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		379869B46C7B467E805BDB7A /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBoldItalic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		44A37B94DFFFEAED60454AE4 /* libPods-ChameleonChess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChameleonChess.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4C5653B6EC2BFEBC18EE30C7 /* Pods-ChameleonChessTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChessTests.debug.xcconfig"; path = "Target Support Files/Pods-ChameleonChessTests/Pods-ChameleonChessTests.debug.xcconfig"; sourceTree = "<group>"; };
+		4D775ADBC0C3C9B1D39CA38F /* Pods-ChameleonChess.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess.debug.xcconfig"; path = "Target Support Files/Pods-ChameleonChess/Pods-ChameleonChess.debug.xcconfig"; sourceTree = "<group>"; };
+		65F6F5E1A4B2B93EBB0D1BCC /* Pods-ChameleonChess-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ChameleonChess-tvOSTests/Pods-ChameleonChess-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		6877B09B1B0D4926B76E6EBA /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-LightItalic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		69665D7EFE854BDD824D9A36 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Light.ttf"; path = "../assets/fonts/OpenSans/OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		7E3C275645794C458DF110BC /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Bold.ttf"; path = "../assets/fonts/OpenSans/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		92CEEA9344404CEB8760AD59 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBold.ttf"; path = "../assets/fonts/OpenSans/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		AA467B7C5D2B31E0A7E0A6B9 /* libPods-ChameleonChessTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChameleonChessTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFEDAD18047F4B24B6B165FA /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBoldItalic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		CB2D9A15840D09604C6E7A48 /* Pods-ChameleonChessTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChessTests.release.xcconfig"; path = "Target Support Files/Pods-ChameleonChessTests/Pods-ChameleonChessTests.release.xcconfig"; sourceTree = "<group>"; };
+		CF9D96EE03F1D62B7BBE630F /* Pods-ChameleonChess-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ChameleonChess-tvOS/Pods-ChameleonChess-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		E84A2E175F8F46849E165586 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Italic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		EE8B378CDB964A95ECC1322F /* Pods-ChameleonChessTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChessTests.debug.xcconfig"; path = "Target Support Files/Pods-ChameleonChessTests/Pods-ChameleonChessTests.debug.xcconfig"; sourceTree = "<group>"; };
+		FDE8EA41C1F603A82BF64FD7 /* Pods-ChameleonChess-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ChameleonChess-tvOS/Pods-ChameleonChess-tvOS.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,7 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B9DD892B4DEA51E19FA79BD7 /* libPods-ChameleonChessTests.a in Frameworks */,
+				684A7EA64E7EC3941AAA554D /* libPods-ChameleonChessTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +102,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				68DC86C3EA864EB897225745 /* libPods-ChameleonChess.a in Frameworks */,
+				867AE212C9EA96B4D0A4E4D0 /* libPods-ChameleonChess.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37E0262295C4F3009FEEAB82 /* libPods-ChameleonChess-tvOS.a in Frameworks */,
+				A53F195BBE16EF42888986B8 /* libPods-ChameleonChess-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,7 +118,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5CBC9D58A797A806E667674 /* libPods-ChameleonChess-tvOSTests.a in Frameworks */,
+				AB162F546B26B75D08304A95 /* libPods-ChameleonChess-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +142,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		124DF0C0111943A68083196A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7E3C275645794C458DF110BC /* OpenSans-Bold.ttf */,
+				0B49DEB5AF0744DCA9C2ED08 /* OpenSans-BoldItalic.ttf */,
+				92CEEA9344404CEB8760AD59 /* OpenSans-ExtraBold.ttf */,
+				379869B46C7B467E805BDB7A /* OpenSans-ExtraBoldItalic.ttf */,
+				E84A2E175F8F46849E165586 /* OpenSans-Italic.ttf */,
+				69665D7EFE854BDD824D9A36 /* OpenSans-Light.ttf */,
+				6877B09B1B0D4926B76E6EBA /* OpenSans-LightItalic.ttf */,
+				30EE90938764402FB8F7C4E3 /* OpenSans-Regular.ttf */,
+				08858D82D9124354AC5BCF3C /* OpenSans-SemiBold.ttf */,
+				AFEDAD18047F4B24B6B165FA /* OpenSans-SemiBoldItalic.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* ChameleonChess */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,32 +173,32 @@
 			name = ChameleonChess;
 			sourceTree = "<group>";
 		};
+		21ACFAD9FD70937AFF694662 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4D775ADBC0C3C9B1D39CA38F /* Pods-ChameleonChess.debug.xcconfig */,
+				184902229E19736173B724E0 /* Pods-ChameleonChess.release.xcconfig */,
+				CF9D96EE03F1D62B7BBE630F /* Pods-ChameleonChess-tvOS.debug.xcconfig */,
+				FDE8EA41C1F603A82BF64FD7 /* Pods-ChameleonChess-tvOS.release.xcconfig */,
+				231B983780784C98F7420DA0 /* Pods-ChameleonChess-tvOSTests.debug.xcconfig */,
+				65F6F5E1A4B2B93EBB0D1BCC /* Pods-ChameleonChess-tvOSTests.release.xcconfig */,
+				4C5653B6EC2BFEBC18EE30C7 /* Pods-ChameleonChessTests.debug.xcconfig */,
+				CB2D9A15840D09604C6E7A48 /* Pods-ChameleonChessTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				81EA1F88F687DDF9EB47B6C6 /* libPods-ChameleonChess.a */,
-				C8847E0BCBDD6DD2F7461ADC /* libPods-ChameleonChess-tvOS.a */,
-				C559C370DCF8229FC7E130D4 /* libPods-ChameleonChess-tvOSTests.a */,
-				5669DCD4E68CC93364F47140 /* libPods-ChameleonChessTests.a */,
+				44A37B94DFFFEAED60454AE4 /* libPods-ChameleonChess.a */,
+				26789394C8E0F5B93C9DE1AE /* libPods-ChameleonChess-tvOS.a */,
+				1C4272CDA2B3F57C54FF058F /* libPods-ChameleonChess-tvOSTests.a */,
+				AA467B7C5D2B31E0A7E0A6B9 /* libPods-ChameleonChessTests.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		55B138355665D6EECBB56072 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				E7B53E8DB1FD89ACBA11BE53 /* Pods-ChameleonChess.debug.xcconfig */,
-				6AEB87F6F186AFA25B0B93F8 /* Pods-ChameleonChess.release.xcconfig */,
-				AB74F892221C7B8CEDA52E23 /* Pods-ChameleonChess-tvOS.debug.xcconfig */,
-				7B9C8667D50EBE4965F3A232 /* Pods-ChameleonChess-tvOS.release.xcconfig */,
-				233988FE95A42BD5B762CA05 /* Pods-ChameleonChess-tvOSTests.debug.xcconfig */,
-				77BA5DE026347A60D8230332 /* Pods-ChameleonChess-tvOSTests.release.xcconfig */,
-				EE8B378CDB964A95ECC1322F /* Pods-ChameleonChessTests.debug.xcconfig */,
-				A49BE59B5364A2DACDCC4D65 /* Pods-ChameleonChessTests.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -179,7 +216,8 @@
 				00E356EF1AD99517003FC87E /* ChameleonChessTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				55B138355665D6EECBB56072 /* Pods */,
+				21ACFAD9FD70937AFF694662 /* Pods */,
+				124DF0C0111943A68083196A /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -204,7 +242,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "ChameleonChessTests" */;
 			buildPhases = (
-				671C65327ACD4EF27071A209 /* [CP] Check Pods Manifest.lock */,
+				C955A1EC598D6D288B224D60 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
@@ -223,7 +261,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "ChameleonChess" */;
 			buildPhases = (
-				054C2DBE68932FC45B4C01F9 /* [CP] Check Pods Manifest.lock */,
+				BA5F7BF47F8CBC9080FD7335 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
@@ -243,7 +281,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ChameleonChess-tvOS" */;
 			buildPhases = (
-				2EBF30DCEB62854A662A17F8 /* [CP] Check Pods Manifest.lock */,
+				0BDC5123A0CE474B1ABB9817 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -263,7 +301,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "ChameleonChess-tvOSTests" */;
 			buildPhases = (
-				9A901A5617A731BD13156AC5 /* [CP] Check Pods Manifest.lock */,
+				68A9BF8CFAD9CD8807C72B86 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -284,7 +322,7 @@
 		83CBB9F71A601CBA00E9B192 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0940;
+				LastUpgradeCheck = 940;
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
@@ -338,6 +376,16 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				F7F40CAF3F7F4A02A0A38B52 /* OpenSans-Bold.ttf in Resources */,
+				147C5BA04DF64239A762AFDE /* OpenSans-BoldItalic.ttf in Resources */,
+				A8A737FABB7D4295AA884511 /* OpenSans-ExtraBold.ttf in Resources */,
+				DD89C781A5A74319B2283FBB /* OpenSans-ExtraBoldItalic.ttf in Resources */,
+				D59F0EC9434D422497957C3D /* OpenSans-Italic.ttf in Resources */,
+				57E2CE1250C245158A17E36E /* OpenSans-Light.ttf in Resources */,
+				A397BEFEA5674554A286FD85 /* OpenSans-LightItalic.ttf in Resources */,
+				37F966C86CF14A8686EAEC1A /* OpenSans-Regular.ttf in Resources */,
+				78FCA665F57F40C9B48B01EB /* OpenSans-SemiBold.ttf in Resources */,
+				7865BE1F6AE04FCFA52D6F55 /* OpenSans-SemiBoldItalic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,43 +421,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		054C2DBE68932FC45B4C01F9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ChameleonChess-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Bundle React Native Code And Images";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		2EBF30DCEB62854A662A17F8 /* [CP] Check Pods Manifest.lock */ = {
+		0BDC5123A0CE474B1ABB9817 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -431,29 +443,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		671C65327ACD4EF27071A209 /* [CP] Check Pods Manifest.lock */ = {
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
+			name = "Bundle React Native Code And Images";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ChameleonChessTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		9A901A5617A731BD13156AC5 /* [CP] Check Pods Manifest.lock */ = {
+		68A9BF8CFAD9CD8807C72B86 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -469,6 +473,50 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-ChameleonChess-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BA5F7BF47F8CBC9080FD7335 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChameleonChess-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C955A1EC598D6D288B224D60 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ChameleonChessTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -580,7 +628,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE8B378CDB964A95ECC1322F /* Pods-ChameleonChessTests.debug.xcconfig */;
+			baseConfigurationReference = 4C5653B6EC2BFEBC18EE30C7 /* Pods-ChameleonChessTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -603,7 +651,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A49BE59B5364A2DACDCC4D65 /* Pods-ChameleonChessTests.release.xcconfig */;
+			baseConfigurationReference = CB2D9A15840D09604C6E7A48 /* Pods-ChameleonChessTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -623,7 +671,7 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7B53E8DB1FD89ACBA11BE53 /* Pods-ChameleonChess.debug.xcconfig */;
+			baseConfigurationReference = 4D775ADBC0C3C9B1D39CA38F /* Pods-ChameleonChess.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -644,7 +692,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AEB87F6F186AFA25B0B93F8 /* Pods-ChameleonChess.release.xcconfig */;
+			baseConfigurationReference = 184902229E19736173B724E0 /* Pods-ChameleonChess.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
@@ -664,7 +712,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AB74F892221C7B8CEDA52E23 /* Pods-ChameleonChess-tvOS.debug.xcconfig */;
+			baseConfigurationReference = CF9D96EE03F1D62B7BBE630F /* Pods-ChameleonChess-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -692,7 +740,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B9C8667D50EBE4965F3A232 /* Pods-ChameleonChess-tvOS.release.xcconfig */;
+			baseConfigurationReference = FDE8EA41C1F603A82BF64FD7 /* Pods-ChameleonChess-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -720,7 +768,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 233988FE95A42BD5B762CA05 /* Pods-ChameleonChess-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 231B983780784C98F7420DA0 /* Pods-ChameleonChess-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -747,7 +795,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 77BA5DE026347A60D8230332 /* Pods-ChameleonChess-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 65F6F5E1A4B2B93EBB0D1BCC /* Pods-ChameleonChess-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;

@@ -1,43 +1,60 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 
-import { IAppController } from '../App';
-import AppState from '../AppState';
+import { getColors, getTexts } from '../assets';
+import { getBaseFontSize } from '../helper';
 
-import Button from './basic/Button';
-import Spacer from './basic/Spacer';
+import Button from './Button';
+import Logo from './Logo';
+import Spacer from './Spacer';
 
-import { getTexts } from '../models/Texts';
+import { goto } from '../controller/app';
+import { getGame } from '../controller/game';
 
 // -----------------------------------------------------------------------------
 
-interface HomeProps {
-    controller: IAppController;
-}
+/** The root component for the home view. This is the start screen of the app. */
+const Home = () => <>
+    <View />
 
-const Home = (props: HomeProps) => (
-    <View>
-        <Button
-            text={getTexts().Home.continue}
-            onPress={ props.controller.goTo.Game }
-            disabled={ !AppState.Game.get() }
-        />
+    <View style={STYLES.wrapper}>
+        <Logo />
 
-        <Spacer />
-
-        <Button
-            text={getTexts().Home.newGame}
-            onPress={ props.controller.goTo.PlayerConfig }
-        />
+        <Spacer scale={2} />
+        
+        <Button onPress={goto.game} color={getColors().main[0]} disabled={getGame() === null}>
+            {getTexts().home.buttons.continue}
+        </Button>
 
         <Spacer />
 
-        <Button
-            text={getTexts().Home.tutorial}
-            onPress={ props.controller.goTo.PlayerConfig }
-            disabled={ true }
-        />
+        <Button onPress={goto.playerConfig} color={getColors().main[1]}>
+            {getTexts().home.buttons.newGame}
+        </Button>
+
+        <Spacer />
+
+        <Button onPress={() => {}} color={getColors().main[2]} disabled={true}>
+            {getTexts().home.buttons.tutorial}
+        </Button>
+
+        <Spacer />
+
+        <Button onPress={goto.settings} color={getColors().main[3]}>
+            {getTexts().home.buttons.settings}
+        </Button>
     </View>
-);
+
+    <View />
+</>;
 
 export default Home;
+
+// -----------------------------------------------------------------------------
+
+const STYLES = StyleSheet.create({
+    wrapper: {
+        width: getBaseFontSize() * 28,
+        maxWidth: '100%',
+    },
+});

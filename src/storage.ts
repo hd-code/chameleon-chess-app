@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 /** Provides methods to store any kind of JS data in a local storage. Saved data
  * is persistent and can be retrieved even after reloading the app. */
-const Storage = {
+const storage = {
 
     /** Retrieves data stored under the `key`. It will return a JS object. No
      * parsing required. */
@@ -27,4 +27,4 @@ const Storage = {
     }
 };
 
-export default Storage;
+export default storage;

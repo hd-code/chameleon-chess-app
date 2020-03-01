@@ -1,152 +1,127 @@
 import React from 'react';
-import { View, ViewStyle, TouchableOpacity, LayoutAnimation } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { IPosition, isGameOver, EColor } from 'chameleon-chess-logic';
+import { EColor, arePlayersAlive } from 'chameleon-chess-logic';
 
-import { IAppController } from '../App';
-import AppState from '../AppState';
-import { Styles } from '../helper';
+import { getColors, getTexts } from '../assets';
+import { getBaseFontSize } from '../helper';
 
-import Board from './game/Board';
-import Button from './basic/Button';
-import Players from './game/Players';
-import Popup from './basic/Popup';
-import Spacer from './basic/Spacer';
-import Text from './basic/Text';
-import getPropsForRendering from './game/render';
+import Board from './Board';
+import Button from './Button';
+import Overlay, { EOverlayType } from './Overlay';
+import Player from './Player';
+import Popup from './Popup';
+import Spacer from './Spacer';
+import Text from './Text';
+import Topbar from './Topbar';
 
-import * as GameModel from '../models/Game';
-import { getTexts } from '../models/Texts';
+import { goto } from '../controller/app';
+import { onGameRender, beginGame } from '../controller/game';
+
+import { IGame, getWinner } from '../models/game';
 
 // -----------------------------------------------------------------------------
 
-// TODO: Victory -> Popup!
-// TODO: Zoom auf handys
+interface GameProps extends IGame { }
 
-interface GameProps {
-    controller: IAppController;
-}
-
+/** The root component for the game view. */
 const Game = (props: GameProps) => {
-    const GameData = AppState.Game.get() || t;
-    const renderGS = getPropsForRendering(GameData);
+    onGameRender(); // inform game controller of rendering
 
-    function makeMove() {
-        // if pawns have moved, activate LayoutAnimation
-        if (GameModel.havePawnsMoved(GameData, AppState.Game.get() || t))
-            LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    return <>
+        <Topbar />
 
-        props.controller.reRender();
-    }
-
-    function replayGame() {
-        const newGameData = GameModel.createGame(GameData.players);
-        if (!newGameData)
-            return console.error('IGame Object could not be created!');
-            
-        AppState.Game.set(newGameData);
-        props.controller.goTo.Game();
-    }
-
-    // if game is over, remove game data in local storage
-    if (isGameOver(GameData.gs)) {
-        AppState.Game.rmv();
-    }
-
-    // if it is computer's turn, do computer move asynchronously
-    else if (GameModel.isComputerTurn(GameData)) {
-        setTimeout(() => doComputerMove(GameData, makeMove), 1);
-    }
-
-    return (
-        <View>
-            <Players {...renderGS.players} />
+        <View style={STYLES.main}>
+            {getPlayers(props)}
             <Spacer />
-            <View>
-                <Board fields={renderGS.fields} pawns={renderGS.pawns} />
-                <TouchableOpacity
-                    onPress={ event => handlePressOnBoard(event) && makeMove() }
-                    onLayout={ measureBoardSize }
-                    style={ Styles.coverParent }
-                    activeOpacity={1}
-                />
-            </View>
-            <Popup visible={isGameOver(GameData.gs)}>
-                <Text>{getWinnerText(GameData)}</Text>
-                <Button text={getTexts().Game.victoryPopup.homeButton} onPress={props.controller.goTo.Home} />
-                <Button text={getTexts().Game.victoryPopup.replayButton} onPress={replayGame} />
-                <Button text={getTexts().Game.victoryPopup.newGame} onPress={props.controller.goTo.PlayerConfig} />
-            </Popup>
+            <Board {...props} />
         </View>
-    );
+
+        <View />
+
+        {renderWinner(props)}
+    </>;
 }
 
 export default Game;
 
 // -----------------------------------------------------------------------------
 
-const MIN_SLEEP_FOR_AI_MOVE = 1500;
+const STYLES = StyleSheet.create({
+    main: {
+        width: '99%',
+    },
+    players: {
+        alignItems: 'stretch',
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    player: {
+        width: '25%',
+        maxWidth: getBaseFontSize() * 7,
+    },
+    overlayOnTurn: {
+        backgroundColor: 'transparent',
+        borderColor: getColors().shader.lighten,
+        borderWidth: StyleSheet.hairlineWidth * 10,
+    },
+    winnerPopup: {
+        maxWidth: '100%',
+        width: getBaseFontSize() * 30,
+    }
+});
 
-/** This is used to trick typescript. The function `AppState.Game.get()` might
- * return `null`. Therefore typescript throws an error whenever you call it and
- * assign its return value to a variable. However, the user cannot get to this
- * view, when there is no saved game. So, the function actually never returns
- * `null` on this view. To shut up the typescript errors just use the function
- * like this: `AppState.Game.get() || t`. No further `null` checking is required. */
-let t: GameModel.IGame;
+function renderWinner(props: GameProps) {
+    const winner = getWinner(props);
 
-type TDimensions = { width: number, height: number };
+    if (winner === null) return;
 
-/** This variable stores the dimensions of the board as soon as they are available. */
-let board: TDimensions = { height: 0, width:  0 };
+    return <Popup style={STYLES.winnerPopup}>
+        <Text invert={true} scale={1.8}>
+            {getTexts().player[winner] + ' ' + getTexts().game.winning}
+        </Text>
 
-/** Measures the board size using the onLayout event. Dimensions get stored to
- * the variable `board`. */
-function measureBoardSize(event: any) {
-    board = event.nativeEvent.layout;
+        <Spacer scale={2} />
+
+        <Button color={getColors().main[0]} onPress={goto.home}>
+            {getTexts().game.buttons.home}
+        </Button>
+
+        <Spacer />
+
+        <Button color={getColors().main[1]} onPress={goto.playerConfig}>
+            {getTexts().game.buttons.newGame}
+        </Button>
+
+        <Spacer />
+        
+        <Button color={getColors().main[2]} onPress={() => {beginGame(props.players)}}>
+            {getTexts().game.buttons.replay}
+        </Button>
+    </Popup>;
 }
 
-function calcClickPos(x: number, y: number): IPosition {
-    return {
-        row: Math.floor(y / board.height * 8),
-        col: Math.floor(x / board.width  * 8)
-    };
+function getPlayers(props: GameProps) {
+    const playersAlive = arePlayersAlive(props);
+
+    return <View style={STYLES.players}>
+        {getPlayer(EColor.RED, props, playersAlive)}
+        {getPlayer(EColor.BLUE, props, playersAlive)}
+        {getPlayer(EColor.YELLOW, props, playersAlive)}
+        {getPlayer(EColor.GREEN, props, playersAlive)}
+    </View>;
 }
 
-/** Returns true if the game state has changed, false if not */
-function handlePressOnBoard(event: any): boolean {
-    const {locationX, locationY} = event.nativeEvent;
-    const clickPos = calcClickPos(locationX, locationY);
+function getPlayer(player: EColor, props: GameProps, playersAlive: {[player in EColor]: boolean}) {
+    // const style = isPortrait() ? STYLES.playerPortrait : {};
 
-    const currentGameData = AppState.Game.get() || t;
-    if (GameModel.isComputerTurn(currentGameData))
-        return false;
+    const type = props.players[player];
+    const isDead = !playersAlive[player];
+    const onTurn = player === props.whoseTurn;
 
-    const newGameData = GameModel.advanceGame(currentGameData, clickPos);
-    AppState.Game.set(newGameData);
-
-    return true;
-}
-
-/** `refresh` function is called, once the computer is done, calculating the move */
-function doComputerMove(currentGameData: GameModel.IGame, refresh: () => void) {
-    const start = Date.now();
-
-    const newGameData = GameModel.letComputerAdvanceGame(currentGameData);
-
-    const duration = Date.now() - start;
-    const sleep = Math.max(MIN_SLEEP_FOR_AI_MOVE - duration, 1);
-
-    setTimeout(() => {
-        AppState.Game.set(newGameData);
-        refresh();
-    }, sleep);
-}
-
-function getWinnerText(game: GameModel.IGame): string {
-    const winner = GameModel.getWinner(game);
-    if (winner === null)
-        return '';
-
-    return getTexts().Game.winner[winner];
+    return <View style={STYLES.player}>
+        <Player color={player} type={type} />
+        {isDead && <Overlay type={EOverlayType.DARKEN} />}
+        {onTurn && <Overlay type={EOverlayType.LIGHTEN} style={STYLES.overlayOnTurn} />}
+    </View>;
 }

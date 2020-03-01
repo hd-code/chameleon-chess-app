@@ -1,29 +1,22 @@
 {
   "name": "chameleon-chess-app",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "react-native start",
-    "postinstall": "npm run pod",
-    "android:build": "react-native run-android",
-    "ios": "npm run iPad; npm run iPhone; open -a 'Simulator'; npm start",
-    "ios:build": "npm run iPad:build; npm run iPhone:build",
-    "iPad": "xcrun simctl boot 'iPad Air (3rd generation)'",
-    "iPhone": "xcrun simctl boot 'iPhone 8'",
-    "iPad:build": "react-native run-ios --simulator 'iPad Air (3rd generation)'",
-    "iPhone:build": "react-native run-ios --simulator 'iPhone 8'",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "pod": "cd ios && pod install"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.7.1",
+    "@react-native-community/async-storage": "^1.8.1",
     "chameleon-chess-logic": "git+https://github.com/hd-code/chameleon-chess-logic.git#v1",
-    "react": "~16.10.2",
+    "react": "~16.9.0",
     "react-native": "~0.61.5"
   },
   "devDependencies": {
-    "@types/react": "^16.9.19",
-    "@types/react-native": "^0.60.31",
-    "react-native-cli": "^2.0.1",
+    "@types/react": "~16.9.19",
+    "@types/react-native": "~0.61.15",
     "typescript": "^3.7.5"
   }
 }
