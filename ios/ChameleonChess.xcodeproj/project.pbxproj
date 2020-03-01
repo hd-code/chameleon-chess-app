@@ -12,24 +12,24 @@
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		147C5BA04DF64239A762AFDE /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B49DEB5AF0744DCA9C2ED08 /* OpenSans-BoldItalic.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* ChameleonChessTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* ChameleonChessTests.m */; };
-		684A7EA64E7EC3941AAA554D /* libPods-ChameleonChessTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA467B7C5D2B31E0A7E0A6B9 /* libPods-ChameleonChessTests.a */; };
-		867AE212C9EA96B4D0A4E4D0 /* libPods-ChameleonChess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A37B94DFFFEAED60454AE4 /* libPods-ChameleonChess.a */; };
-		A53F195BBE16EF42888986B8 /* libPods-ChameleonChess-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26789394C8E0F5B93C9DE1AE /* libPods-ChameleonChess-tvOS.a */; };
-		AB162F546B26B75D08304A95 /* libPods-ChameleonChess-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C4272CDA2B3F57C54FF058F /* libPods-ChameleonChess-tvOSTests.a */; };
-		F7F40CAF3F7F4A02A0A38B52 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E3C275645794C458DF110BC /* OpenSans-Bold.ttf */; };
-		147C5BA04DF64239A762AFDE /* OpenSans-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0B49DEB5AF0744DCA9C2ED08 /* OpenSans-BoldItalic.ttf */; };
-		A8A737FABB7D4295AA884511 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CEEA9344404CEB8760AD59 /* OpenSans-ExtraBold.ttf */; };
-		DD89C781A5A74319B2283FBB /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 379869B46C7B467E805BDB7A /* OpenSans-ExtraBoldItalic.ttf */; };
-		D59F0EC9434D422497957C3D /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E84A2E175F8F46849E165586 /* OpenSans-Italic.ttf */; };
-		57E2CE1250C245158A17E36E /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69665D7EFE854BDD824D9A36 /* OpenSans-Light.ttf */; };
-		A397BEFEA5674554A286FD85 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6877B09B1B0D4926B76E6EBA /* OpenSans-LightItalic.ttf */; };
 		37F966C86CF14A8686EAEC1A /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 30EE90938764402FB8F7C4E3 /* OpenSans-Regular.ttf */; };
-		78FCA665F57F40C9B48B01EB /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08858D82D9124354AC5BCF3C /* OpenSans-SemiBold.ttf */; };
+		57E2CE1250C245158A17E36E /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 69665D7EFE854BDD824D9A36 /* OpenSans-Light.ttf */; };
+		684A7EA64E7EC3941AAA554D /* libPods-ChameleonChessTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA467B7C5D2B31E0A7E0A6B9 /* libPods-ChameleonChessTests.a */; };
 		7865BE1F6AE04FCFA52D6F55 /* OpenSans-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AFEDAD18047F4B24B6B165FA /* OpenSans-SemiBoldItalic.ttf */; };
+		78FCA665F57F40C9B48B01EB /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 08858D82D9124354AC5BCF3C /* OpenSans-SemiBold.ttf */; };
+		867AE212C9EA96B4D0A4E4D0 /* libPods-ChameleonChess.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44A37B94DFFFEAED60454AE4 /* libPods-ChameleonChess.a */; };
+		A397BEFEA5674554A286FD85 /* OpenSans-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6877B09B1B0D4926B76E6EBA /* OpenSans-LightItalic.ttf */; };
+		A53F195BBE16EF42888986B8 /* libPods-ChameleonChess-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26789394C8E0F5B93C9DE1AE /* libPods-ChameleonChess-tvOS.a */; };
+		A8A737FABB7D4295AA884511 /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92CEEA9344404CEB8760AD59 /* OpenSans-ExtraBold.ttf */; };
+		AB162F546B26B75D08304A95 /* libPods-ChameleonChess-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C4272CDA2B3F57C54FF058F /* libPods-ChameleonChess-tvOSTests.a */; };
+		D59F0EC9434D422497957C3D /* OpenSans-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E84A2E175F8F46849E165586 /* OpenSans-Italic.ttf */; };
+		DD89C781A5A74319B2283FBB /* OpenSans-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 379869B46C7B467E805BDB7A /* OpenSans-ExtraBoldItalic.ttf */; };
+		F7F40CAF3F7F4A02A0A38B52 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E3C275645794C458DF110BC /* OpenSans-Bold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +54,8 @@
 		00E356EE1AD99517003FC87E /* ChameleonChessTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChameleonChessTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* ChameleonChessTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChameleonChessTests.m; sourceTree = "<group>"; };
+		08858D82D9124354AC5BCF3C /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBold.ttf"; path = "../assets/fonts/OpenSans/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		0B49DEB5AF0744DCA9C2ED08 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-BoldItalic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* ChameleonChess.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChameleonChess.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ChameleonChess/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ChameleonChess/AppDelegate.m; sourceTree = "<group>"; };
@@ -67,26 +69,24 @@
 		26789394C8E0F5B93C9DE1AE /* libPods-ChameleonChess-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChameleonChess-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E47B1E0B4A5D006451C7 /* ChameleonChess-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ChameleonChess-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* ChameleonChess-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ChameleonChess-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		30EE90938764402FB8F7C4E3 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Regular.ttf"; path = "../assets/fonts/OpenSans/OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		379869B46C7B467E805BDB7A /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBoldItalic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
 		44A37B94DFFFEAED60454AE4 /* libPods-ChameleonChess.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChameleonChess.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4C5653B6EC2BFEBC18EE30C7 /* Pods-ChameleonChessTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChessTests.debug.xcconfig"; path = "Target Support Files/Pods-ChameleonChessTests/Pods-ChameleonChessTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4D775ADBC0C3C9B1D39CA38F /* Pods-ChameleonChess.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess.debug.xcconfig"; path = "Target Support Files/Pods-ChameleonChess/Pods-ChameleonChess.debug.xcconfig"; sourceTree = "<group>"; };
 		65F6F5E1A4B2B93EBB0D1BCC /* Pods-ChameleonChess-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-ChameleonChess-tvOSTests/Pods-ChameleonChess-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		6877B09B1B0D4926B76E6EBA /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-LightItalic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-LightItalic.ttf"; sourceTree = "<group>"; };
+		69665D7EFE854BDD824D9A36 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Light.ttf"; path = "../assets/fonts/OpenSans/OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		7E3C275645794C458DF110BC /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Bold.ttf"; path = "../assets/fonts/OpenSans/OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		92CEEA9344404CEB8760AD59 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-ExtraBold.ttf"; path = "../assets/fonts/OpenSans/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
 		AA467B7C5D2B31E0A7E0A6B9 /* libPods-ChameleonChessTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ChameleonChessTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFEDAD18047F4B24B6B165FA /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-SemiBoldItalic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
 		CB2D9A15840D09604C6E7A48 /* Pods-ChameleonChessTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChessTests.release.xcconfig"; path = "Target Support Files/Pods-ChameleonChessTests/Pods-ChameleonChessTests.release.xcconfig"; sourceTree = "<group>"; };
 		CF9D96EE03F1D62B7BBE630F /* Pods-ChameleonChess-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-ChameleonChess-tvOS/Pods-ChameleonChess-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		E84A2E175F8F46849E165586 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "OpenSans-Italic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-Italic.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		FDE8EA41C1F603A82BF64FD7 /* Pods-ChameleonChess-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChameleonChess-tvOS.release.xcconfig"; path = "Target Support Files/Pods-ChameleonChess-tvOS/Pods-ChameleonChess-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		7E3C275645794C458DF110BC /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; name = "OpenSans-Bold.ttf"; path = "../assets/fonts/OpenSans/OpenSans-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		0B49DEB5AF0744DCA9C2ED08 /* OpenSans-BoldItalic.ttf */ = {isa = PBXFileReference; name = "OpenSans-BoldItalic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-BoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		92CEEA9344404CEB8760AD59 /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; name = "OpenSans-ExtraBold.ttf"; path = "../assets/fonts/OpenSans/OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		379869B46C7B467E805BDB7A /* OpenSans-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; name = "OpenSans-ExtraBoldItalic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-ExtraBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		E84A2E175F8F46849E165586 /* OpenSans-Italic.ttf */ = {isa = PBXFileReference; name = "OpenSans-Italic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-Italic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		69665D7EFE854BDD824D9A36 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; name = "OpenSans-Light.ttf"; path = "../assets/fonts/OpenSans/OpenSans-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		6877B09B1B0D4926B76E6EBA /* OpenSans-LightItalic.ttf */ = {isa = PBXFileReference; name = "OpenSans-LightItalic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-LightItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		30EE90938764402FB8F7C4E3 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; name = "OpenSans-Regular.ttf"; path = "../assets/fonts/OpenSans/OpenSans-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		08858D82D9124354AC5BCF3C /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; name = "OpenSans-SemiBold.ttf"; path = "../assets/fonts/OpenSans/OpenSans-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		AFEDAD18047F4B24B6B165FA /* OpenSans-SemiBoldItalic.ttf */ = {isa = PBXFileReference; name = "OpenSans-SemiBoldItalic.ttf"; path = "../assets/fonts/OpenSans/OpenSans-SemiBoldItalic.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +142,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		124DF0C0111943A68083196A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7E3C275645794C458DF110BC /* OpenSans-Bold.ttf */,
+				0B49DEB5AF0744DCA9C2ED08 /* OpenSans-BoldItalic.ttf */,
+				92CEEA9344404CEB8760AD59 /* OpenSans-ExtraBold.ttf */,
+				379869B46C7B467E805BDB7A /* OpenSans-ExtraBoldItalic.ttf */,
+				E84A2E175F8F46849E165586 /* OpenSans-Italic.ttf */,
+				69665D7EFE854BDD824D9A36 /* OpenSans-Light.ttf */,
+				6877B09B1B0D4926B76E6EBA /* OpenSans-LightItalic.ttf */,
+				30EE90938764402FB8F7C4E3 /* OpenSans-Regular.ttf */,
+				08858D82D9124354AC5BCF3C /* OpenSans-SemiBold.ttf */,
+				AFEDAD18047F4B24B6B165FA /* OpenSans-SemiBoldItalic.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		13B07FAE1A68108700A75B9A /* ChameleonChess */ = {
 			isa = PBXGroup;
 			children = (
@@ -168,7 +185,6 @@
 				4C5653B6EC2BFEBC18EE30C7 /* Pods-ChameleonChessTests.debug.xcconfig */,
 				CB2D9A15840D09604C6E7A48 /* Pods-ChameleonChessTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -218,24 +234,6 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
-		};
-		124DF0C0111943A68083196A /* Resources */ = {
-			isa = "PBXGroup";
-			children = (
-				7E3C275645794C458DF110BC /* OpenSans-Bold.ttf */,
-				0B49DEB5AF0744DCA9C2ED08 /* OpenSans-BoldItalic.ttf */,
-				92CEEA9344404CEB8760AD59 /* OpenSans-ExtraBold.ttf */,
-				379869B46C7B467E805BDB7A /* OpenSans-ExtraBoldItalic.ttf */,
-				E84A2E175F8F46849E165586 /* OpenSans-Italic.ttf */,
-				69665D7EFE854BDD824D9A36 /* OpenSans-Light.ttf */,
-				6877B09B1B0D4926B76E6EBA /* OpenSans-LightItalic.ttf */,
-				30EE90938764402FB8F7C4E3 /* OpenSans-Regular.ttf */,
-				08858D82D9124354AC5BCF3C /* OpenSans-SemiBold.ttf */,
-				AFEDAD18047F4B24B6B165FA /* OpenSans-SemiBoldItalic.ttf */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -347,6 +345,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -686,6 +685,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ChameleonChess;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -705,6 +705,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = ChameleonChess;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

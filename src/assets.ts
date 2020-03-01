@@ -1,4 +1,3 @@
-import { Player } from '@react-native-community/audio-toolkit';
 import { EColor, ERole } from 'chameleon-chess-logic';
 
 import { getLanguage } from './controller/app';
@@ -16,21 +15,6 @@ export function getColors() {
 /** Source binaries of all images used in the app. */
 export function getImages() {
     return IMAGES;
-}
-
-export const music = {
-    play: () => {
-        if (!musicPlayer.isPlaying)
-            musicPlayer.play();
-    },
-    pause: () => {
-        if (musicPlayer.isPlaying)
-            musicPlayer.pause();
-    },
-}
-
-export function getMusicPlayer() {
-    return musicPlayer;
 }
 
 /** All texts displayed in the app in all available languages. */
@@ -79,9 +63,6 @@ const IMAGES = {
         [ERole.ROOK]: require(IMG_DIR + 'rook.png'),
     },
 };
-
-let musicPlayer = new Player('Amazonas.mp3');
-musicPlayer.looping = true;
 
 const TEXTS_DIR = ASSETS_DIR + 'texts/';
 

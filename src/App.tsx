@@ -1,14 +1,14 @@
 import React, { useState }from 'react';
 import { SafeAreaView, StatusBar, ImageBackground, StyleSheet, View, Platform, UIManager, LayoutAnimation } from 'react-native';
 
-import { getImages, getMusicPlayer, music } from './assets';
+import { getImages } from './assets';
 
 import Game from './components/Game';
 import Home from './components/Home';
 import PlayerConfig from './components/PlayerConfig';
 import Settings from './components/Settings';
 
-import { subscribe, getView, isMusicOn } from './controller/app';
+import { subscribe, getView } from './controller/app';
 import { getGame } from './controller/game';
 
 import { EView } from './models/view';
@@ -32,9 +32,6 @@ const App = () => {
 
     // make all transitions between different renderings smooth
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
-
-    console.log(isMusicOn())
-    isMusicOn() ? music.play() : music.pause();
 
     return (
         <ImageBackground source={getImages().background} style={STYLES.background} >
