@@ -6,7 +6,7 @@ A description of the game and its rules can be found [here](https://github.com/h
 
 This app is cross-platform and runs on both iOS and Android devices. It can be run on smartphones and tablets.
 
-It is written with the [react-native](http://reactnative.dev/) framework. React-native is based on the [react framework](https://reactjs.org). React-native uses a local node.js server to serve JSX components (instead of HTML components in react) to a native app (called the 'bridge'). JSX is a markup language closely related to HTML, but with embedded JS code. The 'bridge' converts the JSX components to native device components which then get rendered to the screen.
+It is written with the [react-native framework](http://reactnative.dev/). React-native is based on the [react framework](https://reactjs.org). React-native uses a local node.js server to serve JSX components (instead of HTML components in react) to a native app (called the 'bridge'). JSX is a markup language closely related to HTML, but with embedded JS code. The 'bridge' converts the JSX components to native device components which then get rendered to the screen.
 
 ## Getting Started
 
@@ -19,7 +19,7 @@ A react-native app always consists of two parts:
 
 For Development that means, you need to start up the node.js server from the project directory. Then you need to install the app (bridge) on the device (or simulator of the same).
 
-This is done as follows.
+This is done as follows:
 
 ### Requirements
 
@@ -35,7 +35,7 @@ The following software needs to be installed for the app to be build and run:
 
 In Android Studio make sure to have the following components installed:
 
-* Android SDK (particularly Android 9 – Pie)
+* Android SDK (particularly Android 9 – "Pie")
 * Android SDK Platform (particularly Android SDK Platform 28)
 * Performance (Intel ® HAXM) (Intel x86 Atom_64 System Image or Google APIs Intel x86 Atom System Image)
 * Android Virtual Device
@@ -67,7 +67,7 @@ See [react-native documentation](http://reactnative.dev/docs/getting-started) fo
 
 _Note:_ iOS Apps can only be build and run on a Mac!
 
-* XCode v9.4 or newer (easiest is to get it from the AppStore)
+* XCode v9.4 or newer (easiest way, is to get it from the AppStore)
 * XCode Command Line Tools (can be installed in the XCode settings)
 * CocoaPods (install by using ruby: `sudo gem install cocoapods`)
 
@@ -103,7 +103,7 @@ Now you need to install the actual app (bridge) on your devices/simulators.
 
 To install the app on an Android emulator, you need to have the emulator running. This can be done using Android Studio. In the starting dialog click on the bar at the bottom: `Configure > AVD Manager`. Here you can create virtual devices and start them up.
 
-Make sure that your created devices use the android version 'Pie'.
+Make sure that your created devices use the android version "Pie".
 
 Once a (or serval) virtual device are running, go to the project folder and run this from terminal:
 
@@ -129,7 +129,7 @@ npm run ios
 
 If you want to run it on a different simulator, you can do so in XCode. Go to XCode and open the project (`./ios/ChameleonChess.xcworkspace`). In the top bar you can now set the target simulator or even your own device, if that was configured.
 
-By clicking on the Build button (the one that looks like a play button), the app will be build and installed on the device. Also, the node.js server will be started in a separate terminal, if it is not already running.
+By clicking on the Build button (the one that looks like a play button), the app will be build and installed to the device. Also, the node.js server will be started in a separate terminal, if it is not already running.
 
 [See react-native documentation](http://reactnative.dev/docs/getting-started) if further information is needed.
 
@@ -156,7 +156,7 @@ Most of the app's logic is implemented in a different library, called [chameleon
 
 React works in a hierarchical data flow. So there is a root component (`./src/App.tsx`) which is the starting point of the rendering process. Depending on the app state, other components are then embedded in the root component. When the state changes, the whole app is re-rendered starting at the root component.
 
-Components can hold state within themselves. However, this is only done for state that is only relevant to this very component. Anything, that is a global concern, is stored in controllers. When the state in the controllers changes, the app re-renders. This is done by by the `App.tsx` component subscribing to changes in the controllers (observer-pattern).
+Components can hold state within themselves. However, this is only done for state that is only relevant to this very component. Anything, that is a global concern, is stored in controllers. When the state in the controllers changes, the app re-renders. The `App.tsx` component provides a `onStateChange` function that can be called by the controllers, resulting in the re-rendering of the `App.tsx` component.
 
 Also, we try to keep information centralized. So, colors, texts and images are kept centrally in a module, called `assets.ts`.
 
@@ -170,12 +170,14 @@ App settings and the currently played game is stored in a local storage, so that
   * `ChameleonChess.xcworkspace` – since we use CocoaPods, this is the correct XCode project file.
   * `Podfile` specifies the needed additional dependencies for the ios app using CocoaPods.
 * `src/` holds all the code that gets served by the node.js server, thus the actual app content.
-  * `components/` holds all react-native components (visuell rendering). They are all written as functional components and only hold local state if absolutely necessary. Usually they are just dumb 'data displayers'. There are some re-implementations of basic react-native components here as well. Check it out in the code.
-  * `controller/` holds the apps controllers. They manage central tasks and hold the global app state.
+  * `components/` holds all react-native components (visuell rendering). They are all written as functional components and only hold local state if absolutely necessary. Usually they are just dumb 'data displayers'. The components on the top level are directly used by `App.tsx`. Any form of functionality or information about the app state has to be passed to them via the props, they cannot get an data themselves.
+    * `basic/` holds several basic components, that are used again and again. They do not hold any state and some of them are actually re-implementations or extensions of basic react-native components.
+    * `game/` contains components that are used in the game and game config view.
+  * `controller/` holds the apps controllers. They manage central tasks and hold the global app states.
   * `models/` contain data structures that are used in the app and functions to work on these data structures. They are written in a purely functional style and do not have any side-effects.
-  * `App.tsx` is the root component of the whole app. It subscribes to any changes in the global app state (controller). If the global state has changed, this component re-renders, causing the whole app to re-render.
+  * `App.tsx` is the root component of the whole app. It renders any subsequent components, depending on the app state from the controllers. It provides a `onStateChange` function, that can be used by the controller to trigger re-render of this root component.
   * `assets.ts` loads the assets from the `assets/` directory and makes them easily available to the rest of the app.
-  * `helper.ts` contains several useful functions. E.g. it offers functions to get the current screen orientation, determine a basic font size to be used in the app etc.
+  * `helper.ts` contains several useful functions. E.g. it offers a function determine a basic font size to be used throughout th app etc.
   * `storage.ts` holds generic functions to store, retrieve and remove data from a local storage. This storage is persistent.
 * `.gitignore` list files and directories that should not be saved to the git repo.
 * `index.ts` bootstraps the whole app. This is the entry point for the node.js server. It basically just registers the `App.tsx` component as the root component to be loaded and displayed.

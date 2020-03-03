@@ -23,11 +23,13 @@ export function getDefaultPlayers() {
     return DEFAULT_PLAYERS;
 }
 
-/** Change type of a passed player by one step. */
-export function updatePlayers(players: TPlayers, player: EColor): TPlayers {
-    let result = {...players};
-    result[player] = getNextPlayerType(players[player]);
-    return result;
+/** Returns the next player type. */
+export function getNextPlayerType(playerType: EPlayerType) {
+    switch (playerType) {
+        case EPlayerType.NONE: return EPlayerType.HUMAN;
+        case EPlayerType.HUMAN: return EPlayerType.COMPUTER;
+        case EPlayerType.COMPUTER: return EPlayerType.NONE;
+    }
 }
 
 /** Returns true if there are enough players to start a game. */
@@ -47,12 +49,4 @@ const DEFAULT_PLAYERS: TPlayers = {
     [EColor.GREEN]: EPlayerType.NONE,
     [EColor.YELLOW]: EPlayerType.COMPUTER,
     [EColor.BLUE]: EPlayerType.NONE,
-}
-
-function getNextPlayerType(playerType: EPlayerType) {
-    switch (playerType) {
-        case EPlayerType.NONE: return EPlayerType.HUMAN;
-        case EPlayerType.HUMAN: return EPlayerType.COMPUTER;
-        case EPlayerType.COMPUTER: return EPlayerType.NONE;
-    }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { getBaseFontSize } from '../helper';
+import { getBaseFontSize } from '../../helper';
 
 // -----------------------------------------------------------------------------
 
@@ -21,9 +21,9 @@ interface SpacerProps {
  * The default size is equivalent to the font size and can be altered through
  * the `scale` (relative to font size) or the `size` (absolute pixel values)
  * properties. `size` takes precedence over `scale` if both are provided. */
-const Spacer = (props: SpacerProps) => {
-    const size = props.size ? props.size : getBaseFontSize() * (props.scale || 1);
-    return <View style={{ height: size, width: size }} />;
-}
+const Spacer = ({scale, size}: SpacerProps) => {
+    const dim = size ? size : getBaseFontSize() * (scale || 1);
+    return <View style={{ height: dim, width: dim }} />;
+};
 
 export default Spacer;

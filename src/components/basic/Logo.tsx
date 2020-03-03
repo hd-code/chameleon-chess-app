@@ -1,32 +1,37 @@
 import React, { useState } from 'react';
-import { LayoutChangeEvent, StyleSheet, View } from 'react-native';
+import { LayoutChangeEvent, TextStyle, View } from 'react-native';
 
-import { getColors, getTexts } from '../assets';
+import { getColors, getTexts } from '../../assets';
 
 import Text from './Text';
 
 // -----------------------------------------------------------------------------
 
 /** This component renders the chameleon chess logo in the correct language. It
- * also resizes automatically to completely fill the width of the parent
- * component. */
+ * also resizes automatically to completely fill either the height or the width
+ * of the parent component. */
 const Logo = () => {
+    // Calculate the font size once this component is rendered and the dimensions
+    // are know.
     const [fontSize, setFontSize] = useState(0);
-
-    const textStyle = {...STYLES.text, fontSize, lineHeight: fontSize * 1.1};
-    const letters = getTexts().logo.split('');
-
     function calcFontSize(event: LayoutChangeEvent) {
         if (fontSize === 0) {
             const { width } = event.nativeEvent.layout;
-            setFontSize(width / WIDTH_DIVIDER);
+            setFontSize(width / widthDivider);
         }
     }
 
-    return <View style={STYLES.wrapper} onLayout={calcFontSize}>
+    const textStyle: TextStyle = {
+        lineHeight: fontSize * 1.1,
+        fontSize,
+        fontWeight: 'bold',
+    };
+    const letters = getTexts().logo.split('');
+
+    return <View style={{aspectRatio: 2.5}} onLayout={calcFontSize}>
         <Text>
             {letters.map((letter, i) => <Text key={i} invert={true}
-                style={[textStyle, {color: FONT_COLORS[i % NUM_OF_COLORS]}]}
+                style={[textStyle, {color: colors[i % colors.length]}]}
             >
                 {letter}
             </Text>)}
@@ -38,22 +43,11 @@ export default Logo;
 
 // -----------------------------------------------------------------------------
 
-const FONT_COLORS = [
+const colors = [
     getColors().main[0],
     getColors().main[1],
     getColors().main[2],
     getColors().main[3],
 ];
 
-const NUM_OF_COLORS = FONT_COLORS.length;
-
-const STYLES = StyleSheet.create({
-    wrapper: {
-        aspectRatio: 2.5,
-    },
-    text: {
-        fontWeight: 'bold',
-    }
-});
-
-const WIDTH_DIVIDER = 5.7;
+const widthDivider = 5.7;
