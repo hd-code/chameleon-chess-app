@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ViewProps, StyleSheet } from 'react-native';
 
-import { getColors } from '../assets';
+import { getColors } from '../../assets';
 
 // -----------------------------------------------------------------------------
 
@@ -22,23 +22,18 @@ interface OverlayProps extends ViewProps {
  * The overlay is a react-native View component. Therefore, all react-native
  * View Properties can be used to further style this component. Therefore, it is
  * also possible to add children to an overlay.*/
-const Overlay = (props: OverlayProps) => {
-    const { style, ...restProps } = props;
-    return <View style={[StyleSheet.absoluteFill, STYLES[props.type], style]} {...restProps}/>;
-}
+const Overlay = ({style, type, ...props}: OverlayProps) => 
+    <View style={[StyleSheet.absoluteFill, {backgroundColor: shades[type]}, style]}
+        {...props}
+    />
+;
 
 export default Overlay;
 
 // -----------------------------------------------------------------------------
 
-const STYLES = StyleSheet.create({
-    [EOverlayType.DARKEN]: {
-        backgroundColor: getColors().shader.darken,
-    },
-    [EOverlayType.GREYING]: {
-        backgroundColor: getColors().shader.greying,
-    },
-    [EOverlayType.LIGHTEN]: {
-        backgroundColor: getColors().shader.lighten,
-    },
-});
+const shades = {
+    [EOverlayType.DARKEN]: getColors().shader.darken,
+    [EOverlayType.GREYING]: getColors().shader.greying,
+    [EOverlayType.LIGHTEN]: getColors().shader.lighten,
+}

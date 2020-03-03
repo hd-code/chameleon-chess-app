@@ -1,8 +1,8 @@
 import React from 'react';
-import { Text as RNText, TextProps as RNTextProps, StyleSheet, Platform } from 'react-native';
+import { Text as RNText, TextProps as RNTextProps, TextStyle } from 'react-native';
 
-import { getColors } from '../assets';
-import { getBaseFontSize } from '../helper';
+import { getColors } from '../../assets';
+import { getBaseFontSize } from '../../helper';
 
 // -----------------------------------------------------------------------------
 
@@ -39,28 +39,24 @@ interface TextProps extends RNTextProps{
  * <Text>Hello <Text scale={1.5}>world</Text></Text>
  * ```
  */
-const Text = (props: TextProps) => {
-    const { scale, style, invert, ...restProps } = props;
+const Text = ({invert, scale, style, ...props}: TextProps) => {
     const fontSize = getBaseFontSize() * (scale || 1);
-
-    const textStyle = [STYLES.basic, invert ? STYLES.invert : {}, {fontSize}, style];
-
-    return <RNText style={textStyle} {...restProps}/>;
+    const textStyle = [baseStyle, invert ? invertStyle : {}, {fontSize}, style];
+    return <RNText style={textStyle} {...props}/>;
 }
 
 export default Text;
 
 // -----------------------------------------------------------------------------
 
-const STYLES = StyleSheet.create({
-    basic: {
-        fontFamily: 'OpenSans-Regular',
-        textAlign: 'center',
-    },
-    invert: {
-        color: getColors().basic.white,
-        textShadowColor: getColors().basic.black,
-        textShadowOffset: {height: 0, width: 0},
-        textShadowRadius: StyleSheet.hairlineWidth * (Platform.OS == 'android' ? 10 : 5),
-    }
-});
+const baseStyle: TextStyle = {
+    fontFamily: 'OpenSans-Regular',
+    textAlign: 'center',
+};
+
+const invertStyle: TextStyle = {
+    color: getColors().basic.white,
+    textShadowColor: getColors().basic.black,
+    textShadowOffset: {height: 0, width: 0},
+    textShadowRadius: 1,
+};

@@ -1,29 +1,34 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 
 import { getImages } from '../assets';
 import { getBaseFontSize } from '../helper';
 
-import Image from './Image';
+import Image from './basic/Image';
 import Logo from './Logo';
 
-import { goto } from '../controller/app';
+import { INavigation } from '../models/view';
 
 // -----------------------------------------------------------------------------
+
+interface TopbarProps {
+    /** Navigation functions to go to other views. */
+    navigation: INavigation;
+}
 
 /** A topbar that gets displayed on almost all views right at the top. It
  * contains a home and a settings button.
  */
-const Topbar = () =>
-    <View style={STYLES.wrapper}>
-        <View style={STYLES.square}>
-            <Image source={getImages().home} onPress={goto.home} />
+const Topbar = ({navigation}: TopbarProps) =>
+    <View style={wrapperStyle}>
+        <View style={iconStyle}>
+            <Image source={getImages().home} onPress={navigation.home} />
         </View>
 
         <Logo />
 
-        <View style={STYLES.square}>
-            <Image source={getImages().settings} onPress={goto.settings} />
+        <View style={iconStyle}>
+            <Image source={getImages().settings} onPress={navigation.settings} />
         </View>
     </View>
 ;
@@ -32,15 +37,14 @@ export default Topbar;
 
 // -----------------------------------------------------------------------------
 
-const STYLES = StyleSheet.create({
-    wrapper: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        height: getBaseFontSize() * 4.3,
-        width: '100%',
-    },
-    square: {
-        aspectRatio: 1,
-        height: '85%',
-    },
-});
+const wrapperStyle: ViewStyle= {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    height: getBaseFontSize() * 4.3,
+    width: '100%',
+}
+
+const iconStyle: ViewStyle= {
+    aspectRatio: 1,
+    height: '85%',
+}

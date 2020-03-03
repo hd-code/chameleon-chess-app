@@ -20,3 +20,11 @@ export function isSettings(s: any): s is ISettings {
         && 'soundOn' in s && typeof s.soundOn === 'boolean'
     ;
 }
+
+/** Interface that gives functions to alter the settings. Is implemented by the
+ * settings controller. */
+export interface IChangeSettings {
+    setLanguage: (language: ELanguage) => void;
+    toggleMusicOn: () => void;
+    toggleSoundOn: () => void;
+}

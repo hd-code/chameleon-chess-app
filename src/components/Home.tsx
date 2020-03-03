@@ -1,52 +1,59 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
+import { IGame } from 'chameleon-chess-logic';
+import { INavigation } from '../models/view';
+
 import { getColors, getTexts } from '../assets';
 import { getBaseFontSize } from '../helper';
 
-import Button from './Button';
+import Button from './basic/Button';
 import Logo from './Logo';
-import Spacer from './Spacer';
-
-import { goto } from '../controller/app';
-import { getGame } from '../controller/game';
+import Spacer from './basic/Spacer';
 
 // -----------------------------------------------------------------------------
 
+interface HomeProps {
+    /** The current game state in the cache. */
+    game: IGame|null;
+    /** Navigation functions to go to other views. */
+    navigation: INavigation;
+}
+
 /** The root component for the home view. This is the start screen of the app. */
-const Home = () => <>
-    <View />
+const Home = ({game, navigation}: HomeProps) => {
+    const buttonsTexts = getTexts().home.buttons;
 
-    <View style={STYLES.wrapper}>
+    return <View style={STYLES.wrapper}>
         <Logo />
-
         <Spacer scale={2} />
-        
-        <Button onPress={goto.game} color={getColors().main[0]} disabled={getGame() === null}>
-            {getTexts().home.buttons.continue}
-        </Button>
-
+        <Button 
+            text={buttonsTexts.continue}
+            onPress={navigation.game}
+            color={getColors().main[0]}
+            disabled={game === null}
+        />
         <Spacer />
-
-        <Button onPress={goto.playerConfig} color={getColors().main[1]}>
-            {getTexts().home.buttons.newGame}
-        </Button>
-
+        <Button 
+            text={buttonsTexts.newGame}
+            onPress={navigation.gameConfig}
+            color={getColors().main[1]}
+        />
         <Spacer />
-
-        <Button onPress={() => {}} color={getColors().main[2]} disabled={true}>
-            {getTexts().home.buttons.tutorial}
-        </Button>
-
+        <Button 
+            text={buttonsTexts.tutorial}
+            onPress={() => {}}
+            color={getColors().main[2]}
+            disabled={true}
+        />
         <Spacer />
-
-        <Button onPress={goto.settings} color={getColors().main[3]}>
-            {getTexts().home.buttons.settings}
-        </Button>
-    </View>
-
-    <View />
-</>;
+        <Button 
+            text={buttonsTexts.settings}
+            onPress={navigation.settings}
+            color={getColors().main[3]}
+        />
+    </View>;
+}
 
 export default Home;
 

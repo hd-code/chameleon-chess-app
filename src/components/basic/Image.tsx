@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image as RNImage, ImageProps as RNImageProps, StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { Image as RNImage, ImageProps as RNImageProps, TouchableWithoutFeedback } from 'react-native';
 
 // -----------------------------------------------------------------------------
 
@@ -22,10 +22,9 @@ interface ImageProps extends RNImageProps {
  *   resize to become as wide and as tall as the parent component allows.
  * - An `onPress` function can be specified, that will be called when the image
  *   is clicked. */
-const Image = (props: ImageProps) => {
-    const { onPress, style, ...restProps } = props;
+const Image = ({onPress, style, ...props}: ImageProps) => {
     return <TouchableWithoutFeedback onPress={onPress}>
-        <RNImage style={[baseStyle, style]} resizeMode={'contain'} {...restProps} />
+        <RNImage style={[baseStyle, style]} resizeMode={'contain'} {...props} />
     </TouchableWithoutFeedback>;
 };
 
@@ -33,10 +32,8 @@ export default Image;
 
 // -----------------------------------------------------------------------------
 
-const { baseStyle } = StyleSheet.create({
-    baseStyle: {
-        flex: 1,
-        height: undefined,
-        width:  undefined,
-    },
-});
+const baseStyle = {
+    flex: 1,
+    height: undefined,
+    width:  undefined,
+};

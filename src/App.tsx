@@ -1,97 +1,110 @@
 import React, { useState }from 'react';
-import { SafeAreaView, StatusBar, ImageBackground, StyleSheet, View, Platform, UIManager, LayoutAnimation } from 'react-native';
+import { ImageBackground, LayoutAnimation, SafeAreaView, StatusBar, View,
+        ViewStyle, Platform, UIManager } from 'react-native';
 
 import { getImages } from './assets';
 
 import Game from './components/Game';
+import GameConfig from './components/GameConfig';
 import Home from './components/Home';
-import PlayerConfig from './components/PlayerConfig';
 import Settings from './components/Settings';
+import Topbar from './components/Topbar';
 
-import { subscribe, getView } from './controller/app';
-import { getGame } from './controller/game';
+import { getGame, onBeginGame, onGameRender, onPressBoard } from './controller/game';
+import { getSettings, getSettingsChanger } from './controller/settings';
+import { getNavigation, getView } from './controller/view';
 
-import { EView } from './models/view';
+import { IGameExt } from './models/game';
+import { EView, INavigation } from './models/view';
 
 // -----------------------------------------------------------------------------
 
-/** The root component of the whole app. It provides a basic wrapper, where all
- * other components will be displayed inside. This component is alway visible.
- * 
- * It subscribes to changes in the app controller. When the app state changes,
- * this component gets notified and will re-render, causing the whole
- * application view to re-render. */
+/** Root component of the whole app. */
 const App = () => {
-    // `render` is a simple boolean variabel. Through `setRender` the variable
-    // gets flipped. This flipping causes the app to re-render. Therefore,
-    // this flipping function is registered as a callback for changes in the app
-    // state. Everytime the app state in the app controller changes, this
-    // flipping function gets called and the app views are refreshed.
+    // trigger a re-render when the `onStateChange` function is called.
     const [render, setRender] = useState(false);
-    subscribe(() => { setRender(!render); });
-
-    // make all transitions between different renderings smooth
+    function reRender() { setRender(!render); }
+    stateChangeFunc = reRender;
+    
+    // make transitions between renderings smooth, so that they 'fade' into each other.
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    
+    const view = getView();
+    const navigation = getNavigation();
 
-    return (
-        <ImageBackground source={getImages().background} style={STYLES.background} >
-            <StatusBar hidden={true} />
+    return <ImageBackground
+        source={getImages().background}
+        style={{height: '100%', width: '100%'}}
+    >
+        <StatusBar hidden={true} />
 
-            <SafeAreaView style={STYLES.safeAreaView}>
-                <View style={STYLES.main}>
-                    {getViewComponent(getView())}
-                </View>
-            </SafeAreaView>
-        </ImageBackground>
-    );
+        <SafeAreaView style={{height: '100%', width: '100%'}}>
+            <View style={mainStyle}>
+                {/* Do not display topbar on home view. */}
+                {view !== EView.HOME ? <Topbar navigation={navigation} /> : <View />}
+
+                {displayView(view, navigation)}
+
+                <View />{/* Potenzieller Footer */}
+            </View>
+        </SafeAreaView>
+    </ImageBackground>;
 };
 
 export default App;
 
+/** Call this function to notify the App.tsx component that the app state has
+ * changed. The App.tsx component will then re-render. */
+export function onStateChange() {
+    stateChangeFunc();
+}
+
 // -----------------------------------------------------------------------------
 
-const STYLES = StyleSheet.create({
-    background: {
-        height: '100%',
-        width:  '100%',
-    },
-    safeAreaView: {
-        height: '100%',
-        width:  '100%',
-    },
-    main: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        height: '100%',
-        width:  '100%',
-    },
-});
+const mainStyle: ViewStyle = {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: '100%',
+    width: '100%',
+}
 
-function getViewComponent(view: EView) {
+/** Variable to store the re-render function from the component. Otherwise that
+ * function would not be available on this level of the program. */
+let stateChangeFunc = () => {};
+
+/** This variable has no direct purpose. It is just used to prevent the
+ * typescript compiler from displaying an error, that is actually no error at
+ * all. */
+let t: IGameExt;
+
+function displayView(view: EView, navigation: INavigation) {
     switch (view) {
         case EView.HOME:
-            return <Home />;
-
-        case EView.PLAYER_CONFIG:
-            return <PlayerConfig />;
+            return <Home game={getGame()} navigation={navigation} />
 
         case EView.GAME:
-            const game = getGame();
+            const {players, ...game} = getGame() || t;
             if (!game) {
-                console.warn('App.tsx: Could not load game view, because there is no saved game.');
-                return <Home />;
+                console.warn('App.tsx: No game available.');
+                return <Home game={null} navigation={navigation} />
             }
-            return <Game {...game} />;
+            return <Game game={game} players={players} navigation={navigation}
+                onGameRender={onGameRender}
+                onPressBoard={onPressBoard}
+            />;
+
+        case EView.GAME_CONFIG:
+            return <GameConfig navigation={navigation} onBeginGame={onBeginGame} />
 
         case EView.SETTINGS:
-            return <Settings />;
+            return <Settings settings={getSettings()} changeSettings={getSettingsChanger()} />
     }
 }
 
 // -----------------------------------------------------------------------------
 
-// enable LayoutAnimation on Android, this just has to be set once
+// for android devices LayoutAnimation has to be turned on manually
 if (Platform.OS === 'android') {
     if (UIManager.setLayoutAnimationEnabledExperimental) {
         UIManager.setLayoutAnimationEnabledExperimental(true);

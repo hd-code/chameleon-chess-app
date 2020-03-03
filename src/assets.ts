@@ -1,7 +1,6 @@
+import { getSettings } from './controller/settings';
+
 import { EColor, ERole } from 'chameleon-chess-logic';
-
-import { getLanguage } from './controller/app';
-
 import { ELanguage } from './models/language';
 import { EPlayerType } from './models/players';
 
@@ -17,9 +16,11 @@ export function getImages() {
     return IMAGES;
 }
 
-/** All texts displayed in the app in all available languages. */
+/** All texts displayed in the app in all available languages. The currently set
+ * language is determined automatically. So the texts this function returns are
+ * already in the correct language. */
 export function getTexts() {
-    return TEXTS[getLanguage()];
+    return TEXTS[getSettings().language];
 }
 
 // -----------------------------------------------------------------------------
