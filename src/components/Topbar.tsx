@@ -5,7 +5,7 @@ import { getImages } from '../assets';
 import { getBaseFontSize } from '../helper';
 
 import Image from './basic/Image';
-import Logo from './Logo';
+import Logo from './basic/Logo';
 
 import { INavigation } from '../models/view';
 

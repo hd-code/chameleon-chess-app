@@ -8,7 +8,7 @@ import { getColors, getTexts } from '../assets';
 import { getBaseFontSize } from '../helper';
 
 import Button from './basic/Button';
-import Logo from './Logo';
+import Logo from './basic/Logo';
 import Spacer from './basic/Spacer';
 
 // -----------------------------------------------------------------------------
@@ -53,7 +53,7 @@ const Home = ({game, navigation}: HomeProps) => {
             color={getColors().main[3]}
         />
     </View>;
-}
+};
 
 export default Home;
 

@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { LayoutChangeEvent, TextStyle, View } from 'react-native';
 
-import { getColors, getTexts } from '../assets';
+import { getColors, getTexts } from '../../assets';
 
-import Text from './basic/Text';
+import Text from './Text';
 
 // -----------------------------------------------------------------------------
 
