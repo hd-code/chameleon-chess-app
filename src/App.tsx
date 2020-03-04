@@ -1,6 +1,8 @@
-import React, { useState }from 'react';
+import React, { useEffect, useState } from 'react';
 import { ImageBackground, LayoutAnimation, SafeAreaView, StatusBar, View,
         ViewStyle, Platform, UIManager } from 'react-native';
+
+import SplashScreen from 'react-native-splash-screen';
 
 import { getImages, playAudio } from './assets';
 
@@ -21,12 +23,17 @@ import { EView, INavigation } from './models/view';
 
 /** Root component of the whole app. */
 const App = () => {
-    // trigger a re-render when the `onStateChange` function is called.
+    // Hide splash screen when the app component has mounted with small delay,
+    // because background image needs a little time to load.
+    useEffect(() => { setTimeout(SplashScreen.hide, 1000); });
+
+    // Trigger a re-render when the `onStateChange` function is called.
     const [render, setRender] = useState(false);
     function reRender() { setRender(!render); }
     stateChangeFunc = reRender;
     
-    // make transitions between renderings smooth, so that they 'fade' into each other.
+    // Make transitions between renderings smooth, so that they 'fade' into each
+    // other.
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
 
     playAudio.music();
