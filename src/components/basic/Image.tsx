@@ -1,6 +1,8 @@
 import React from 'react';
 import { Image as RNImage, ImageProps as RNImageProps, TouchableWithoutFeedback } from 'react-native';
 
+import { playAudio } from '../../assets';
+
 // -----------------------------------------------------------------------------
 
 /** All react-native properties are still available. */
@@ -23,7 +25,12 @@ interface ImageProps extends RNImageProps {
  * - An `onPress` function can be specified, that will be called when the image
  *   is clicked. */
 const Image = ({onPress, style, ...props}: ImageProps) => {
-    return <TouchableWithoutFeedback onPress={onPress}>
+    return <TouchableWithoutFeedback
+        onPress={!onPress ? () => {} : () => {
+            playAudio.click();
+            onPress();
+        }}
+    >
         <RNImage style={[baseStyle, style]} resizeMode={'contain'} {...props} />
     </TouchableWithoutFeedback>;
 };

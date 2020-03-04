@@ -20,8 +20,7 @@ export function onBeginGame(players: TPlayers): boolean {
     const newGame = cclExt.createGame(players);
     if (!newGame) return false;
 
-    game = newGame;
-    saveGame();
+    saveGame(newGame);
     return true;
 }
 
@@ -37,14 +36,14 @@ export function onPressBoard(pawnIndex: number, clickPos: ccl.IPosition): boolea
     const newGame = cclExt.makeMove(game, pawnIndex, clickPos);
     if (!newGame) return false;
 
-    game = newGame;
-    saveGame();
+    saveGame(newGame);
     onStateChange();
     return true;
 }
 
-/** Handles game over and computer moves. */
-export function onGameRender() {
+/** Handles game over and computer moves. Calls `onComputerMove` immediately
+ * before a computer move is performed.*/
+export function onGameRender(onComputerMove: () => void) {
     if (!game) return console.warn('controller/game.ts: No stored game!');
 
     if (ccl.isGameOver(game)) {
@@ -54,7 +53,9 @@ export function onGameRender() {
 
     if (cclExt.isComputerMove(game)) {
         // Do computer move asynchronously, otherwise the UI is blocked.
-        setTimeout(doComputerMove, 1);
+        setTimeout(() => {
+            doComputerMove(onComputerMove);
+        }, 1);
     }
 }
 
@@ -65,7 +66,7 @@ const computerTurnLength = 1000; // in milliseconds
 
 let game: cclExt.IGameExt|null = null;
 
-function doComputerMove() {
+function doComputerMove(onComputerMove: () => void) {
     if (!game || !cclExt.isComputerMove(game)) return;
 
     const begin = new Date().getTime();
@@ -76,18 +77,20 @@ function doComputerMove() {
     setTimeout(() => {
         // only save new game if still on game view
         if (getView() === EView.GAME) {
-            game = newGame;
-            saveGame();
+            saveGame(newGame);
+            onComputerMove();
             onStateChange();
         }
     }, Math.max(computerTurnLength - (end - begin)), 1);
 }
 
-async function saveGame() {
+async function saveGame(newGame: cclExt.IGameExt) {
+    game = newGame;
     storage.write(storageKey, game);
 }
 
 async function removeGame() {
+    game = null;
     storage.remove(storageKey);
 }
 

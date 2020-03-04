@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.8.1",
+    "@react-native-community/audio-toolkit": "^2.0.2",
     "chameleon-chess-logic": "git+https://github.com/hd-code/chameleon-chess-logic.git#v1",
     "react": "~16.9.0",
     "react-native": "~0.61.5"

@@ -1,7 +1,7 @@
 import React from 'react';
 import { GestureResponderEvent, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native';
 
-import { getColors } from '../../assets';
+import { getColors, playAudio } from '../../assets';
 import { getBaseFontSize } from '../../helper';
 
 import Overlay, { EOverlayType } from './Overlay';
@@ -26,14 +26,17 @@ interface ButtonProps {
  * (which is not the case for the react-native Button component).
  * 
  * The button will always fill completely the width of its parent element. */
-const Button = (props: ButtonProps) => 
+const Button = ({text, onPress, color, disabled}: ButtonProps) => 
     <TouchableOpacity
-        style={[style, props.color ? {backgroundColor: props.color} : {}]}
-        onPress={props.disabled ? () => {} : props.onPress}
-        activeOpacity={props.disabled ? 1 : .9}
+        activeOpacity={disabled ? 1 : .9}
+        onPress={disabled ? () => {} : (event) => {
+            playAudio.click();
+            onPress(event);
+        }}
+        style={[style, color ? {backgroundColor: color} : {}]}
     >
-        <Text style={{fontWeight: 'bold'}} invert={true}>{props.text}</Text>
-        {props.disabled && <Overlay type={EOverlayType.GREYING} style={{borderRadius: padding}}/>}
+        <Text style={{fontWeight: 'bold'}} invert={true}>{text}</Text>
+        {disabled && <Overlay type={EOverlayType.GREYING} style={{borderRadius: padding}}/>}
     </TouchableOpacity>
 ;
 

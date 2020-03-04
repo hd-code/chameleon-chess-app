@@ -1,3 +1,5 @@
+import { Player } from '@react-native-community/audio-toolkit';
+
 import { getSettings } from './controller/settings';
 
 import { EColor, ERole } from 'chameleon-chess-logic';
@@ -23,7 +25,39 @@ export function getTexts() {
     return TEXTS[getSettings().language];
 }
 
+/** Play one of the audio files. Sounds and music will only be played if they
+ * are not switched off in the settings. These functions automatically check the
+ * settings on execution. So you do not have to worry about that. */
+export const playAudio = {
+    /** Play the background music if tuned on. */
+    music: () => {
+        if (getSettings().musicOn) audio.music.play();
+        else audio.music.pause();
+    },
+    /** Play a click sound. */
+    click: () => { if (getSettings().soundOn) audio.click.play(); },
+
+    // TODO: Record drag sound, currently it will just play the tap sound as a placeholder
+    /** Play a dragging sound, associated with the movement of the pawns on over
+     * the board. */
+    drag: () => { if (getSettings().soundOn) audio.tap.play(); },
+    /** Play a tap sound, usually associated with tapping a pawn. */
+    tap: () => { if (getSettings().soundOn) audio.tap.play(); },
+}
+
 // -----------------------------------------------------------------------------
+
+let audio = {
+    music: loadAudio('amazonas.mp3', true),
+    click: loadAudio('click.wav'),
+    tap: loadAudio('tap.wav'),
+};
+
+function loadAudio(file: string, loop?: boolean) {
+    let player = new Player(file, {autoDestroy: false});
+    if (loop) player.looping = true;
+    return player;
+}
 
 const COLORS = {
     basic: {
