@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { LayoutChangeEvent, GestureResponderEvent, ScrollView, StyleSheet, 
         TouchableWithoutFeedback, View, ViewStyle } from 'react-native';
 
+import { playAudio } from '../../assets';
+
 import * as ccl from 'chameleon-chess-logic';
 import { isOffLimits, isInMoves } from '../../models/game';
 
@@ -29,10 +31,17 @@ const Board = ({game, onPressBoard}: BoardProps) => {
     function handlePress(event: GestureResponderEvent) {
         const clickPos = calcClickPosition(event);
 
+        // move was made
         if (onPressBoard(selectedPawn, clickPos)) {
+            playAudio.drag();
             selectPawn(-1);
-        } else {
+        }
+
+        // no move was made
+        else {
             const pawnOnField = ccl.getIndexOfPawnAtPosition(game, clickPos);
+            if (pawnOnField !== -1) playAudio.tap(); // pawn was tapped
+
             selectPawn(pawnOnField);
         }
     }

@@ -2,7 +2,7 @@ import React, { useState }from 'react';
 import { ImageBackground, LayoutAnimation, SafeAreaView, StatusBar, View,
         ViewStyle, Platform, UIManager } from 'react-native';
 
-import { getImages } from './assets';
+import { getImages, playAudio } from './assets';
 
 import Game from './components/Game';
 import GameConfig from './components/GameConfig';
@@ -28,6 +28,8 @@ const App = () => {
     
     // make transitions between renderings smooth, so that they 'fade' into each other.
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+
+    playAudio.music();
     
     const view = getView();
     const navigation = getNavigation();
@@ -85,13 +87,16 @@ function displayView(view: EView, navigation: INavigation) {
 
         case EView.GAME:
             const {players, ...game} = getGame() || t;
+
             if (!game) {
                 console.warn('App.tsx: No game available.');
                 return <Home game={null} navigation={navigation} />
             }
+            
             return <Game game={game} players={players} navigation={navigation}
                 onGameRender={onGameRender}
                 onPressBoard={onPressBoard}
+                onBeginGame={onBeginGame}
             />;
 
         case EView.GAME_CONFIG:

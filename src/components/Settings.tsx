@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { View, ViewStyle, Platform, UIManager } from 'react-native';
+import { View, ViewStyle } from 'react-native';
 
-import { getTexts } from '../assets';
+import { getTexts, playAudio } from '../assets';
 import { getBaseFontSize } from '../helper';
 
 import Button from './basic/Button';
@@ -27,6 +27,7 @@ interface SettingsProps {
 const Settings = ({settings, changeSettings}: SettingsProps) => {
     const [showLangPicker, setShowLangPicker] = useState(false);
     function toggleLanguagePicker() {
+        playAudio.click();
         setShowLangPicker(!showLangPicker);
     }
 
