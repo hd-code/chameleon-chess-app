@@ -10,7 +10,7 @@ Die App ist meiner Meinung nach sehr gut gelungen und enthält viele schöne Kle
 
 Es gibt verschiedene Spracheinstellungen, ein schlüssiges Desgin, eine komplett funktionierende Spiellogik, sogar schon mit einem ersten Computergegner, der für meine Begriffe schon recht stark ist. Einstellungen und das aktuelle Spiel werden persistent gespeichert. Die Code-Struktur ist übersichtlich und einfach erweiterbar. Dank der Integration von Typescript ist Typensicherheit gewährleistet – auch im dynamischen JavaScript. Überall werden functional components verwendet, was eine nette kleine Herausforderung gewesen ist.
 
-Gut gelungen sind meiner Meinung nach auch diverse 'Modifizierungen' der Reac-Native Basis components. Damit meine ich z.B. die `Text` oder `Image` components. Durch das Überladen dieser Basis-Komponenten mit eigenen Custom-Settings, ist der ganze Workflow recht schnell und angenehm gewesen.
+Gut gelungen sind meiner Meinung nach auch diverse 'Modifizierungen' der React-Native Basis components. Damit meine ich z.B. die `Text` oder `Image` components. Durch das Überladen dieser Basis-Komponenten mit eigenen Custom-Settings, ist der ganze Workflow recht schnell und angenehm gewesen.
 
 Auch die Aufteilung in zum Einen die Logik-Bibliothek und zum Anderen die eigentliche App ist sehr hilfreich gewesen, da man die verschiedenen Aspekte getrennt von einander bearbeiten und lösen konnte.
 
@@ -28,6 +28,10 @@ Es ist zeitweise vorgekommen, dass aus unerfindlichen Gründen die iOS und/oder 
 
 Auf Android gibt es einen Bug bei der LayoutAnimation (welche bewirkt, dass die verschiedenen Renderings smooth in einander übergehen und nicht einfach hart zur neuen Ansicht springen). Diese scheint generell noch so einige Probleme zu haben. Ich versuche, dass genaue Problem zu isolieren und als Issue zu posten. Eine einfache Übergangslösung ist eingebaut.
 
+Auf iOS gibt es ebenfalls einen wahrscheinlichen Bug: Bei meinen Simulatoren hängt sich die Hintergrundmusik auf, wenn man die App schließt. Eventuell liegt das an meinem XCode. Ich werde demnächst mal meinen Rechner neu aufsetzen. Sollte das Problem immer noch auftreten, werden ich da ebenfalls mal ein Issue posten. Irgendwas scheint da in der Audio Bibliothek fehlerhaft zu sein.
+
+Generell ist Audio etwas beschwerlich. Man muss auf zusätzliche Bibliotheken zurückgreifen, da React-Native nichts dergleichen anbietet. Diese sind dann recht dürftig dokumentiert und die Nutzung ist etwas gewöhnungsbedürftig.
+
 ## Ausblick
 
 Thema meiner BA ist ja das Erstellen eines Computergegners mit Hilfe eines neuronalen Netzes. Ich hoffe sehr, dass es mir gelingt das umzusetzen, dann wird der Computergegner hier direkt ausgetauscht. Bzw. stelle ich mir vor den Gegner in verschiedenen Schwierigkeitsstufen anzubieten – leicht, mittel, schwer. Die genauen Details hier werden sich 'unterwegs' ergeben.
@@ -40,8 +44,10 @@ Bei Gelegenheit werde ich weiter versuchen eine Android-Lösung für das Heranzo
 
 Die Idee für einen 'Farbblinden-Modus' habe ich erstmal komplett verworfen. Da sind zu viele Fragen offen und Lösungen in schwarz-weiß-grau haben Auswirkung auf die Lesbarkeit von Texten und vieles mehr. Sollte das wirklich mal ein Thema werden, kann man sich damit immer noch beschäftigen.
 
+Bezüglich Hintergrundmusik und Sounds habe ich erstmal freie Ressourcen aus dem Internet eingefügt. Cool wäre es, wenn ich eine eigene Musik dazu schreibe und einfüge und auch die Sounds nochmal selbst aufnehme. Dadurch hätte ich das ganze noch besser auf die Anforderungen zugeschnitten. Dafür fehlte mir bisher schlichtweg die Zeit.
+
 Das 'Holzbrett' im Hintergrund gefällt mir noch nicht so ganz. Perspektivisch hätte ich gerne ein Holzbrett, was eher ein 'Cartoon' Style hat. Bisher bin ich noch nicht fündig geworden. Vielleicht kann meine Schwester mir da etwas designen oder ich gehe wirklich mal zu einem Profi dafür. Die bisherige Lösung ist auch okay, aber ein bisschen Perfektionist ist man ja schon. ;-)
 
 ## Fazit
 
-Sie sehen, es gibt noch einiges zu tun, aber sehr viel ist auch bereits umgesetzt. Dank PME ist das Projekt immens vorangeschritten. Ich finde das Ergebnis schon sehr gelungen und bin da auch ein bisschen stolz drauf. Das ganze hat (von ein paar Ärgernissen mit React Native einmal abgesehen) immens viel Spaß gemacht. Vielen Dank dafür :-)
+Sie sehen, es gibt noch einiges zu tun, aber sehr viel ist auch bereits umgesetzt. Dank PME ist das Projekt immens vorangeschritten. Ich finde das Ergebnis schon sehr gelungen und bin da auch ein bisschen stolz drauf. Das ganze hat (von ein paar Ärgernissen mit React-Native einmal abgesehen) immens viel Spaß gemacht. Vielen Dank dafür :-)
