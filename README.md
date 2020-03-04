@@ -105,7 +105,7 @@ To install the app on an Android emulator, you need to have the emulator running
 
 Make sure that your created devices use the android version "Pie".
 
-Once a (or serval) virtual device are running, go to the project folder and run this from terminal:
+Once a (or serval) virtual devices are running, go to the project folder and run this from terminal:
 
 ```sh
 npm run android
