@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, ViewStyle } from 'react-native';
 
-import { getTexts } from '../assets';
+import { getTexts, playAudio } from '../assets';
 import { getBaseFontSize } from '../helper';
 
 import { EColor } from 'chameleon-chess-logic';
@@ -29,6 +29,7 @@ const GameConfig = ({navigation, onBeginGame}: GameConfigProps) => {
     const texts = getTexts().playerConfig;
 
     function changePlayer(player: EColor) {
+        playAudio.click();
         let newPlayers = {...players};
         newPlayers[player] = getNextPlayerType(players[player]);
         setPlayers(newPlayers);
