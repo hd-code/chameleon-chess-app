@@ -14,7 +14,7 @@ import Pawn, { PawnProps } from './Pawn';
 
 interface BoardProps {
     /** The current game state. */
-    game: ccl.IGame;
+    game: ccl.IGameState;
     /** Gets called when the board is clicked. Returns true if a move was made,
      * false if it stays the same. */
     onPressBoard: (pawnIndex: number, clickPos: ccl.IPosition) => boolean;

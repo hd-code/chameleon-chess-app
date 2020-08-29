@@ -3,7 +3,7 @@ import { View, ViewStyle } from 'react-native';
 
 import { playAudio } from '../assets';
 
-import { IGame, arePlayersAlive, IPosition } from 'chameleon-chess-logic';
+import { IGameState, isPlayersAlive, IPosition } from 'chameleon-chess-logic';
 import { getWinner } from '../models/game';
 import { TPlayers } from '../models/players';
 import { INavigation } from '../models/view';
@@ -17,7 +17,7 @@ import WinnerPopup from './game/WinnerPopup';
 
 interface GameProps {
     /** The current game state. */
-    game: IGame;
+    game: IGameState;
     /** Players participating in the game. */
     players: TPlayers;
     /** Navigation functions to go to other views. */
@@ -37,13 +37,13 @@ interface GameProps {
 const Game = ({game, players, navigation, onPressBoard, onGameRender, onBeginGame}: GameProps) => {
     onGameRender(() => { playAudio.drag(); });
 
-    const playersAlive = arePlayersAlive(game);
+    const playersAlive = isPlayersAlive(game);
     const winner = getWinner({players, ...game});
     const winnerProps = {players, navigation, onBeginGame};
 
     return <View style={wrapperStyle}>
         <Spacer />
-        <PlayerBoard playersAlive={playersAlive} players={players} playerOnTurn={game.whoseTurn} />
+        <PlayerBoard playersAlive={playersAlive} players={players} playerOnTurn={game.player} />
         <Spacer />
         <Board game={game} onPressBoard={onPressBoard} />
 

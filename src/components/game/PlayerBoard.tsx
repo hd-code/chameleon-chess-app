@@ -3,7 +3,7 @@ import { View, ViewStyle } from 'react-native';
 
 import { getBaseFontSize } from '../../helper';
 
-import { EColor } from 'chameleon-chess-logic';
+import { EPlayer } from 'chameleon-chess-logic';
 import { TPlayers } from '../../models/players';
 
 import Player from './Player';
@@ -12,22 +12,22 @@ import Player from './Player';
 
 interface PlayerBoardProps {
     /** The player that is currently on turn. */
-    playerOnTurn: EColor;
+    playerOnTurn: EPlayer;
     /** Players participating in the game. */
     players: TPlayers;
     /** An object with each player plus a boolean indicating whether the player
      * is still alive. The function `arePlayersAlive` from `chameleon-chess-logic`
      * returns exactly this data structure. */
-    playersAlive: {[player in EColor]: boolean};
+    playersAlive: {[player in EPlayer]: boolean};
 }
 
 /** Displays the four players in the game view and there current state. */
 const PlayerBoard = ({playersAlive, playerOnTurn, players}: PlayerBoardProps) => 
     <View style={wrapperStyle}>
-        {getPlayer(EColor.RED, playerOnTurn, players, playersAlive)}
-        {getPlayer(EColor.BLUE, playerOnTurn, players, playersAlive)}
-        {getPlayer(EColor.YELLOW, playerOnTurn, players, playersAlive)}
-        {getPlayer(EColor.GREEN, playerOnTurn, players, playersAlive)}
+        {getPlayer(EPlayer.RED, playerOnTurn, players, playersAlive)}
+        {getPlayer(EPlayer.BLUE, playerOnTurn, players, playersAlive)}
+        {getPlayer(EPlayer.YELLOW, playerOnTurn, players, playersAlive)}
+        {getPlayer(EPlayer.GREEN, playerOnTurn, players, playersAlive)}
     </View>
 ;
 
@@ -42,7 +42,7 @@ const wrapperStyle: ViewStyle = {
     width: getBaseFontSize() * 28,
 }
 
-function getPlayer(player: EColor, playerOnTurn: EColor, players: TPlayers, playersAlive: {[player in EColor]: boolean}) {
+function getPlayer(player: EPlayer, playerOnTurn: EPlayer, players: TPlayers, playersAlive: {[player in EPlayer]: boolean}) {
     return <View style={{width: '25%'}}>
         <Player
             color={player} type={players[player]}

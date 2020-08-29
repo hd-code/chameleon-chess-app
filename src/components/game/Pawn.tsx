@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ViewStyle } from 'react-native';
 
-import { IPawn, EColor } from 'chameleon-chess-logic';
+import { IPawn, EFieldColor } from 'chameleon-chess-logic';
 
 import { getColors } from '../../assets';
 import { getSmallerDimension } from '../../helper';
@@ -29,10 +29,10 @@ const Pawn = ({player, position, roles, selected}: PawnProps) => {
 
     return <View style={[style, dynStyle]}>
         <View style={colorRoleWrapper}>
-            <ColorRole color={EColor.RED} role={roles[EColor.RED]} />
-            <ColorRole color={EColor.GREEN} role={roles[EColor.GREEN]} />
-            <ColorRole color={EColor.YELLOW} role={roles[EColor.YELLOW]} />
-            <ColorRole color={EColor.BLUE} role={roles[EColor.BLUE]} />
+            <ColorRole color={EFieldColor.RED} role={roles[EFieldColor.RED]} />
+            <ColorRole color={EFieldColor.GREEN} role={roles[EFieldColor.GREEN]} />
+            <ColorRole color={EFieldColor.YELLOW} role={roles[EFieldColor.YELLOW]} />
+            <ColorRole color={EFieldColor.BLUE} role={roles[EFieldColor.BLUE]} />
         </View>
         {selected && <Overlay type={EOverlayType.LIGHTEN} />}
     </View>;

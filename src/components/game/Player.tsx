@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native';
+import { TouchableOpacity, View, ViewStyle } from 'react-native';
 
-import { EColor } from 'chameleon-chess-logic';
+import { EPlayer } from 'chameleon-chess-logic';
 import { EPlayerType } from '../../models/players';
 
 import { getColors, getImages, getTexts } from '../../assets';
@@ -15,7 +15,7 @@ import Text from '../basic/Text';
 
 export interface PlayerProps {
     /** The player's color. */
-    color: EColor;
+    color: EPlayer;
     /** The player's type. '*/
     type: EPlayerType;
     /** If set to true, in addition to the icons, text will be displayed to

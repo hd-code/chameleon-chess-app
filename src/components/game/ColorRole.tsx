@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ViewStyle } from 'react-native';
 
-import { EColor, ERole } from 'chameleon-chess-logic';
+import { EFieldColor, ERole } from 'chameleon-chess-logic';
 
 import { getColors, getImages } from '../../assets';
 
@@ -10,7 +10,7 @@ import Image from '../basic/Image';
 // -----------------------------------------------------------------------------
 
 interface ColorRoleProps {
-    color: EColor;
+    color: EFieldColor;
     role: ERole;
 }
 

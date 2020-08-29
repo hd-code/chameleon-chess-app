@@ -2,7 +2,7 @@ import { Player } from '@react-native-community/audio-toolkit';
 
 import { getSettings } from './controller/settings';
 
-import { EColor, ERole } from 'chameleon-chess-logic';
+import { EFieldColor, EPlayer, ERole } from 'chameleon-chess-logic';
 import { ELanguage } from './models/language';
 import { EPlayerType } from './models/players';
 
@@ -66,10 +66,10 @@ const COLORS = {
         white: '#fff',
     },
     main: {
-        [EColor.RED]:   '#b9542d',
-        [EColor.GREEN]: '#51a230',
-        [EColor.YELLOW]:'#ddbb71',
-        [EColor.BLUE]:  '#04909d',
+        [EFieldColor.RED]:   '#b9542d',
+        [EFieldColor.GREEN]: '#51a230',
+        [EFieldColor.YELLOW]:'#ddbb71',
+        [EFieldColor.BLUE]:  '#04909d',
     },
     shader: {
         darken: '#0008',
@@ -108,7 +108,7 @@ const TEXTS = {
 
 interface ITexts {
     logo: string,
-    player: {[player in EColor]: string};
+    player: {[player in EPlayer]: string};
     playerType: {[playerType in EPlayerType]: string};
     home: {
         buttons: {
@@ -143,10 +143,10 @@ function mapTextFile(file: any) {
     return <ITexts>{
         logo: file.logo,
         player: {
-            [EColor.RED]: file.player.red,
-            [EColor.GREEN]: file.player.green,
-            [EColor.YELLOW]: file.player.yellow,
-            [EColor.BLUE]: file.player.blue,
+            [EPlayer.RED]: file.player.red,
+            [EPlayer.GREEN]: file.player.green,
+            [EPlayer.YELLOW]: file.player.yellow,
+            [EPlayer.BLUE]: file.player.blue,
         },
         playerType: {
             [EPlayerType.NONE]: file.playerType.none,

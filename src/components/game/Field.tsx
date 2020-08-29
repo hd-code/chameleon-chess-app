@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ViewStyle } from 'react-native';
 
-import { EColor } from 'chameleon-chess-logic';
+import { EFieldColor } from 'chameleon-chess-logic';
 
 import { getColors } from '../../assets';
 
@@ -11,7 +11,7 @@ import Overlay, { EOverlayType } from '../basic/Overlay';
 
 export interface FieldProps {
     key: string;
-    color: EColor;
+    color: EFieldColor;
     isOffLimits: boolean;
     isTarget: boolean;
 }

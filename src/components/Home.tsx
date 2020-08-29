@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 
-import { IGame } from 'chameleon-chess-logic';
+import { IGameState } from 'chameleon-chess-logic';
 import { INavigation } from '../models/view';
 
 import { getColors, getTexts } from '../assets';
@@ -15,7 +15,7 @@ import Spacer from './basic/Spacer';
 
 interface HomeProps {
     /** The current game state in the cache. */
-    game: IGame|null;
+    game: IGameState|null;
     /** Navigation functions to go to other views. */
     navigation: INavigation;
 }

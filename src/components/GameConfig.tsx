@@ -4,7 +4,7 @@ import { View, ViewStyle } from 'react-native';
 import { getTexts, playAudio } from '../assets';
 import { getBaseFontSize } from '../helper';
 
-import { EColor } from 'chameleon-chess-logic';
+import { EPlayer } from 'chameleon-chess-logic';
 import { getDefaultPlayers, isEnoughPlayers, TPlayers, getNextPlayerType } from '../models/players';
 import { INavigation } from '../models/view';
 
@@ -28,7 +28,7 @@ const GameConfig = ({navigation, onBeginGame}: GameConfigProps) => {
     const [players, setPlayers] = useState(getDefaultPlayers());
     const texts = getTexts().playerConfig;
 
-    function changePlayer(player: EColor) {
+    function changePlayer(player: EPlayer) {
         playAudio.click();
         let newPlayers = {...players};
         newPlayers[player] = getNextPlayerType(players[player]);
@@ -45,10 +45,10 @@ const GameConfig = ({navigation, onBeginGame}: GameConfigProps) => {
         <Text invert={true} scale={1.8}>{texts.heading}</Text>
         <Spacer />
         <View style={{flexDirection: 'row'}}>
-            {getPlayer(EColor.RED, players, changePlayer)}
-            {getPlayer(EColor.BLUE, players, changePlayer)}
-            {getPlayer(EColor.YELLOW, players, changePlayer)}
-            {getPlayer(EColor.GREEN, players, changePlayer)}
+            {getPlayer(EPlayer.RED, players, changePlayer)}
+            {getPlayer(EPlayer.BLUE, players, changePlayer)}
+            {getPlayer(EPlayer.YELLOW, players, changePlayer)}
+            {getPlayer(EPlayer.GREEN, players, changePlayer)}
         </View>
         <Spacer />
         <Text invert={true}>{texts.subText}</Text>
@@ -72,7 +72,7 @@ const wrapperStyle: ViewStyle = {
     width: getBaseFontSize() * 28,
 };
 
-function getPlayer(player: EColor, players: TPlayers, onPress: (player: EColor) => void) {
+function getPlayer(player: EPlayer, players: TPlayers, onPress: (player: EPlayer) => void) {
     return <View style={{width: '25%'}}>
         <Player
             color={player} type={players[player]} verbose={true}

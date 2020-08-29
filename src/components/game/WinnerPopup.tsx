@@ -4,7 +4,7 @@ import { ViewStyle } from 'react-native';
 import { getColors, getTexts } from '../../assets';
 import { getBaseFontSize } from '../../helper';
 
-import { EColor } from 'chameleon-chess-logic';
+import { EPlayer } from 'chameleon-chess-logic';
 import { TPlayers } from '../../models/players';
 import { INavigation } from '../../models/view';
 
@@ -17,7 +17,7 @@ import Text from '../basic/Text';
 
 interface WinnerPopupProps {
     /** The player, who won the game. */
-    winner: EColor;
+    winner: EPlayer;
     /** Players participating in the game. */
     players: TPlayers;
     /** Navigation functions to go to other views. */
