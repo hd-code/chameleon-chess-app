@@ -52,10 +52,7 @@ export function onGameRender(onComputerMove: () => void) {
     }
 
     if (cclExt.isComputerMove(game)) {
-        // Do computer move asynchronously, otherwise the UI is blocked.
-        setTimeout(() => {
-            doComputerMove(onComputerMove);
-        }, 1);
+        doComputerMove(onComputerMove);
     }
 }
 
@@ -66,11 +63,11 @@ const computerTurnLength = 1000; // in milliseconds
 
 let game: cclExt.IGameExt|null = null;
 
-function doComputerMove(onComputerMove: () => void) {
+async function doComputerMove(onComputerMove: () => void) {
     if (!game || !cclExt.isComputerMove(game)) return;
 
     const begin = new Date().getTime();
-    const newGame = cclExt.makeComputerMove(game);
+    const newGame = await cclExt.makeComputerMove(game);
     const end = new Date().getTime();
 
     // Do not do computer move immediately, but wait for a small amount of time.

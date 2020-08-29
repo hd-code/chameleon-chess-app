@@ -9,16 +9,16 @@
     "pod": "cd ios && pod install"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.8.1",
+    "@react-native-community/async-storage": "^1.12.0",
     "@react-native-community/audio-toolkit": "^2.0.2",
-    "chameleon-chess-logic": "git+https://github.com/hd-code/chameleon-chess-logic.git#legacy",
+    "chameleon-chess-logic": "git+https://github.com/hd-code/chameleon-chess-logic.git#v1.0.0",
     "react": "~16.9.0",
-    "react-native": "~0.61.5",
+    "react-native": "^0.63.2",
     "react-native-splash-screen": "^3.2.0"
   },
   "devDependencies": {
-    "@types/react": "~16.9.19",
+    "@types/react": "~16.9.48",
     "@types/react-native": "~0.61.15",
-    "typescript": "^3.7.5"
+    "typescript": "^3.9.7"
   }
 }
