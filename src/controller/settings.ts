@@ -1,4 +1,4 @@
-import { onStateChange } from '../App';
+import { render } from '../render';
 import storage from '../storage';
 
 import { ELanguage } from '../models/language';
@@ -29,17 +29,17 @@ let settings: ISettings = {
 const settingsChanger: IChangeSettings = {
     setLanguage: (newLang: ELanguage) => {
         settings.language = newLang;
-        onStateChange();
+        render();
         saveSettings();
     },
     toggleMusicOn: () => {
         settings.musicOn = !settings.musicOn;
-        onStateChange();
+        render();
         saveSettings();
     },
     toggleSoundOn: () => {
         settings.soundOn = !settings.soundOn;
-        onStateChange();
+        render();
         saveSettings();
     },
 };
@@ -62,4 +62,4 @@ async function loadSettings() {
 // -----------------------------------------------------------------------------
 
 // Load settings the first time this file is retrieved.
-loadSettings().then(onStateChange).catch(e => console.log(e));
+loadSettings().then(render).catch(e => console.log(e));

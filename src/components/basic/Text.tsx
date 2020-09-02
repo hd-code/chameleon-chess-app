@@ -50,7 +50,7 @@ export default Text;
 // -----------------------------------------------------------------------------
 
 const baseStyle: TextStyle = {
-    fontFamily: 'OpenSans-Regular',
+    // fontFamily: 'OpenSans-Regular',
     textAlign: 'center',
 };
 

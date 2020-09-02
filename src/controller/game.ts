@@ -1,4 +1,4 @@
-import { onStateChange } from '../App';
+import { render } from '../render';
 import storage from '../storage';
 
 import { getView } from './view';
@@ -37,7 +37,7 @@ export function onPressBoard(pawnIndex: number, clickPos: ccl.IPosition): boolea
     if (!newGame) return false;
 
     saveGame(newGame);
-    onStateChange();
+    render();
     return true;
 }
 
@@ -52,7 +52,9 @@ export function onGameRender(onComputerMove: () => void) {
     }
 
     if (cclExt.isComputerMove(game)) {
-        doComputerMove(onComputerMove);
+        setTimeout(() => {
+            doComputerMove(onComputerMove);
+        }, 10);
     }
 }
 
@@ -76,7 +78,7 @@ async function doComputerMove(onComputerMove: () => void) {
         if (getView() === EView.GAME) {
             saveGame(newGame);
             onComputerMove();
-            onStateChange();
+            render();
         }
     }, Math.max(computerTurnLength - (end - begin)), 1);
 }
@@ -101,4 +103,4 @@ async function loadGame() {
 // -----------------------------------------------------------------------------
 
 // Load stored game the first time this file is retrieved.
-loadGame().then(onStateChange).catch(e => console.log(e));
+loadGame().then(render).catch(e => console.log(e));

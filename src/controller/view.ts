@@ -1,6 +1,6 @@
 import { Platform, UIManager } from 'react-native';
 
-import { onStateChange } from '../App';
+import { render } from '../render';
 
 import { EView, INavigation } from '../models/view';
 
@@ -51,5 +51,5 @@ let view = defaultView;
 
 function changeView(newView: EView) {
     view = newView;
-    onStateChange();
+    render();
 }

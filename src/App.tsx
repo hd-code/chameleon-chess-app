@@ -5,6 +5,7 @@ import { ImageBackground, LayoutAnimation, SafeAreaView, StatusBar, View,
 import SplashScreen from 'react-native-splash-screen';
 
 import { getImages, playAudio } from './assets';
+import { registerCallback } from './render';
 
 import Game from './components/Game';
 import GameConfig from './components/GameConfig';
@@ -27,10 +28,10 @@ const App = () => {
     // because background image needs a little time to load.
     useEffect(() => { setTimeout(SplashScreen.hide, 1000); });
 
-    // Trigger a re-render when the `onStateChange` function is called.
+    // Trigger a re-render when the callback in the render module is called
     const [render, setRender] = useState(false);
     function reRender() { setRender(!render); }
-    stateChangeFunc = reRender;
+    registerCallback(reRender);
     
     // Make transitions between renderings smooth, so that they 'fade' into each
     // other.
@@ -61,12 +62,6 @@ const App = () => {
 };
 
 export default App;
-
-/** Call this function to notify the App.tsx component that the app state has
- * changed. The App.tsx component will then re-render. */
-export function onStateChange() {
-    stateChangeFunc();
-}
 
 // -----------------------------------------------------------------------------
 
