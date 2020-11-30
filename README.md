@@ -1,3 +1,7 @@
+# !!! Important !!!
+
+**All separate repositories for the game Chameleon Chess were moved to a single project! It can be found here: <https://github.com/hd-code/chameleon-chess>**
+
 # chameleon-chess-app
 
 Play a colorful, fresh and dynamic version of chess with this mobile app.
